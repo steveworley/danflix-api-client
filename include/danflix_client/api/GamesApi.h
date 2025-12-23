@@ -25,6 +25,7 @@
 #include "danflix_client/AnyType.h"
 #include "danflix_client/HttpContent.h"
 #include "danflix_client/model/Models_Game.h"
+#include "danflix_client/model/Routes_ImportGamesRequest.h"
 #include <map>
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -54,8 +55,16 @@ public:
     /// Get all games from the database
     /// </remarks>
     /// <param name="name">Filter by name (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="decade">Filter by decade (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="platform">Filter by platform (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="genre">Filter by genre (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="players">Filter by number of players (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Game>>> gamesGet(
-        boost::optional<utility::string_t> name
+        boost::optional<utility::string_t> name,
+        boost::optional<utility::string_t> decade,
+        boost::optional<utility::string_t> platform,
+        boost::optional<utility::string_t> genre,
+        boost::optional<utility::string_t> players
     ) const;
     /// <summary>
     /// Download game file
@@ -138,6 +147,24 @@ public:
     /// <param name="id">Game ID</param>
     pplx::task<std::shared_ptr<HttpContent>> gamesIdVideoGet(
         utility::string_t id
+    ) const;
+    /// <summary>
+    /// Import games
+    /// </summary>
+    /// <remarks>
+    /// Import games from an EmulationStation gamelist.xml file
+    /// </remarks>
+    /// <param name="path">Path to gamelist.xml or directory containing it</param>
+    pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> gamesImportPost(
+        std::shared_ptr<Routes_ImportGamesRequest> path
+    ) const;
+    /// <summary>
+    /// Get 5 random games (Am I Feeling Lucky?)
+    /// </summary>
+    /// <remarks>
+    /// Returns 5 random games to discover new titles. Includes HowLongToBeat metadata if available.
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Models_Game>>> gamesLuckyGet(
     ) const;
 
 protected:

@@ -53,6 +53,12 @@ Models_Game::Models_Game()
     m_TextureIsSet = false;
     m_Thumbnail = utility::conversions::to_string_t("");
     m_ThumbnailIsSet = false;
+    m_Time_to_beat_100 = 0.0;
+    m_Time_to_beat_100IsSet = false;
+    m_Time_to_beat_main = 0.0;
+    m_Time_to_beat_mainIsSet = false;
+    m_Time_to_beat_plus = 0.0;
+    m_Time_to_beat_plusIsSet = false;
     m_UpdatedAt = utility::conversions::to_string_t("");
     m_UpdatedAtIsSet = false;
     m_Video = utility::conversions::to_string_t("");
@@ -160,6 +166,21 @@ web::json::value Models_Game::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("thumbnail"))] = ModelBase::toJson(m_Thumbnail);
+    }
+    if(m_Time_to_beat_100IsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100"))] = ModelBase::toJson(m_Time_to_beat_100);
+    }
+    if(m_Time_to_beat_mainIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main"))] = ModelBase::toJson(m_Time_to_beat_main);
+    }
+    if(m_Time_to_beat_plusIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus"))] = ModelBase::toJson(m_Time_to_beat_plus);
     }
     if(m_UpdatedAtIsSet)
     {
@@ -376,6 +397,39 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setTimeToBeat100;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTimeToBeat100);
+            setTimeToBeat100(refVal_setTimeToBeat100);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setTimeToBeatMain;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTimeToBeatMain);
+            setTimeToBeatMain(refVal_setTimeToBeatMain);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus")));
+        if(!fieldValue.is_null())
+        {
+            double refVal_setTimeToBeatPlus;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTimeToBeatPlus);
+            setTimeToBeatPlus(refVal_setTimeToBeatPlus);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
@@ -479,6 +533,18 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     if(m_ThumbnailIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("thumbnail")), m_Thumbnail));
+    }
+    if(m_Time_to_beat_100IsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100")), m_Time_to_beat_100));
+    }
+    if(m_Time_to_beat_mainIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main")), m_Time_to_beat_main));
+    }
+    if(m_Time_to_beat_plusIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus")), m_Time_to_beat_plus));
     }
     if(m_UpdatedAtIsSet)
     {
@@ -606,6 +672,24 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         utility::string_t refVal_setThumbnail;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("thumbnail"))), refVal_setThumbnail );
         setThumbnail(refVal_setThumbnail);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100"))))
+    {
+        double refVal_setTimeToBeat100;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100"))), refVal_setTimeToBeat100 );
+        setTimeToBeat100(refVal_setTimeToBeat100);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main"))))
+    {
+        double refVal_setTimeToBeatMain;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main"))), refVal_setTimeToBeatMain );
+        setTimeToBeatMain(refVal_setTimeToBeatMain);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus"))))
+    {
+        double refVal_setTimeToBeatPlus;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus"))), refVal_setTimeToBeatPlus );
+        setTimeToBeatPlus(refVal_setTimeToBeatPlus);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
@@ -996,6 +1080,66 @@ bool Models_Game::thumbnailIsSet() const
 void Models_Game::unsetThumbnail()
 {
     m_ThumbnailIsSet = false;
+}
+double Models_Game::getTimeToBeat100() const
+{
+    return m_Time_to_beat_100;
+}
+
+void Models_Game::setTimeToBeat100(double value)
+{
+    m_Time_to_beat_100 = value;
+    m_Time_to_beat_100IsSet = true;
+}
+
+bool Models_Game::timeToBeat100IsSet() const
+{
+    return m_Time_to_beat_100IsSet;
+}
+
+void Models_Game::unsetTime_to_beat_100()
+{
+    m_Time_to_beat_100IsSet = false;
+}
+double Models_Game::getTimeToBeatMain() const
+{
+    return m_Time_to_beat_main;
+}
+
+void Models_Game::setTimeToBeatMain(double value)
+{
+    m_Time_to_beat_main = value;
+    m_Time_to_beat_mainIsSet = true;
+}
+
+bool Models_Game::timeToBeatMainIsSet() const
+{
+    return m_Time_to_beat_mainIsSet;
+}
+
+void Models_Game::unsetTime_to_beat_main()
+{
+    m_Time_to_beat_mainIsSet = false;
+}
+double Models_Game::getTimeToBeatPlus() const
+{
+    return m_Time_to_beat_plus;
+}
+
+void Models_Game::setTimeToBeatPlus(double value)
+{
+    m_Time_to_beat_plus = value;
+    m_Time_to_beat_plusIsSet = true;
+}
+
+bool Models_Game::timeToBeatPlusIsSet() const
+{
+    return m_Time_to_beat_plusIsSet;
+}
+
+void Models_Game::unsetTime_to_beat_plus()
+{
+    m_Time_to_beat_plusIsSet = false;
 }
 utility::string_t Models_Game::getUpdatedAt() const
 {

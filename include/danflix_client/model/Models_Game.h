@@ -154,6 +154,24 @@ public:
     void unsetThumbnail();
     void setThumbnail(const utility::string_t& value);
 
+    double getTimeToBeat100() const;
+    bool timeToBeat100IsSet() const;
+    void unsetTime_to_beat_100();
+    void setTimeToBeat100(double value);
+
+    /// <summary>
+    /// HowLongToBeat Data
+    /// </summary>
+    double getTimeToBeatMain() const;
+    bool timeToBeatMainIsSet() const;
+    void unsetTime_to_beat_main();
+    void setTimeToBeatMain(double value);
+
+    double getTimeToBeatPlus() const;
+    bool timeToBeatPlusIsSet() const;
+    void unsetTime_to_beat_plus();
+    void setTimeToBeatPlus(double value);
+
     utility::string_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
@@ -219,6 +237,15 @@ protected:
 
     utility::string_t m_Thumbnail;
     bool m_ThumbnailIsSet;
+
+    double m_Time_to_beat_100;
+    bool m_Time_to_beat_100IsSet;
+
+    double m_Time_to_beat_main;
+    bool m_Time_to_beat_mainIsSet;
+
+    double m_Time_to_beat_plus;
+    bool m_Time_to_beat_plusIsSet;
 
     utility::string_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
