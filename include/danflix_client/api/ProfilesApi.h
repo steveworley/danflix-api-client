@@ -22,6 +22,7 @@
 
 #include "danflix_client/ApiClient.h"
 
+#include "danflix_client/AnyType.h"
 #include "danflix_client/model/Models_MediaProgress.h"
 #include "danflix_client/model/Models_Play.h"
 #include "danflix_client/model/Models_Profile.h"
@@ -49,6 +50,14 @@ public:
 
     virtual ~ProfilesApi();
 
+    /// <summary>
+    /// Get home dashboard
+    /// </summary>
+    /// <remarks>
+    /// Get recent movies, shows, and continue watching
+    /// </remarks>
+    pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> homeGet(
+    ) const;
     /// <summary>
     /// Get continue watching
     /// </summary>

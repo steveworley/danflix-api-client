@@ -23,9 +23,14 @@
 #include "danflix_client/ApiClient.h"
 
 #include "danflix_client/model/Models_Actor.h"
+#include "danflix_client/model/Models_Game.h"
 #include "danflix_client/model/Models_Genre.h"
+#include "danflix_client/model/Models_Movie.h"
+#include "danflix_client/model/Models_Platform.h"
 #include "danflix_client/model/Models_Studio.h"
+#include "danflix_client/model/Models_TVShow.h"
 #include <vector>
+#include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
 namespace org {
@@ -64,6 +69,26 @@ public:
         int32_t id
     ) const;
     /// <summary>
+    /// Get movies by actor
+    /// </summary>
+    /// <remarks>
+    /// Get movies by actor from the database
+    /// </remarks>
+    /// <param name="id">Actor ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_Movie>>> actorsIdMoviesGet(
+        int32_t id
+    ) const;
+    /// <summary>
+    /// Get TV shows by actor
+    /// </summary>
+    /// <remarks>
+    /// Get TV shows by actor from the database
+    /// </remarks>
+    /// <param name="id">Actor ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> actorsIdTvGet(
+        int32_t id
+    ) const;
+    /// <summary>
     /// Get directors
     /// </summary>
     /// <remarks>
@@ -82,12 +107,32 @@ public:
         int32_t id
     ) const;
     /// <summary>
+    /// Get movies by director
+    /// </summary>
+    /// <remarks>
+    /// Get movies by director from the database
+    /// </remarks>
+    /// <param name="id">Director ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_Movie>>> directorsIdMoviesGet(
+        int32_t id
+    ) const;
+    /// <summary>
     /// Get genres
     /// </summary>
     /// <remarks>
     /// Get genres from the database
     /// </remarks>
     pplx::task<std::vector<std::shared_ptr<Models_Genre>>> genresGet(
+    ) const;
+    /// <summary>
+    /// Get games by genre
+    /// </summary>
+    /// <remarks>
+    /// Get games by genre from the database
+    /// </remarks>
+    /// <param name="id">Genre ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_Game>>> genresIdGamesGet(
+        int32_t id
     ) const;
     /// <summary>
     /// Get genre
@@ -98,6 +143,54 @@ public:
     /// <param name="id">Genre ID</param>
     pplx::task<std::shared_ptr<Models_Genre>> genresIdGet(
         int32_t id
+    ) const;
+    /// <summary>
+    /// Get movies by genre
+    /// </summary>
+    /// <remarks>
+    /// Get movies by genre from the database
+    /// </remarks>
+    /// <param name="id">Genre ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_Movie>>> genresIdMoviesGet(
+        int32_t id
+    ) const;
+    /// <summary>
+    /// Get TV shows by genre
+    /// </summary>
+    /// <remarks>
+    /// Get TV shows by genre from the database
+    /// </remarks>
+    /// <param name="id">Genre ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> genresIdTvGet(
+        int32_t id
+    ) const;
+    /// <summary>
+    /// Get all platforms
+    /// </summary>
+    /// <remarks>
+    /// Get all platforms from the database
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Models_Platform>>> platformsGet(
+    ) const;
+    /// <summary>
+    /// Get games by platform
+    /// </summary>
+    /// <remarks>
+    /// Get games by platform from the database
+    /// </remarks>
+    /// <param name="name">Platform name</param>
+    pplx::task<std::vector<std::shared_ptr<Models_Game>>> platformsNameGamesGet(
+        utility::string_t name
+    ) const;
+    /// <summary>
+    /// Get a platform
+    /// </summary>
+    /// <remarks>
+    /// Get a platform from the database
+    /// </remarks>
+    /// <param name="name">Platform name</param>
+    pplx::task<std::shared_ptr<Models_Platform>> platformsNameGet(
+        utility::string_t name
     ) const;
     /// <summary>
     /// Get producers
@@ -118,6 +211,16 @@ public:
         int32_t id
     ) const;
     /// <summary>
+    /// Get movies by producer
+    /// </summary>
+    /// <remarks>
+    /// Get movies by producer from the database
+    /// </remarks>
+    /// <param name="id">Producer ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_Movie>>> producersIdMoviesGet(
+        int32_t id
+    ) const;
+    /// <summary>
     /// Get studios
     /// </summary>
     /// <remarks>
@@ -133,6 +236,26 @@ public:
     /// </remarks>
     /// <param name="id">Studio ID</param>
     pplx::task<std::shared_ptr<Models_Studio>> studiosIdGet(
+        int32_t id
+    ) const;
+    /// <summary>
+    /// Get movies by studio
+    /// </summary>
+    /// <remarks>
+    /// Get movies by studio from the database
+    /// </remarks>
+    /// <param name="id">Studio ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_Movie>>> studiosIdMoviesGet(
+        int32_t id
+    ) const;
+    /// <summary>
+    /// Get TV shows by studio
+    /// </summary>
+    /// <remarks>
+    /// Get TV shows by studio from the database
+    /// </remarks>
+    /// <param name="id">Studio ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> studiosIdTvGet(
         int32_t id
     ) const;
 

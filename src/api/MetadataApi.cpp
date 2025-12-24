@@ -284,6 +284,260 @@ pplx::task<std::shared_ptr<Models_Actor>> MetadataApi::actorsIdGet(int32_t id) c
         return localVarResult;
     });
 }
+pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MetadataApi::actorsIdMoviesGet(int32_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/actors/{id}/movies");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->actorsIdMoviesGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->actorsIdMoviesGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling actorsIdMoviesGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling actorsIdMoviesGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_Movie>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_Movie> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling actorsIdMoviesGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> MetadataApi::actorsIdTvGet(int32_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/actors/{id}/tv");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->actorsIdTvGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->actorsIdTvGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling actorsIdTvGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling actorsIdTvGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_TVShow>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_TVShow> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling actorsIdTvGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
 pplx::task<std::vector<std::shared_ptr<Models_Actor>>> MetadataApi::directorsGet() const
 {
 
@@ -533,6 +787,133 @@ pplx::task<std::shared_ptr<Models_Actor>> MetadataApi::directorsIdGet(int32_t id
         return localVarResult;
     });
 }
+pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MetadataApi::directorsIdMoviesGet(int32_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/directors/{id}/movies");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->directorsIdMoviesGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->directorsIdMoviesGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling directorsIdMoviesGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling directorsIdMoviesGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_Movie>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_Movie> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling directorsIdMoviesGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
 pplx::task<std::vector<std::shared_ptr<Models_Genre>>> MetadataApi::genresGet() const
 {
 
@@ -659,6 +1040,133 @@ pplx::task<std::vector<std::shared_ptr<Models_Genre>>> MetadataApi::genresGet() 
         return localVarResult;
     });
 }
+pplx::task<std::vector<std::shared_ptr<Models_Game>>> MetadataApi::genresIdGamesGet(int32_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/genres/{id}/games");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->genresIdGamesGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->genresIdGamesGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling genresIdGamesGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling genresIdGamesGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_Game>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_Game> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling genresIdGamesGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
 pplx::task<std::shared_ptr<Models_Genre>> MetadataApi::genresIdGet(int32_t id) const
 {
 
@@ -777,6 +1285,636 @@ pplx::task<std::shared_ptr<Models_Genre>> MetadataApi::genresIdGet(int32_t id) c
         {
             throw ApiException(500
                 , utility::conversions::to_string_t("error calling genresIdGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MetadataApi::genresIdMoviesGet(int32_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/genres/{id}/movies");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->genresIdMoviesGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->genresIdMoviesGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling genresIdMoviesGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling genresIdMoviesGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_Movie>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_Movie> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling genresIdMoviesGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> MetadataApi::genresIdTvGet(int32_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/genres/{id}/tv");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->genresIdTvGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->genresIdTvGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling genresIdTvGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling genresIdTvGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_TVShow>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_TVShow> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling genresIdTvGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::vector<std::shared_ptr<Models_Platform>>> MetadataApi::platformsGet() const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/platforms");
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->platformsGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->platformsGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling platformsGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling platformsGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_Platform>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_Platform> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling platformsGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::vector<std::shared_ptr<Models_Game>>> MetadataApi::platformsNameGamesGet(utility::string_t name) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/platforms/{name}/games");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->platformsNameGamesGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->platformsNameGamesGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling platformsNameGamesGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling platformsNameGamesGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_Game>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_Game> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling platformsNameGamesGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<Models_Platform>> MetadataApi::platformsNameGet(utility::string_t name) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/platforms/{name}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("name") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(name)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->platformsNameGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->platformsNameGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling platformsNameGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling platformsNameGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<Models_Platform> localVarResult(new Models_Platform());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling platformsNameGet: unsupported response type"));
         }
 
         return localVarResult;
@@ -1031,6 +2169,133 @@ pplx::task<std::shared_ptr<Models_Actor>> MetadataApi::producersIdGet(int32_t id
         return localVarResult;
     });
 }
+pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MetadataApi::producersIdMoviesGet(int32_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/producers/{id}/movies");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->producersIdMoviesGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->producersIdMoviesGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling producersIdMoviesGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling producersIdMoviesGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_Movie>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_Movie> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling producersIdMoviesGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
 pplx::task<std::vector<std::shared_ptr<Models_Studio>>> MetadataApi::studiosGet() const
 {
 
@@ -1275,6 +2540,260 @@ pplx::task<std::shared_ptr<Models_Studio>> MetadataApi::studiosIdGet(int32_t id)
         {
             throw ApiException(500
                 , utility::conversions::to_string_t("error calling studiosIdGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MetadataApi::studiosIdMoviesGet(int32_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/studios/{id}/movies");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->studiosIdMoviesGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->studiosIdMoviesGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling studiosIdMoviesGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling studiosIdMoviesGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_Movie>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_Movie> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling studiosIdMoviesGet: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> MetadataApi::studiosIdTvGet(int32_t id) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/studios/{id}/tv");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode_uri(ApiClient::parameterToString(id)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("MetadataApi->studiosIdTvGet does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("MetadataApi->studiosIdTvGet does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=, this](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling studiosIdTvGet: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling studiosIdTvGet: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=, this](utility::string_t localVarResponse)
+    {
+        std::vector<std::shared_ptr<Models_TVShow>> localVarResult;
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+            for( auto& localVarItem : localVarJson.as_array() )
+            {
+                std::shared_ptr<Models_TVShow> localVarItemObj;
+                ModelBase::fromJson(localVarItem, localVarItemObj);
+                localVarResult.push_back(localVarItemObj);
+            }
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling studiosIdTvGet: unsupported response type"));
         }
 
         return localVarResult;

@@ -25,7 +25,6 @@
 #include "danflix_client/AnyType.h"
 #include "danflix_client/HttpContent.h"
 #include "danflix_client/model/Models_Game.h"
-#include "danflix_client/model/Routes_ImportGamesRequest.h"
 #include <map>
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -147,16 +146,6 @@ public:
     /// <param name="id">Game ID</param>
     pplx::task<std::shared_ptr<HttpContent>> gamesIdVideoGet(
         utility::string_t id
-    ) const;
-    /// <summary>
-    /// Import games
-    /// </summary>
-    /// <remarks>
-    /// Import games from an EmulationStation gamelist.xml file
-    /// </remarks>
-    /// <param name="path">Path to gamelist.xml or directory containing it</param>
-    pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> gamesImportPost(
-        std::shared_ptr<Routes_ImportGamesRequest> path
     ) const;
     /// <summary>
     /// Get 5 random games (Am I Feeling Lucky?)
