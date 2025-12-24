@@ -24,6 +24,7 @@
 
 #include "danflix_client/model/Models_Actor.h"
 #include "danflix_client/model/Models_Genre.h"
+#include "danflix_client/model/Models_Studio.h"
 #include <vector>
 #include <boost/optional.hpp>
 
@@ -114,6 +115,24 @@ public:
     /// </remarks>
     /// <param name="id">Producer ID</param>
     pplx::task<std::shared_ptr<Models_Actor>> producersIdGet(
+        int32_t id
+    ) const;
+    /// <summary>
+    /// Get studios
+    /// </summary>
+    /// <remarks>
+    /// Get studios from the database
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Models_Studio>>> studiosGet(
+    ) const;
+    /// <summary>
+    /// Get studio details
+    /// </summary>
+    /// <remarks>
+    /// Get studio details from the database
+    /// </remarks>
+    /// <param name="id">Studio ID</param>
+    pplx::task<std::shared_ptr<Models_Studio>> studiosIdGet(
         int32_t id
     ) const;
 

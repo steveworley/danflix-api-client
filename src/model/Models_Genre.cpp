@@ -20,10 +20,13 @@ namespace model {
 
 Models_Genre::Models_Genre()
 {
+    m_GamesIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
+    m_MoviesIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
+    m_TvShowsIsSet = false;
 }
 
 Models_Genre::~Models_Genre()
@@ -38,15 +41,30 @@ void Models_Genre::validate()
 web::json::value Models_Genre::toJson() const
 {
     web::json::value val = web::json::value::object();
+    if(m_GamesIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("games"))] = ModelBase::toJson(m_Games);
+    }
     if(m_IdIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
     }
+    if(m_MoviesIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("movies"))] = ModelBase::toJson(m_Movies);
+    }
     if(m_NameIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("name"))] = ModelBase::toJson(m_Name);
+    }
+    if(m_TvShowsIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("tvShows"))] = ModelBase::toJson(m_TvShows);
     }
 
     return val;
@@ -55,6 +73,17 @@ web::json::value Models_Genre::toJson() const
 bool Models_Genre::fromJson(const web::json::value& val)
 {
     bool ok = true;
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("games"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("games")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<Models_Game>> refVal_setGames;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setGames);
+            setGames(refVal_setGames);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("id")));
@@ -63,6 +92,17 @@ bool Models_Genre::fromJson(const web::json::value& val)
             int32_t refVal_setId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setId);
             setId(refVal_setId);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("movies"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("movies")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<Models_Movie>> refVal_setMovies;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setMovies);
+            setMovies(refVal_setMovies);
             
         }
     }
@@ -77,6 +117,17 @@ bool Models_Genre::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tvShows"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tvShows")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<Models_TVShow>> refVal_setTvShows;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTvShows);
+            setTvShows(refVal_setTvShows);
+            
+        }
+    }
     return ok;
 }
 
@@ -87,13 +138,25 @@ void Models_Genre::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
+    if(m_GamesIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("games")), m_Games));
+    }
     if(m_IdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
     }
+    if(m_MoviesIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("movies")), m_Movies));
+    }
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("name")), m_Name));
+    }
+    if(m_TvShowsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tvShows")), m_TvShows));
     }
 }
 
@@ -106,11 +169,23 @@ bool Models_Genre::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("games"))))
+    {
+        std::vector<std::shared_ptr<Models_Game>> refVal_setGames;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("games"))), refVal_setGames );
+        setGames(refVal_setGames);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
         int32_t refVal_setId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("movies"))))
+    {
+        std::vector<std::shared_ptr<Models_Movie>> refVal_setMovies;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("movies"))), refVal_setMovies );
+        setMovies(refVal_setMovies);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("name"))))
     {
@@ -118,10 +193,37 @@ bool Models_Genre::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("name"))), refVal_setName );
         setName(refVal_setName);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tvShows"))))
+    {
+        std::vector<std::shared_ptr<Models_TVShow>> refVal_setTvShows;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tvShows"))), refVal_setTvShows );
+        setTvShows(refVal_setTvShows);
+    }
     return ok;
 }
 
 
+std::vector<std::shared_ptr<Models_Game>> Models_Genre::getGames() const
+{
+    return m_Games;
+}
+
+
+void Models_Genre::setGames(const std::vector<std::shared_ptr<Models_Game>>& value)
+{
+    m_Games = value;
+    m_GamesIsSet = true;
+}
+
+bool Models_Genre::gamesIsSet() const
+{
+    return m_GamesIsSet;
+}
+
+void Models_Genre::unsetGames()
+{
+    m_GamesIsSet = false;
+}
 int32_t Models_Genre::getId() const
 {
     return m_Id;
@@ -141,6 +243,27 @@ bool Models_Genre::idIsSet() const
 void Models_Genre::unsetId()
 {
     m_IdIsSet = false;
+}
+std::vector<std::shared_ptr<Models_Movie>> Models_Genre::getMovies() const
+{
+    return m_Movies;
+}
+
+
+void Models_Genre::setMovies(const std::vector<std::shared_ptr<Models_Movie>>& value)
+{
+    m_Movies = value;
+    m_MoviesIsSet = true;
+}
+
+bool Models_Genre::moviesIsSet() const
+{
+    return m_MoviesIsSet;
+}
+
+void Models_Genre::unsetMovies()
+{
+    m_MoviesIsSet = false;
 }
 utility::string_t Models_Genre::getName() const
 {
@@ -162,6 +285,27 @@ bool Models_Genre::nameIsSet() const
 void Models_Genre::unsetName()
 {
     m_NameIsSet = false;
+}
+std::vector<std::shared_ptr<Models_TVShow>> Models_Genre::getTvShows() const
+{
+    return m_TvShows;
+}
+
+
+void Models_Genre::setTvShows(const std::vector<std::shared_ptr<Models_TVShow>>& value)
+{
+    m_TvShows = value;
+    m_TvShowsIsSet = true;
+}
+
+bool Models_Genre::tvShowsIsSet() const
+{
+    return m_TvShowsIsSet;
+}
+
+void Models_Genre::unsetTvShows()
+{
+    m_TvShowsIsSet = false;
 }
 
 }
