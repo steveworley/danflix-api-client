@@ -20,17 +20,17 @@ namespace model {
 
 Models_Play::Models_Play()
 {
-    m_Client_ip = utility::conversions::to_string_t("");
-    m_Client_ipIsSet = false;
+    m_ClientIp = utility::conversions::to_string_t("");
+    m_ClientIpIsSet = false;
     m_GameIsSet = false;
-    m_Game_id = 0;
-    m_Game_idIsSet = false;
+    m_GameId = 0;
+    m_GameIdIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
-    m_Played_at = utility::conversions::to_string_t("");
-    m_Played_atIsSet = false;
-    m_Profile_id = 0;
-    m_Profile_idIsSet = false;
+    m_PlayedAt = utility::conversions::to_string_t("");
+    m_PlayedAtIsSet = false;
+    m_ProfileId = 0;
+    m_ProfileIdIsSet = false;
 }
 
 Models_Play::~Models_Play()
@@ -45,35 +45,35 @@ void Models_Play::validate()
 web::json::value Models_Play::toJson() const
 {
     web::json::value val = web::json::value::object();
-    if(m_Client_ipIsSet)
+    if(m_ClientIpIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("client_ip"))] = ModelBase::toJson(m_Client_ip);
+        val[utility::conversions::to_string_t(_XPLATSTR("clientIp"))] = ModelBase::toJson(m_ClientIp);
     }
     if(m_GameIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("game"))] = ModelBase::toJson(m_Game);
     }
-    if(m_Game_idIsSet)
+    if(m_GameIdIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("game_id"))] = ModelBase::toJson(m_Game_id);
+        val[utility::conversions::to_string_t(_XPLATSTR("gameId"))] = ModelBase::toJson(m_GameId);
     }
     if(m_IdIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
     }
-    if(m_Played_atIsSet)
+    if(m_PlayedAtIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("played_at"))] = ModelBase::toJson(m_Played_at);
+        val[utility::conversions::to_string_t(_XPLATSTR("playedAt"))] = ModelBase::toJson(m_PlayedAt);
     }
-    if(m_Profile_idIsSet)
+    if(m_ProfileIdIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("profile_id"))] = ModelBase::toJson(m_Profile_id);
+        val[utility::conversions::to_string_t(_XPLATSTR("profileId"))] = ModelBase::toJson(m_ProfileId);
     }
 
     return val;
@@ -82,9 +82,9 @@ web::json::value Models_Play::toJson() const
 bool Models_Play::fromJson(const web::json::value& val)
 {
     bool ok = true;
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("client_ip"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("clientIp"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("client_ip")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("clientIp")));
         if(!fieldValue.is_null())
         {
             utility::string_t refVal_setClientIp;
@@ -104,9 +104,9 @@ bool Models_Play::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("game_id"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("gameId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("game_id")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("gameId")));
         if(!fieldValue.is_null())
         {
             int32_t refVal_setGameId;
@@ -126,9 +126,9 @@ bool Models_Play::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("played_at"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("playedAt"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("played_at")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("playedAt")));
         if(!fieldValue.is_null())
         {
             utility::string_t refVal_setPlayedAt;
@@ -137,9 +137,9 @@ bool Models_Play::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("profile_id"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("profileId"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("profile_id")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("profileId")));
         if(!fieldValue.is_null())
         {
             int32_t refVal_setProfileId;
@@ -158,29 +158,29 @@ void Models_Play::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
-    if(m_Client_ipIsSet)
+    if(m_ClientIpIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("client_ip")), m_Client_ip));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("clientIp")), m_ClientIp));
     }
     if(m_GameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("game")), m_Game));
     }
-    if(m_Game_idIsSet)
+    if(m_GameIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("game_id")), m_Game_id));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("gameId")), m_GameId));
     }
     if(m_IdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
     }
-    if(m_Played_atIsSet)
+    if(m_PlayedAtIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("played_at")), m_Played_at));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("playedAt")), m_PlayedAt));
     }
-    if(m_Profile_idIsSet)
+    if(m_ProfileIdIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("profile_id")), m_Profile_id));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("profileId")), m_ProfileId));
     }
 }
 
@@ -193,10 +193,10 @@ bool Models_Play::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("client_ip"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("clientIp"))))
     {
         utility::string_t refVal_setClientIp;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("client_ip"))), refVal_setClientIp );
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("clientIp"))), refVal_setClientIp );
         setClientIp(refVal_setClientIp);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("game"))))
@@ -205,10 +205,10 @@ bool Models_Play::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("game"))), refVal_setGame );
         setGame(refVal_setGame);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("game_id"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("gameId"))))
     {
         int32_t refVal_setGameId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("game_id"))), refVal_setGameId );
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("gameId"))), refVal_setGameId );
         setGameId(refVal_setGameId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
@@ -217,16 +217,16 @@ bool Models_Play::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("played_at"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("playedAt"))))
     {
         utility::string_t refVal_setPlayedAt;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("played_at"))), refVal_setPlayedAt );
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("playedAt"))), refVal_setPlayedAt );
         setPlayedAt(refVal_setPlayedAt);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("profile_id"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("profileId"))))
     {
         int32_t refVal_setProfileId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("profile_id"))), refVal_setProfileId );
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("profileId"))), refVal_setProfileId );
         setProfileId(refVal_setProfileId);
     }
     return ok;
@@ -235,24 +235,24 @@ bool Models_Play::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
 utility::string_t Models_Play::getClientIp() const
 {
-    return m_Client_ip;
+    return m_ClientIp;
 }
 
 
 void Models_Play::setClientIp(const utility::string_t& value)
 {
-    m_Client_ip = value;
-    m_Client_ipIsSet = true;
+    m_ClientIp = value;
+    m_ClientIpIsSet = true;
 }
 
 bool Models_Play::clientIpIsSet() const
 {
-    return m_Client_ipIsSet;
+    return m_ClientIpIsSet;
 }
 
-void Models_Play::unsetClient_ip()
+void Models_Play::unsetClientIp()
 {
-    m_Client_ipIsSet = false;
+    m_ClientIpIsSet = false;
 }
 std::shared_ptr<Models_Game> Models_Play::getGame() const
 {
@@ -277,23 +277,23 @@ void Models_Play::unsetGame()
 }
 int32_t Models_Play::getGameId() const
 {
-    return m_Game_id;
+    return m_GameId;
 }
 
 void Models_Play::setGameId(int32_t value)
 {
-    m_Game_id = value;
-    m_Game_idIsSet = true;
+    m_GameId = value;
+    m_GameIdIsSet = true;
 }
 
 bool Models_Play::gameIdIsSet() const
 {
-    return m_Game_idIsSet;
+    return m_GameIdIsSet;
 }
 
-void Models_Play::unsetGame_id()
+void Models_Play::unsetGameId()
 {
-    m_Game_idIsSet = false;
+    m_GameIdIsSet = false;
 }
 int32_t Models_Play::getId() const
 {
@@ -317,44 +317,44 @@ void Models_Play::unsetId()
 }
 utility::string_t Models_Play::getPlayedAt() const
 {
-    return m_Played_at;
+    return m_PlayedAt;
 }
 
 
 void Models_Play::setPlayedAt(const utility::string_t& value)
 {
-    m_Played_at = value;
-    m_Played_atIsSet = true;
+    m_PlayedAt = value;
+    m_PlayedAtIsSet = true;
 }
 
 bool Models_Play::playedAtIsSet() const
 {
-    return m_Played_atIsSet;
+    return m_PlayedAtIsSet;
 }
 
-void Models_Play::unsetPlayed_at()
+void Models_Play::unsetPlayedAt()
 {
-    m_Played_atIsSet = false;
+    m_PlayedAtIsSet = false;
 }
 int32_t Models_Play::getProfileId() const
 {
-    return m_Profile_id;
+    return m_ProfileId;
 }
 
 void Models_Play::setProfileId(int32_t value)
 {
-    m_Profile_id = value;
-    m_Profile_idIsSet = true;
+    m_ProfileId = value;
+    m_ProfileIdIsSet = true;
 }
 
 bool Models_Play::profileIdIsSet() const
 {
-    return m_Profile_idIsSet;
+    return m_ProfileIdIsSet;
 }
 
-void Models_Play::unsetProfile_id()
+void Models_Play::unsetProfileId()
 {
-    m_Profile_idIsSet = false;
+    m_ProfileIdIsSet = false;
 }
 
 }

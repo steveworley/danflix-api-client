@@ -24,7 +24,6 @@
 
 #include "danflix_client/model/Models_Studio.h"
 #include "danflix_client/model/Models_Genre.h"
-#include "danflix_client/Object.h"
 #include "danflix_client/model/Models_Language.h"
 #include "danflix_client/model/Gorm_DeletedAt.h"
 #include "danflix_client/model/Models_Actor.h"
@@ -153,11 +152,6 @@ public:
     void unsetRating();
     void setRating(double value);
 
-    std::shared_ptr<Object> getResume() const;
-    bool resumeIsSet() const;
-    void unsetResume();
-    void setResume(const std::shared_ptr<Object>& value);
-
     /// <summary>
     /// in minutes
     /// </summary>
@@ -253,9 +247,6 @@ protected:
 
     double m_Rating;
     bool m_RatingIsSet;
-
-    std::shared_ptr<Object> m_Resume;
-    bool m_ResumeIsSet;
 
     int32_t m_Runtime;
     bool m_RuntimeIsSet;

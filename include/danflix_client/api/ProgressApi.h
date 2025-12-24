@@ -22,6 +22,7 @@
 
 #include "danflix_client/ApiClient.h"
 
+#include "danflix_client/model/Models_MediaProgress.h"
 #include "danflix_client/model/Routes_ProgressRequest.h"
 #include "danflix_client/model/Routes_SpecificProgressRequest.h"
 #include <map>
@@ -46,6 +47,16 @@ public:
     virtual ~ProgressApi();
 
     /// <summary>
+    /// Get episode progress
+    /// </summary>
+    /// <remarks>
+    /// Get episode progress for a profile
+    /// </remarks>
+    /// <param name="id">Episode ID</param>
+    pplx::task<std::shared_ptr<Models_MediaProgress>> episodesIdProgressGet(
+        int32_t id
+    ) const;
+    /// <summary>
     /// Save episode progress
     /// </summary>
     /// <remarks>
@@ -56,6 +67,16 @@ public:
     pplx::task<std::map<utility::string_t, utility::string_t>> episodesIdProgressPut(
         int32_t id,
         std::shared_ptr<Routes_SpecificProgressRequest> progress
+    ) const;
+    /// <summary>
+    /// Get movie progress
+    /// </summary>
+    /// <remarks>
+    /// Get movie progress for a profile
+    /// </remarks>
+    /// <param name="id">Movie ID</param>
+    pplx::task<std::shared_ptr<Models_MediaProgress>> moviesIdProgressGet(
+        int32_t id
     ) const;
     /// <summary>
     /// Save movie progress

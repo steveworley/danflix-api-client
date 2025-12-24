@@ -22,8 +22,8 @@
 
 #include "danflix_client/ModelBase.h"
 
+#include "danflix_client/model/Models_Genre.h"
 #include "danflix_client/model/Gorm_DeletedAt.h"
-#include "danflix_client/model/Models_Tag.h"
 #include <cpprest/details/basic_types.h>
 #include "danflix_client/model/Models_Platform.h"
 #include <vector>
@@ -34,8 +34,8 @@ namespace client {
 namespace model {
 
 class Gorm_DeletedAt;
+class Models_Genre;
 class Models_Platform;
-class Models_Tag;
 
 
 class  Models_Game
@@ -71,15 +71,26 @@ public:
     void unsetDeletedAt();
     void setDeletedAt(const std::shared_ptr<Gorm_DeletedAt>& value);
 
-    utility::string_t getDesc() const;
-    bool descIsSet() const;
-    void unsetDesc();
-    void setDesc(const utility::string_t& value);
-
     utility::string_t getDeveloper() const;
     bool developerIsSet() const;
     void unsetDeveloper();
     void setDeveloper(const utility::string_t& value);
+
+    /// <summary>
+    /// Relations
+    /// </summary>
+    std::vector<std::shared_ptr<Models_Genre>> getGenres() const;
+    bool genresIsSet() const;
+    void unsetGenres();
+    void setGenres(const std::vector<std::shared_ptr<Models_Genre>>& value);
+
+    /// <summary>
+    /// HowLongToBeat Data
+    /// </summary>
+    int32_t getHltbId() const;
+    bool hltbIdIsSet() const;
+    void unsetHltbId();
+    void setHltbId(int32_t value);
 
     int32_t getId() const;
     bool idIsSet() const;
@@ -101,25 +112,25 @@ public:
     void unsetMarquee();
     void setMarquee(const utility::string_t& value);
 
-    utility::string_t getName() const;
-    bool nameIsSet() const;
-    void unsetName();
-    void setName(const utility::string_t& value);
-
     utility::string_t getPath() const;
     bool pathIsSet() const;
     void unsetPath();
     void setPath(const utility::string_t& value);
 
-    std::shared_ptr<Models_Platform> getPlatform() const;
-    bool platformIsSet() const;
-    void unsetPlatform();
-    void setPlatform(const std::shared_ptr<Models_Platform>& value);
+    std::vector<std::shared_ptr<Models_Platform>> getPlatforms() const;
+    bool platformsIsSet() const;
+    void unsetPlatforms();
+    void setPlatforms(const std::vector<std::shared_ptr<Models_Platform>>& value);
 
     int32_t getPlayers() const;
     bool playersIsSet() const;
     void unsetPlayers();
     void setPlayers(int32_t value);
+
+    utility::string_t getPlot() const;
+    bool plotIsSet() const;
+    void unsetPlot();
+    void setPlot(const utility::string_t& value);
 
     utility::string_t getPublisher() const;
     bool publisherIsSet() const;
@@ -130,19 +141,6 @@ public:
     bool ratingIsSet() const;
     void unsetRating();
     void setRating(double value);
-
-    utility::string_t getReleasedate() const;
-    bool releasedateIsSet() const;
-    void unsetReleasedate();
-    void setReleasedate(const utility::string_t& value);
-
-    /// <summary>
-    /// Relations
-    /// </summary>
-    std::vector<std::shared_ptr<Models_Tag>> getTags() const;
-    bool tagsIsSet() const;
-    void unsetTags();
-    void setTags(const std::vector<std::shared_ptr<Models_Tag>>& value);
 
     utility::string_t getTexture() const;
     bool textureIsSet() const;
@@ -156,21 +154,23 @@ public:
 
     double getTimeToBeat100() const;
     bool timeToBeat100IsSet() const;
-    void unsetTime_to_beat_100();
+    void unsetTimeToBeat100();
     void setTimeToBeat100(double value);
 
-    /// <summary>
-    /// HowLongToBeat Data
-    /// </summary>
     double getTimeToBeatMain() const;
     bool timeToBeatMainIsSet() const;
-    void unsetTime_to_beat_main();
+    void unsetTimeToBeatMain();
     void setTimeToBeatMain(double value);
 
     double getTimeToBeatPlus() const;
     bool timeToBeatPlusIsSet() const;
-    void unsetTime_to_beat_plus();
+    void unsetTimeToBeatPlus();
     void setTimeToBeatPlus(double value);
+
+    utility::string_t getTitle() const;
+    bool titleIsSet() const;
+    void unsetTitle();
+    void setTitle(const utility::string_t& value);
 
     utility::string_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
@@ -182,6 +182,11 @@ public:
     void unsetVideo();
     void setVideo(const utility::string_t& value);
 
+    int32_t getYear() const;
+    bool yearIsSet() const;
+    void unsetYear();
+    void setYear(int32_t value);
+
 
 protected:
     utility::string_t m_CreatedAt;
@@ -190,11 +195,14 @@ protected:
     std::shared_ptr<Gorm_DeletedAt> m_DeletedAt;
     bool m_DeletedAtIsSet;
 
-    utility::string_t m_Desc;
-    bool m_DescIsSet;
-
     utility::string_t m_Developer;
     bool m_DeveloperIsSet;
+
+    std::vector<std::shared_ptr<Models_Genre>> m_Genres;
+    bool m_GenresIsSet;
+
+    int32_t m_HltbId;
+    bool m_HltbIdIsSet;
 
     int32_t m_Id;
     bool m_IdIsSet;
@@ -208,17 +216,17 @@ protected:
     utility::string_t m_Marquee;
     bool m_MarqueeIsSet;
 
-    utility::string_t m_Name;
-    bool m_NameIsSet;
-
     utility::string_t m_Path;
     bool m_PathIsSet;
 
-    std::shared_ptr<Models_Platform> m_Platform;
-    bool m_PlatformIsSet;
+    std::vector<std::shared_ptr<Models_Platform>> m_Platforms;
+    bool m_PlatformsIsSet;
 
     int32_t m_Players;
     bool m_PlayersIsSet;
+
+    utility::string_t m_Plot;
+    bool m_PlotIsSet;
 
     utility::string_t m_Publisher;
     bool m_PublisherIsSet;
@@ -226,32 +234,32 @@ protected:
     double m_Rating;
     bool m_RatingIsSet;
 
-    utility::string_t m_Releasedate;
-    bool m_ReleasedateIsSet;
-
-    std::vector<std::shared_ptr<Models_Tag>> m_Tags;
-    bool m_TagsIsSet;
-
     utility::string_t m_Texture;
     bool m_TextureIsSet;
 
     utility::string_t m_Thumbnail;
     bool m_ThumbnailIsSet;
 
-    double m_Time_to_beat_100;
-    bool m_Time_to_beat_100IsSet;
+    double m_TimeToBeat100;
+    bool m_TimeToBeat100IsSet;
 
-    double m_Time_to_beat_main;
-    bool m_Time_to_beat_mainIsSet;
+    double m_TimeToBeatMain;
+    bool m_TimeToBeatMainIsSet;
 
-    double m_Time_to_beat_plus;
-    bool m_Time_to_beat_plusIsSet;
+    double m_TimeToBeatPlus;
+    bool m_TimeToBeatPlusIsSet;
+
+    utility::string_t m_Title;
+    bool m_TitleIsSet;
 
     utility::string_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 
     utility::string_t m_Video;
     bool m_VideoIsSet;
+
+    int32_t m_Year;
+    bool m_YearIsSet;
 
 };
 

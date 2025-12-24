@@ -58,7 +58,7 @@ public:
 
     utility::string_t getClientIp() const;
     bool clientIpIsSet() const;
-    void unsetClient_ip();
+    void unsetClientIp();
     void setClientIp(const utility::string_t& value);
 
     std::shared_ptr<Models_Game> getGame() const;
@@ -68,7 +68,7 @@ public:
 
     int32_t getGameId() const;
     bool gameIdIsSet() const;
-    void unsetGame_id();
+    void unsetGameId();
     void setGameId(int32_t value);
 
     int32_t getId() const;
@@ -78,7 +78,7 @@ public:
 
     utility::string_t getPlayedAt() const;
     bool playedAtIsSet() const;
-    void unsetPlayed_at();
+    void unsetPlayedAt();
     void setPlayedAt(const utility::string_t& value);
 
     /// <summary>
@@ -86,28 +86,28 @@ public:
     /// </summary>
     int32_t getProfileId() const;
     bool profileIdIsSet() const;
-    void unsetProfile_id();
+    void unsetProfileId();
     void setProfileId(int32_t value);
 
 
 protected:
-    utility::string_t m_Client_ip;
-    bool m_Client_ipIsSet;
+    utility::string_t m_ClientIp;
+    bool m_ClientIpIsSet;
 
     std::shared_ptr<Models_Game> m_Game;
     bool m_GameIsSet;
 
-    int32_t m_Game_id;
-    bool m_Game_idIsSet;
+    int32_t m_GameId;
+    bool m_GameIdIsSet;
 
     int32_t m_Id;
     bool m_IdIsSet;
 
-    utility::string_t m_Played_at;
-    bool m_Played_atIsSet;
+    utility::string_t m_PlayedAt;
+    bool m_PlayedAtIsSet;
 
-    int32_t m_Profile_id;
-    bool m_Profile_idIsSet;
+    int32_t m_ProfileId;
+    bool m_ProfileIdIsSet;
 
 };
 

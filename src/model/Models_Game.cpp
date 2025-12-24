@@ -23,10 +23,11 @@ Models_Game::Models_Game()
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
     m_DeletedAtIsSet = false;
-    m_Desc = utility::conversions::to_string_t("");
-    m_DescIsSet = false;
     m_Developer = utility::conversions::to_string_t("");
     m_DeveloperIsSet = false;
+    m_GenresIsSet = false;
+    m_HltbId = 0;
+    m_HltbIdIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
     m_Image = utility::conversions::to_string_t("");
@@ -35,34 +36,35 @@ Models_Game::Models_Game()
     m_KidgameIsSet = false;
     m_Marquee = utility::conversions::to_string_t("");
     m_MarqueeIsSet = false;
-    m_Name = utility::conversions::to_string_t("");
-    m_NameIsSet = false;
     m_Path = utility::conversions::to_string_t("");
     m_PathIsSet = false;
-    m_PlatformIsSet = false;
+    m_PlatformsIsSet = false;
     m_Players = 0;
     m_PlayersIsSet = false;
+    m_Plot = utility::conversions::to_string_t("");
+    m_PlotIsSet = false;
     m_Publisher = utility::conversions::to_string_t("");
     m_PublisherIsSet = false;
     m_Rating = 0.0;
     m_RatingIsSet = false;
-    m_Releasedate = utility::conversions::to_string_t("");
-    m_ReleasedateIsSet = false;
-    m_TagsIsSet = false;
     m_Texture = utility::conversions::to_string_t("");
     m_TextureIsSet = false;
     m_Thumbnail = utility::conversions::to_string_t("");
     m_ThumbnailIsSet = false;
-    m_Time_to_beat_100 = 0.0;
-    m_Time_to_beat_100IsSet = false;
-    m_Time_to_beat_main = 0.0;
-    m_Time_to_beat_mainIsSet = false;
-    m_Time_to_beat_plus = 0.0;
-    m_Time_to_beat_plusIsSet = false;
+    m_TimeToBeat100 = 0.0;
+    m_TimeToBeat100IsSet = false;
+    m_TimeToBeatMain = 0.0;
+    m_TimeToBeatMainIsSet = false;
+    m_TimeToBeatPlus = 0.0;
+    m_TimeToBeatPlusIsSet = false;
+    m_Title = utility::conversions::to_string_t("");
+    m_TitleIsSet = false;
     m_UpdatedAt = utility::conversions::to_string_t("");
     m_UpdatedAtIsSet = false;
     m_Video = utility::conversions::to_string_t("");
     m_VideoIsSet = false;
+    m_Year = 0;
+    m_YearIsSet = false;
 }
 
 Models_Game::~Models_Game()
@@ -87,15 +89,20 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("deletedAt"))] = ModelBase::toJson(m_DeletedAt);
     }
-    if(m_DescIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("desc"))] = ModelBase::toJson(m_Desc);
-    }
     if(m_DeveloperIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("developer"))] = ModelBase::toJson(m_Developer);
+    }
+    if(m_GenresIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("genres"))] = ModelBase::toJson(m_Genres);
+    }
+    if(m_HltbIdIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("hltbId"))] = ModelBase::toJson(m_HltbId);
     }
     if(m_IdIsSet)
     {
@@ -117,25 +124,25 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("marquee"))] = ModelBase::toJson(m_Marquee);
     }
-    if(m_NameIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("name"))] = ModelBase::toJson(m_Name);
-    }
     if(m_PathIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("path"))] = ModelBase::toJson(m_Path);
     }
-    if(m_PlatformIsSet)
+    if(m_PlatformsIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("platform"))] = ModelBase::toJson(m_Platform);
+        val[utility::conversions::to_string_t(_XPLATSTR("platforms"))] = ModelBase::toJson(m_Platforms);
     }
     if(m_PlayersIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("players"))] = ModelBase::toJson(m_Players);
+    }
+    if(m_PlotIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("plot"))] = ModelBase::toJson(m_Plot);
     }
     if(m_PublisherIsSet)
     {
@@ -147,16 +154,6 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("rating"))] = ModelBase::toJson(m_Rating);
     }
-    if(m_ReleasedateIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("releasedate"))] = ModelBase::toJson(m_Releasedate);
-    }
-    if(m_TagsIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("tags"))] = ModelBase::toJson(m_Tags);
-    }
     if(m_TextureIsSet)
     {
         
@@ -167,20 +164,25 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("thumbnail"))] = ModelBase::toJson(m_Thumbnail);
     }
-    if(m_Time_to_beat_100IsSet)
+    if(m_TimeToBeat100IsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100"))] = ModelBase::toJson(m_Time_to_beat_100);
+        val[utility::conversions::to_string_t(_XPLATSTR("timeToBeat100"))] = ModelBase::toJson(m_TimeToBeat100);
     }
-    if(m_Time_to_beat_mainIsSet)
+    if(m_TimeToBeatMainIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main"))] = ModelBase::toJson(m_Time_to_beat_main);
+        val[utility::conversions::to_string_t(_XPLATSTR("timeToBeatMain"))] = ModelBase::toJson(m_TimeToBeatMain);
     }
-    if(m_Time_to_beat_plusIsSet)
+    if(m_TimeToBeatPlusIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus"))] = ModelBase::toJson(m_Time_to_beat_plus);
+        val[utility::conversions::to_string_t(_XPLATSTR("timeToBeatPlus"))] = ModelBase::toJson(m_TimeToBeatPlus);
+    }
+    if(m_TitleIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("title"))] = ModelBase::toJson(m_Title);
     }
     if(m_UpdatedAtIsSet)
     {
@@ -191,6 +193,11 @@ web::json::value Models_Game::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("video"))] = ModelBase::toJson(m_Video);
+    }
+    if(m_YearIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("year"))] = ModelBase::toJson(m_Year);
     }
 
     return val;
@@ -221,17 +228,6 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("desc"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("desc")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setDesc;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDesc);
-            setDesc(refVal_setDesc);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("developer"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("developer")));
@@ -240,6 +236,28 @@ bool Models_Game::fromJson(const web::json::value& val)
             utility::string_t refVal_setDeveloper;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeveloper);
             setDeveloper(refVal_setDeveloper);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("genres"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("genres")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<Models_Genre>> refVal_setGenres;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setGenres);
+            setGenres(refVal_setGenres);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("hltbId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("hltbId")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setHltbId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setHltbId);
+            setHltbId(refVal_setHltbId);
             
         }
     }
@@ -287,17 +305,6 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("name"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("name")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setName;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setName);
-            setName(refVal_setName);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("path"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("path")));
@@ -309,14 +316,14 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("platform"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("platforms"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("platform")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("platforms")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Models_Platform> refVal_setPlatform;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPlatform);
-            setPlatform(refVal_setPlatform);
+            std::vector<std::shared_ptr<Models_Platform>> refVal_setPlatforms;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPlatforms);
+            setPlatforms(refVal_setPlatforms);
             
         }
     }
@@ -328,6 +335,17 @@ bool Models_Game::fromJson(const web::json::value& val)
             int32_t refVal_setPlayers;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPlayers);
             setPlayers(refVal_setPlayers);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("plot"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("plot")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setPlot;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPlot);
+            setPlot(refVal_setPlot);
             
         }
     }
@@ -353,28 +371,6 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("releasedate"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("releasedate")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setReleasedate;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setReleasedate);
-            setReleasedate(refVal_setReleasedate);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tags"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tags")));
-        if(!fieldValue.is_null())
-        {
-            std::vector<std::shared_ptr<Models_Tag>> refVal_setTags;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTags);
-            setTags(refVal_setTags);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("texture"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("texture")));
@@ -397,9 +393,9 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("timeToBeat100"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeToBeat100")));
         if(!fieldValue.is_null())
         {
             double refVal_setTimeToBeat100;
@@ -408,9 +404,9 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("timeToBeatMain"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeToBeatMain")));
         if(!fieldValue.is_null())
         {
             double refVal_setTimeToBeatMain;
@@ -419,14 +415,25 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("timeToBeatPlus"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("timeToBeatPlus")));
         if(!fieldValue.is_null())
         {
             double refVal_setTimeToBeatPlus;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTimeToBeatPlus);
             setTimeToBeatPlus(refVal_setTimeToBeatPlus);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("title"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("title")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTitle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTitle);
+            setTitle(refVal_setTitle);
             
         }
     }
@@ -452,6 +459,17 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("year"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("year")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setYear;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setYear);
+            setYear(refVal_setYear);
+            
+        }
+    }
     return ok;
 }
 
@@ -470,13 +488,17 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("deletedAt")), m_DeletedAt));
     }
-    if(m_DescIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("desc")), m_Desc));
-    }
     if(m_DeveloperIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("developer")), m_Developer));
+    }
+    if(m_GenresIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("genres")), m_Genres));
+    }
+    if(m_HltbIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("hltbId")), m_HltbId));
     }
     if(m_IdIsSet)
     {
@@ -494,21 +516,21 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("marquee")), m_Marquee));
     }
-    if(m_NameIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("name")), m_Name));
-    }
     if(m_PathIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("path")), m_Path));
     }
-    if(m_PlatformIsSet)
+    if(m_PlatformsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("platform")), m_Platform));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("platforms")), m_Platforms));
     }
     if(m_PlayersIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("players")), m_Players));
+    }
+    if(m_PlotIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("plot")), m_Plot));
     }
     if(m_PublisherIsSet)
     {
@@ -518,14 +540,6 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("rating")), m_Rating));
     }
-    if(m_ReleasedateIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("releasedate")), m_Releasedate));
-    }
-    if(m_TagsIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tags")), m_Tags));
-    }
     if(m_TextureIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("texture")), m_Texture));
@@ -534,17 +548,21 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("thumbnail")), m_Thumbnail));
     }
-    if(m_Time_to_beat_100IsSet)
+    if(m_TimeToBeat100IsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100")), m_Time_to_beat_100));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("timeToBeat100")), m_TimeToBeat100));
     }
-    if(m_Time_to_beat_mainIsSet)
+    if(m_TimeToBeatMainIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main")), m_Time_to_beat_main));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("timeToBeatMain")), m_TimeToBeatMain));
     }
-    if(m_Time_to_beat_plusIsSet)
+    if(m_TimeToBeatPlusIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus")), m_Time_to_beat_plus));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("timeToBeatPlus")), m_TimeToBeatPlus));
+    }
+    if(m_TitleIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("title")), m_Title));
     }
     if(m_UpdatedAtIsSet)
     {
@@ -553,6 +571,10 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     if(m_VideoIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("video")), m_Video));
+    }
+    if(m_YearIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("year")), m_Year));
     }
 }
 
@@ -577,17 +599,23 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("deletedAt"))), refVal_setDeletedAt );
         setDeletedAt(refVal_setDeletedAt);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("desc"))))
-    {
-        utility::string_t refVal_setDesc;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("desc"))), refVal_setDesc );
-        setDesc(refVal_setDesc);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("developer"))))
     {
         utility::string_t refVal_setDeveloper;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("developer"))), refVal_setDeveloper );
         setDeveloper(refVal_setDeveloper);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("genres"))))
+    {
+        std::vector<std::shared_ptr<Models_Genre>> refVal_setGenres;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("genres"))), refVal_setGenres );
+        setGenres(refVal_setGenres);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("hltbId"))))
+    {
+        int32_t refVal_setHltbId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("hltbId"))), refVal_setHltbId );
+        setHltbId(refVal_setHltbId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
@@ -613,29 +641,29 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("marquee"))), refVal_setMarquee );
         setMarquee(refVal_setMarquee);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("name"))))
-    {
-        utility::string_t refVal_setName;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("name"))), refVal_setName );
-        setName(refVal_setName);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("path"))))
     {
         utility::string_t refVal_setPath;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("path"))), refVal_setPath );
         setPath(refVal_setPath);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("platform"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("platforms"))))
     {
-        std::shared_ptr<Models_Platform> refVal_setPlatform;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("platform"))), refVal_setPlatform );
-        setPlatform(refVal_setPlatform);
+        std::vector<std::shared_ptr<Models_Platform>> refVal_setPlatforms;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("platforms"))), refVal_setPlatforms );
+        setPlatforms(refVal_setPlatforms);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("players"))))
     {
         int32_t refVal_setPlayers;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("players"))), refVal_setPlayers );
         setPlayers(refVal_setPlayers);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("plot"))))
+    {
+        utility::string_t refVal_setPlot;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("plot"))), refVal_setPlot );
+        setPlot(refVal_setPlot);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("publisher"))))
     {
@@ -649,18 +677,6 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rating"))), refVal_setRating );
         setRating(refVal_setRating);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("releasedate"))))
-    {
-        utility::string_t refVal_setReleasedate;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("releasedate"))), refVal_setReleasedate );
-        setReleasedate(refVal_setReleasedate);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tags"))))
-    {
-        std::vector<std::shared_ptr<Models_Tag>> refVal_setTags;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tags"))), refVal_setTags );
-        setTags(refVal_setTags);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("texture"))))
     {
         utility::string_t refVal_setTexture;
@@ -673,23 +689,29 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("thumbnail"))), refVal_setThumbnail );
         setThumbnail(refVal_setThumbnail);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeToBeat100"))))
     {
         double refVal_setTimeToBeat100;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_100"))), refVal_setTimeToBeat100 );
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeToBeat100"))), refVal_setTimeToBeat100 );
         setTimeToBeat100(refVal_setTimeToBeat100);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeToBeatMain"))))
     {
         double refVal_setTimeToBeatMain;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_main"))), refVal_setTimeToBeatMain );
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeToBeatMain"))), refVal_setTimeToBeatMain );
         setTimeToBeatMain(refVal_setTimeToBeatMain);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("timeToBeatPlus"))))
     {
         double refVal_setTimeToBeatPlus;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("time_to_beat_plus"))), refVal_setTimeToBeatPlus );
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("timeToBeatPlus"))), refVal_setTimeToBeatPlus );
         setTimeToBeatPlus(refVal_setTimeToBeatPlus);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("title"))))
+    {
+        utility::string_t refVal_setTitle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("title"))), refVal_setTitle );
+        setTitle(refVal_setTitle);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
@@ -702,6 +724,12 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         utility::string_t refVal_setVideo;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("video"))), refVal_setVideo );
         setVideo(refVal_setVideo);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("year"))))
+    {
+        int32_t refVal_setYear;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("year"))), refVal_setYear );
+        setYear(refVal_setYear);
     }
     return ok;
 }
@@ -749,27 +777,6 @@ void Models_Game::unsetDeletedAt()
 {
     m_DeletedAtIsSet = false;
 }
-utility::string_t Models_Game::getDesc() const
-{
-    return m_Desc;
-}
-
-
-void Models_Game::setDesc(const utility::string_t& value)
-{
-    m_Desc = value;
-    m_DescIsSet = true;
-}
-
-bool Models_Game::descIsSet() const
-{
-    return m_DescIsSet;
-}
-
-void Models_Game::unsetDesc()
-{
-    m_DescIsSet = false;
-}
 utility::string_t Models_Game::getDeveloper() const
 {
     return m_Developer;
@@ -790,6 +797,47 @@ bool Models_Game::developerIsSet() const
 void Models_Game::unsetDeveloper()
 {
     m_DeveloperIsSet = false;
+}
+std::vector<std::shared_ptr<Models_Genre>> Models_Game::getGenres() const
+{
+    return m_Genres;
+}
+
+
+void Models_Game::setGenres(const std::vector<std::shared_ptr<Models_Genre>>& value)
+{
+    m_Genres = value;
+    m_GenresIsSet = true;
+}
+
+bool Models_Game::genresIsSet() const
+{
+    return m_GenresIsSet;
+}
+
+void Models_Game::unsetGenres()
+{
+    m_GenresIsSet = false;
+}
+int32_t Models_Game::getHltbId() const
+{
+    return m_HltbId;
+}
+
+void Models_Game::setHltbId(int32_t value)
+{
+    m_HltbId = value;
+    m_HltbIdIsSet = true;
+}
+
+bool Models_Game::hltbIdIsSet() const
+{
+    return m_HltbIdIsSet;
+}
+
+void Models_Game::unsetHltbId()
+{
+    m_HltbIdIsSet = false;
 }
 int32_t Models_Game::getId() const
 {
@@ -873,27 +921,6 @@ void Models_Game::unsetMarquee()
 {
     m_MarqueeIsSet = false;
 }
-utility::string_t Models_Game::getName() const
-{
-    return m_Name;
-}
-
-
-void Models_Game::setName(const utility::string_t& value)
-{
-    m_Name = value;
-    m_NameIsSet = true;
-}
-
-bool Models_Game::nameIsSet() const
-{
-    return m_NameIsSet;
-}
-
-void Models_Game::unsetName()
-{
-    m_NameIsSet = false;
-}
 utility::string_t Models_Game::getPath() const
 {
     return m_Path;
@@ -915,26 +942,26 @@ void Models_Game::unsetPath()
 {
     m_PathIsSet = false;
 }
-std::shared_ptr<Models_Platform> Models_Game::getPlatform() const
+std::vector<std::shared_ptr<Models_Platform>> Models_Game::getPlatforms() const
 {
-    return m_Platform;
+    return m_Platforms;
 }
 
 
-void Models_Game::setPlatform(const std::shared_ptr<Models_Platform>& value)
+void Models_Game::setPlatforms(const std::vector<std::shared_ptr<Models_Platform>>& value)
 {
-    m_Platform = value;
-    m_PlatformIsSet = true;
+    m_Platforms = value;
+    m_PlatformsIsSet = true;
 }
 
-bool Models_Game::platformIsSet() const
+bool Models_Game::platformsIsSet() const
 {
-    return m_PlatformIsSet;
+    return m_PlatformsIsSet;
 }
 
-void Models_Game::unsetPlatform()
+void Models_Game::unsetPlatforms()
 {
-    m_PlatformIsSet = false;
+    m_PlatformsIsSet = false;
 }
 int32_t Models_Game::getPlayers() const
 {
@@ -955,6 +982,27 @@ bool Models_Game::playersIsSet() const
 void Models_Game::unsetPlayers()
 {
     m_PlayersIsSet = false;
+}
+utility::string_t Models_Game::getPlot() const
+{
+    return m_Plot;
+}
+
+
+void Models_Game::setPlot(const utility::string_t& value)
+{
+    m_Plot = value;
+    m_PlotIsSet = true;
+}
+
+bool Models_Game::plotIsSet() const
+{
+    return m_PlotIsSet;
+}
+
+void Models_Game::unsetPlot()
+{
+    m_PlotIsSet = false;
 }
 utility::string_t Models_Game::getPublisher() const
 {
@@ -996,48 +1044,6 @@ bool Models_Game::ratingIsSet() const
 void Models_Game::unsetRating()
 {
     m_RatingIsSet = false;
-}
-utility::string_t Models_Game::getReleasedate() const
-{
-    return m_Releasedate;
-}
-
-
-void Models_Game::setReleasedate(const utility::string_t& value)
-{
-    m_Releasedate = value;
-    m_ReleasedateIsSet = true;
-}
-
-bool Models_Game::releasedateIsSet() const
-{
-    return m_ReleasedateIsSet;
-}
-
-void Models_Game::unsetReleasedate()
-{
-    m_ReleasedateIsSet = false;
-}
-std::vector<std::shared_ptr<Models_Tag>> Models_Game::getTags() const
-{
-    return m_Tags;
-}
-
-
-void Models_Game::setTags(const std::vector<std::shared_ptr<Models_Tag>>& value)
-{
-    m_Tags = value;
-    m_TagsIsSet = true;
-}
-
-bool Models_Game::tagsIsSet() const
-{
-    return m_TagsIsSet;
-}
-
-void Models_Game::unsetTags()
-{
-    m_TagsIsSet = false;
 }
 utility::string_t Models_Game::getTexture() const
 {
@@ -1083,63 +1089,84 @@ void Models_Game::unsetThumbnail()
 }
 double Models_Game::getTimeToBeat100() const
 {
-    return m_Time_to_beat_100;
+    return m_TimeToBeat100;
 }
 
 void Models_Game::setTimeToBeat100(double value)
 {
-    m_Time_to_beat_100 = value;
-    m_Time_to_beat_100IsSet = true;
+    m_TimeToBeat100 = value;
+    m_TimeToBeat100IsSet = true;
 }
 
 bool Models_Game::timeToBeat100IsSet() const
 {
-    return m_Time_to_beat_100IsSet;
+    return m_TimeToBeat100IsSet;
 }
 
-void Models_Game::unsetTime_to_beat_100()
+void Models_Game::unsetTimeToBeat100()
 {
-    m_Time_to_beat_100IsSet = false;
+    m_TimeToBeat100IsSet = false;
 }
 double Models_Game::getTimeToBeatMain() const
 {
-    return m_Time_to_beat_main;
+    return m_TimeToBeatMain;
 }
 
 void Models_Game::setTimeToBeatMain(double value)
 {
-    m_Time_to_beat_main = value;
-    m_Time_to_beat_mainIsSet = true;
+    m_TimeToBeatMain = value;
+    m_TimeToBeatMainIsSet = true;
 }
 
 bool Models_Game::timeToBeatMainIsSet() const
 {
-    return m_Time_to_beat_mainIsSet;
+    return m_TimeToBeatMainIsSet;
 }
 
-void Models_Game::unsetTime_to_beat_main()
+void Models_Game::unsetTimeToBeatMain()
 {
-    m_Time_to_beat_mainIsSet = false;
+    m_TimeToBeatMainIsSet = false;
 }
 double Models_Game::getTimeToBeatPlus() const
 {
-    return m_Time_to_beat_plus;
+    return m_TimeToBeatPlus;
 }
 
 void Models_Game::setTimeToBeatPlus(double value)
 {
-    m_Time_to_beat_plus = value;
-    m_Time_to_beat_plusIsSet = true;
+    m_TimeToBeatPlus = value;
+    m_TimeToBeatPlusIsSet = true;
 }
 
 bool Models_Game::timeToBeatPlusIsSet() const
 {
-    return m_Time_to_beat_plusIsSet;
+    return m_TimeToBeatPlusIsSet;
 }
 
-void Models_Game::unsetTime_to_beat_plus()
+void Models_Game::unsetTimeToBeatPlus()
 {
-    m_Time_to_beat_plusIsSet = false;
+    m_TimeToBeatPlusIsSet = false;
+}
+utility::string_t Models_Game::getTitle() const
+{
+    return m_Title;
+}
+
+
+void Models_Game::setTitle(const utility::string_t& value)
+{
+    m_Title = value;
+    m_TitleIsSet = true;
+}
+
+bool Models_Game::titleIsSet() const
+{
+    return m_TitleIsSet;
+}
+
+void Models_Game::unsetTitle()
+{
+    m_TitleIsSet = false;
 }
 utility::string_t Models_Game::getUpdatedAt() const
 {
@@ -1182,6 +1209,26 @@ bool Models_Game::videoIsSet() const
 void Models_Game::unsetVideo()
 {
     m_VideoIsSet = false;
+}
+int32_t Models_Game::getYear() const
+{
+    return m_Year;
+}
+
+void Models_Game::setYear(int32_t value)
+{
+    m_Year = value;
+    m_YearIsSet = true;
+}
+
+bool Models_Game::yearIsSet() const
+{
+    return m_YearIsSet;
+}
+
+void Models_Game::unsetYear()
+{
+    m_YearIsSet = false;
 }
 
 }

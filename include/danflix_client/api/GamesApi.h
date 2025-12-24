@@ -54,13 +54,13 @@ public:
     /// <remarks>
     /// Get all games from the database
     /// </remarks>
-    /// <param name="name">Filter by name (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="title">Filter by title (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="decade">Filter by decade (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="platform">Filter by platform (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="genre">Filter by genre (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="players">Filter by number of players (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Game>>> gamesGet(
-        boost::optional<utility::string_t> name,
+        boost::optional<utility::string_t> title,
         boost::optional<utility::string_t> decade,
         boost::optional<utility::string_t> platform,
         boost::optional<utility::string_t> genre,

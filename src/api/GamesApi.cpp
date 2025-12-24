@@ -35,7 +35,7 @@ GamesApi::~GamesApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::optional<utility::string_t> name, boost::optional<utility::string_t> decade, boost::optional<utility::string_t> platform, boost::optional<utility::string_t> genre, boost::optional<utility::string_t> players) const
+pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::optional<utility::string_t> title, boost::optional<utility::string_t> decade, boost::optional<utility::string_t> platform, boost::optional<utility::string_t> genre, boost::optional<utility::string_t> players) const
 {
 
 
@@ -76,9 +76,9 @@ pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (name)
+    if (title)
     {
-        localVarQueryParams[utility::conversions::to_string_t("name")] = ApiClient::parameterToString(*name);
+        localVarQueryParams[utility::conversions::to_string_t("title")] = ApiClient::parameterToString(*title);
     }
     if (decade)
     {

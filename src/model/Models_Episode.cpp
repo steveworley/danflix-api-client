@@ -46,7 +46,6 @@ Models_Episode::Models_Episode()
     m_ProducersIsSet = false;
     m_Rating = 0.0;
     m_RatingIsSet = false;
-    m_ResumeIsSet = false;
     m_Runtime = 0;
     m_RuntimeIsSet = false;
     m_Season = 0;
@@ -158,11 +157,6 @@ web::json::value Models_Episode::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("rating"))] = ModelBase::toJson(m_Rating);
-    }
-    if(m_ResumeIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("resume"))] = ModelBase::toJson(m_Resume);
     }
     if(m_RuntimeIsSet)
     {
@@ -397,17 +391,6 @@ bool Models_Episode::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("resume"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("resume")));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<Object> refVal_setResume;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setResume);
-            setResume(refVal_setResume);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("runtime"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("runtime")));
@@ -592,10 +575,6 @@ void Models_Episode::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("rating")), m_Rating));
     }
-    if(m_ResumeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("resume")), m_Resume));
-    }
     if(m_RuntimeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("runtime")), m_Runtime));
@@ -742,12 +721,6 @@ bool Models_Episode::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         double refVal_setRating;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rating"))), refVal_setRating );
         setRating(refVal_setRating);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("resume"))))
-    {
-        std::shared_ptr<Object> refVal_setResume;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("resume"))), refVal_setResume );
-        setResume(refVal_setResume);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("runtime"))))
     {
@@ -1145,27 +1118,6 @@ bool Models_Episode::ratingIsSet() const
 void Models_Episode::unsetRating()
 {
     m_RatingIsSet = false;
-}
-std::shared_ptr<Object> Models_Episode::getResume() const
-{
-    return m_Resume;
-}
-
-
-void Models_Episode::setResume(const std::shared_ptr<Object>& value)
-{
-    m_Resume = value;
-    m_ResumeIsSet = true;
-}
-
-bool Models_Episode::resumeIsSet() const
-{
-    return m_ResumeIsSet;
-}
-
-void Models_Episode::unsetResume()
-{
-    m_ResumeIsSet = false;
 }
 int32_t Models_Episode::getRuntime() const
 {
