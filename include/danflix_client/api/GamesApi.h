@@ -26,6 +26,7 @@
 #include "danflix_client/HttpContent.h"
 #include "danflix_client/model/Models_Game.h"
 #include "danflix_client/model/Models_GameSave.h"
+#include "danflix_client/model/Models_Patch.h"
 #include <map>
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -115,6 +116,40 @@ public:
     /// <param name="id">Game ID</param>
     pplx::task<std::shared_ptr<HttpContent>> gamesIdPatchGet(
         utility::string_t id
+    ) const;
+    /// <summary>
+    /// List patches for a game
+    /// </summary>
+    /// <remarks>
+    /// List all patches available for a specific game
+    /// </remarks>
+    /// <param name="id">Game ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_Patch>>> gamesIdPatchesGet(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Download patch file (Game Alias)
+    /// </summary>
+    /// <remarks>
+    /// Download the content of a patch file (alias)
+    /// </remarks>
+    /// <param name="id">Game ID</param>
+    /// <param name="patchId">Patch ID</param>
+    pplx::task<std::shared_ptr<HttpContent>> gamesIdPatchesPatchIdFileGet(
+        utility::string_t id,
+        utility::string_t patchId
+    ) const;
+    /// <summary>
+    /// Get a patch by ID (Game Alias)
+    /// </summary>
+    /// <remarks>
+    /// Get metadata for a specific patch (alias)
+    /// </remarks>
+    /// <param name="id">Game ID</param>
+    /// <param name="patchId">Patch ID</param>
+    pplx::task<std::shared_ptr<Models_Patch>> gamesIdPatchesPatchIdGet(
+        utility::string_t id,
+        utility::string_t patchId
     ) const;
     /// <summary>
     /// Record a game play

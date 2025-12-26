@@ -19,6 +19,7 @@ include/danflix_client/api/HealthApi.h
 include/danflix_client/api/ImportApi.h
 include/danflix_client/api/MetadataApi.h
 include/danflix_client/api/MoviesApi.h
+include/danflix_client/api/PatchesApi.h
 include/danflix_client/api/PlaysApi.h
 include/danflix_client/api/ProfilesApi.h
 include/danflix_client/api/ProgressApi.h
@@ -35,6 +36,7 @@ include/danflix_client/model/Models_Genre.h
 include/danflix_client/model/Models_Language.h
 include/danflix_client/model/Models_MediaProgress.h
 include/danflix_client/model/Models_Movie.h
+include/danflix_client/model/Models_Patch.h
 include/danflix_client/model/Models_Platform.h
 include/danflix_client/model/Models_Play.h
 include/danflix_client/model/Models_Profile.h
@@ -60,6 +62,7 @@ src/api/HealthApi.cpp
 src/api/ImportApi.cpp
 src/api/MetadataApi.cpp
 src/api/MoviesApi.cpp
+src/api/PatchesApi.cpp
 src/api/PlaysApi.cpp
 src/api/ProfilesApi.cpp
 src/api/ProgressApi.cpp
@@ -76,6 +79,7 @@ src/model/Models_Genre.cpp
 src/model/Models_Language.cpp
 src/model/Models_MediaProgress.cpp
 src/model/Models_Movie.cpp
+src/model/Models_Patch.cpp
 src/model/Models_Platform.cpp
 src/model/Models_Play.cpp
 src/model/Models_Profile.cpp

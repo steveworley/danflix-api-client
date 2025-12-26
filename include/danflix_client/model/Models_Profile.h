@@ -87,6 +87,14 @@ public:
     void setName(const utility::string_t& value);
 
     /// <summary>
+    /// dark, light
+    /// </summary>
+    utility::string_t getTheme() const;
+    bool themeIsSet() const;
+    void unsetTheme();
+    void setTheme(const utility::string_t& value);
+
+    /// <summary>
     /// parent, kid
     /// </summary>
     utility::string_t getType() const;
@@ -118,6 +126,9 @@ protected:
 
     utility::string_t m_Name;
     bool m_NameIsSet;
+
+    utility::string_t m_Theme;
+    bool m_ThemeIsSet;
 
     utility::string_t m_Type;
     bool m_TypeIsSet;

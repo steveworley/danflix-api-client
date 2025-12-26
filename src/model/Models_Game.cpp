@@ -36,6 +36,7 @@ Models_Game::Models_Game()
     m_KidgameIsSet = false;
     m_Marquee = utility::conversions::to_string_t("");
     m_MarqueeIsSet = false;
+    m_PatchesIsSet = false;
     m_Path = utility::conversions::to_string_t("");
     m_PathIsSet = false;
     m_PlatformsIsSet = false;
@@ -123,6 +124,11 @@ web::json::value Models_Game::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("marquee"))] = ModelBase::toJson(m_Marquee);
+    }
+    if(m_PatchesIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("patches"))] = ModelBase::toJson(m_Patches);
     }
     if(m_PathIsSet)
     {
@@ -302,6 +308,17 @@ bool Models_Game::fromJson(const web::json::value& val)
             utility::string_t refVal_setMarquee;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMarquee);
             setMarquee(refVal_setMarquee);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("patches"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("patches")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<Models_Patch>> refVal_setPatches;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPatches);
+            setPatches(refVal_setPatches);
             
         }
     }
@@ -516,6 +533,10 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("marquee")), m_Marquee));
     }
+    if(m_PatchesIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("patches")), m_Patches));
+    }
     if(m_PathIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("path")), m_Path));
@@ -640,6 +661,12 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         utility::string_t refVal_setMarquee;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("marquee"))), refVal_setMarquee );
         setMarquee(refVal_setMarquee);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("patches"))))
+    {
+        std::vector<std::shared_ptr<Models_Patch>> refVal_setPatches;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("patches"))), refVal_setPatches );
+        setPatches(refVal_setPatches);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("path"))))
     {
@@ -920,6 +947,27 @@ bool Models_Game::marqueeIsSet() const
 void Models_Game::unsetMarquee()
 {
     m_MarqueeIsSet = false;
+}
+std::vector<std::shared_ptr<Models_Patch>> Models_Game::getPatches() const
+{
+    return m_Patches;
+}
+
+
+void Models_Game::setPatches(const std::vector<std::shared_ptr<Models_Patch>>& value)
+{
+    m_Patches = value;
+    m_PatchesIsSet = true;
+}
+
+bool Models_Game::patchesIsSet() const
+{
+    return m_PatchesIsSet;
+}
+
+void Models_Game::unsetPatches()
+{
+    m_PatchesIsSet = false;
 }
 utility::string_t Models_Game::getPath() const
 {

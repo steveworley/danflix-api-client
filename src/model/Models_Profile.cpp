@@ -31,6 +31,8 @@ Models_Profile::Models_Profile()
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
+    m_Theme = utility::conversions::to_string_t("");
+    m_ThemeIsSet = false;
     m_Type = utility::conversions::to_string_t("");
     m_TypeIsSet = false;
     m_UpdatedAt = utility::conversions::to_string_t("");
@@ -78,6 +80,11 @@ web::json::value Models_Profile::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("name"))] = ModelBase::toJson(m_Name);
+    }
+    if(m_ThemeIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("theme"))] = ModelBase::toJson(m_Theme);
     }
     if(m_TypeIsSet)
     {
@@ -162,6 +169,17 @@ bool Models_Profile::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("theme"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("theme")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTheme;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTheme);
+            setTheme(refVal_setTheme);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("type"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("type")));
@@ -218,6 +236,10 @@ void Models_Profile::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("name")), m_Name));
     }
+    if(m_ThemeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("theme")), m_Theme));
+    }
     if(m_TypeIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("type")), m_Type));
@@ -272,6 +294,12 @@ bool Models_Profile::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         utility::string_t refVal_setName;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("name"))), refVal_setName );
         setName(refVal_setName);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("theme"))))
+    {
+        utility::string_t refVal_setTheme;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("theme"))), refVal_setTheme );
+        setTheme(refVal_setTheme);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("type"))))
     {
@@ -413,6 +441,27 @@ bool Models_Profile::nameIsSet() const
 void Models_Profile::unsetName()
 {
     m_NameIsSet = false;
+}
+utility::string_t Models_Profile::getTheme() const
+{
+    return m_Theme;
+}
+
+
+void Models_Profile::setTheme(const utility::string_t& value)
+{
+    m_Theme = value;
+    m_ThemeIsSet = true;
+}
+
+bool Models_Profile::themeIsSet() const
+{
+    return m_ThemeIsSet;
+}
+
+void Models_Profile::unsetTheme()
+{
+    m_ThemeIsSet = false;
 }
 utility::string_t Models_Profile::getType() const
 {

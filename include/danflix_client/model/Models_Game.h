@@ -23,6 +23,7 @@
 #include "danflix_client/ModelBase.h"
 
 #include "danflix_client/model/Models_Genre.h"
+#include "danflix_client/model/Models_Patch.h"
 #include "danflix_client/model/Gorm_DeletedAt.h"
 #include <cpprest/details/basic_types.h>
 #include "danflix_client/model/Models_Platform.h"
@@ -35,6 +36,7 @@ namespace model {
 
 class Gorm_DeletedAt;
 class Models_Genre;
+class Models_Patch;
 class Models_Platform;
 
 
@@ -111,6 +113,11 @@ public:
     bool marqueeIsSet() const;
     void unsetMarquee();
     void setMarquee(const utility::string_t& value);
+
+    std::vector<std::shared_ptr<Models_Patch>> getPatches() const;
+    bool patchesIsSet() const;
+    void unsetPatches();
+    void setPatches(const std::vector<std::shared_ptr<Models_Patch>>& value);
 
     utility::string_t getPath() const;
     bool pathIsSet() const;
@@ -215,6 +222,9 @@ protected:
 
     utility::string_t m_Marquee;
     bool m_MarqueeIsSet;
+
+    std::vector<std::shared_ptr<Models_Patch>> m_Patches;
+    bool m_PatchesIsSet;
 
     utility::string_t m_Path;
     bool m_PathIsSet;

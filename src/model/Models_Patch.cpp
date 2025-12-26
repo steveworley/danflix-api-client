@@ -11,45 +11,42 @@
 
 
 
-#include "danflix_client/model/Models_GameSave.h"
+#include "danflix_client/model/Models_Patch.h"
 
 namespace org {
 namespace openapitools {
 namespace client {
 namespace model {
 
-Models_GameSave::Models_GameSave()
+Models_Patch::Models_Patch()
 {
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
     m_DeletedAtIsSet = false;
-    m_Description = utility::conversions::to_string_t("");
-    m_DescriptionIsSet = false;
     m_GameId = 0;
     m_GameIdIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
-    m_PatchIsSet = false;
-    m_PatchId = 0;
-    m_PatchIdIsSet = false;
     m_Path = utility::conversions::to_string_t("");
     m_PathIsSet = false;
-    m_ProfileId = 0;
-    m_ProfileIdIsSet = false;
+    m_Title = utility::conversions::to_string_t("");
+    m_TitleIsSet = false;
     m_UpdatedAt = utility::conversions::to_string_t("");
     m_UpdatedAtIsSet = false;
+    m_Version = utility::conversions::to_string_t("");
+    m_VersionIsSet = false;
 }
 
-Models_GameSave::~Models_GameSave()
+Models_Patch::~Models_Patch()
 {
 }
 
-void Models_GameSave::validate()
+void Models_Patch::validate()
 {
     // TODO: implement validation
 }
 
-web::json::value Models_GameSave::toJson() const
+web::json::value Models_Patch::toJson() const
 {
     web::json::value val = web::json::value::object();
     if(m_CreatedAtIsSet)
@@ -62,11 +59,6 @@ web::json::value Models_GameSave::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("deletedAt"))] = ModelBase::toJson(m_DeletedAt);
     }
-    if(m_DescriptionIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("description"))] = ModelBase::toJson(m_Description);
-    }
     if(m_GameIdIsSet)
     {
         
@@ -77,36 +69,31 @@ web::json::value Models_GameSave::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
     }
-    if(m_PatchIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("patch"))] = ModelBase::toJson(m_Patch);
-    }
-    if(m_PatchIdIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("patchId"))] = ModelBase::toJson(m_PatchId);
-    }
     if(m_PathIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("path"))] = ModelBase::toJson(m_Path);
     }
-    if(m_ProfileIdIsSet)
+    if(m_TitleIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("profileId"))] = ModelBase::toJson(m_ProfileId);
+        val[utility::conversions::to_string_t(_XPLATSTR("title"))] = ModelBase::toJson(m_Title);
     }
     if(m_UpdatedAtIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("updatedAt"))] = ModelBase::toJson(m_UpdatedAt);
     }
+    if(m_VersionIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("version"))] = ModelBase::toJson(m_Version);
+    }
 
     return val;
 }
 
-bool Models_GameSave::fromJson(const web::json::value& val)
+bool Models_Patch::fromJson(const web::json::value& val)
 {
     bool ok = true;
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
@@ -128,17 +115,6 @@ bool Models_GameSave::fromJson(const web::json::value& val)
             std::shared_ptr<Gorm_DeletedAt> refVal_setDeletedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeletedAt);
             setDeletedAt(refVal_setDeletedAt);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("description"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("description")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setDescription;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
-            setDescription(refVal_setDescription);
             
         }
     }
@@ -164,28 +140,6 @@ bool Models_GameSave::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("patch"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("patch")));
-        if(!fieldValue.is_null())
-        {
-            std::shared_ptr<Models_Patch> refVal_setPatch;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPatch);
-            setPatch(refVal_setPatch);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("patchId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("patchId")));
-        if(!fieldValue.is_null())
-        {
-            int32_t refVal_setPatchId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPatchId);
-            setPatchId(refVal_setPatchId);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("path"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("path")));
@@ -197,14 +151,14 @@ bool Models_GameSave::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("profileId"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("title"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("profileId")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("title")));
         if(!fieldValue.is_null())
         {
-            int32_t refVal_setProfileId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setProfileId);
-            setProfileId(refVal_setProfileId);
+            utility::string_t refVal_setTitle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTitle);
+            setTitle(refVal_setTitle);
             
         }
     }
@@ -219,10 +173,21 @@ bool Models_GameSave::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("version"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("version")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setVersion;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setVersion);
+            setVersion(refVal_setVersion);
+            
+        }
+    }
     return ok;
 }
 
-void Models_GameSave::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void Models_Patch::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(_XPLATSTR(".")))
@@ -237,10 +202,6 @@ void Models_GameSave::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("deletedAt")), m_DeletedAt));
     }
-    if(m_DescriptionIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("description")), m_Description));
-    }
     if(m_GameIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("gameId")), m_GameId));
@@ -249,29 +210,25 @@ void Models_GameSave::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
     }
-    if(m_PatchIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("patch")), m_Patch));
-    }
-    if(m_PatchIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("patchId")), m_PatchId));
-    }
     if(m_PathIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("path")), m_Path));
     }
-    if(m_ProfileIdIsSet)
+    if(m_TitleIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("profileId")), m_ProfileId));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("title")), m_Title));
     }
     if(m_UpdatedAtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("updatedAt")), m_UpdatedAt));
     }
+    if(m_VersionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("version")), m_Version));
+    }
 }
 
-bool Models_GameSave::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool Models_Patch::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -292,12 +249,6 @@ bool Models_GameSave::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("deletedAt"))), refVal_setDeletedAt );
         setDeletedAt(refVal_setDeletedAt);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("description"))))
-    {
-        utility::string_t refVal_setDescription;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("description"))), refVal_setDescription );
-        setDescription(refVal_setDescription);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("gameId"))))
     {
         int32_t refVal_setGameId;
@@ -310,29 +261,17 @@ bool Models_GameSave::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("patch"))))
-    {
-        std::shared_ptr<Models_Patch> refVal_setPatch;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("patch"))), refVal_setPatch );
-        setPatch(refVal_setPatch);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("patchId"))))
-    {
-        int32_t refVal_setPatchId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("patchId"))), refVal_setPatchId );
-        setPatchId(refVal_setPatchId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("path"))))
     {
         utility::string_t refVal_setPath;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("path"))), refVal_setPath );
         setPath(refVal_setPath);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("profileId"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("title"))))
     {
-        int32_t refVal_setProfileId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("profileId"))), refVal_setProfileId );
-        setProfileId(refVal_setProfileId);
+        utility::string_t refVal_setTitle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("title"))), refVal_setTitle );
+        setTitle(refVal_setTitle);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
@@ -340,215 +279,181 @@ bool Models_GameSave::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("version"))))
+    {
+        utility::string_t refVal_setVersion;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("version"))), refVal_setVersion );
+        setVersion(refVal_setVersion);
+    }
     return ok;
 }
 
 
-utility::string_t Models_GameSave::getCreatedAt() const
+utility::string_t Models_Patch::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
 
-void Models_GameSave::setCreatedAt(const utility::string_t& value)
+void Models_Patch::setCreatedAt(const utility::string_t& value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
 }
 
-bool Models_GameSave::createdAtIsSet() const
+bool Models_Patch::createdAtIsSet() const
 {
     return m_CreatedAtIsSet;
 }
 
-void Models_GameSave::unsetCreatedAt()
+void Models_Patch::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
 }
-std::shared_ptr<Gorm_DeletedAt> Models_GameSave::getDeletedAt() const
+std::shared_ptr<Gorm_DeletedAt> Models_Patch::getDeletedAt() const
 {
     return m_DeletedAt;
 }
 
 
-void Models_GameSave::setDeletedAt(const std::shared_ptr<Gorm_DeletedAt>& value)
+void Models_Patch::setDeletedAt(const std::shared_ptr<Gorm_DeletedAt>& value)
 {
     m_DeletedAt = value;
     m_DeletedAtIsSet = true;
 }
 
-bool Models_GameSave::deletedAtIsSet() const
+bool Models_Patch::deletedAtIsSet() const
 {
     return m_DeletedAtIsSet;
 }
 
-void Models_GameSave::unsetDeletedAt()
+void Models_Patch::unsetDeletedAt()
 {
     m_DeletedAtIsSet = false;
 }
-utility::string_t Models_GameSave::getDescription() const
-{
-    return m_Description;
-}
-
-
-void Models_GameSave::setDescription(const utility::string_t& value)
-{
-    m_Description = value;
-    m_DescriptionIsSet = true;
-}
-
-bool Models_GameSave::descriptionIsSet() const
-{
-    return m_DescriptionIsSet;
-}
-
-void Models_GameSave::unsetDescription()
-{
-    m_DescriptionIsSet = false;
-}
-int32_t Models_GameSave::getGameId() const
+int32_t Models_Patch::getGameId() const
 {
     return m_GameId;
 }
 
-void Models_GameSave::setGameId(int32_t value)
+void Models_Patch::setGameId(int32_t value)
 {
     m_GameId = value;
     m_GameIdIsSet = true;
 }
 
-bool Models_GameSave::gameIdIsSet() const
+bool Models_Patch::gameIdIsSet() const
 {
     return m_GameIdIsSet;
 }
 
-void Models_GameSave::unsetGameId()
+void Models_Patch::unsetGameId()
 {
     m_GameIdIsSet = false;
 }
-int32_t Models_GameSave::getId() const
+int32_t Models_Patch::getId() const
 {
     return m_Id;
 }
 
-void Models_GameSave::setId(int32_t value)
+void Models_Patch::setId(int32_t value)
 {
     m_Id = value;
     m_IdIsSet = true;
 }
 
-bool Models_GameSave::idIsSet() const
+bool Models_Patch::idIsSet() const
 {
     return m_IdIsSet;
 }
 
-void Models_GameSave::unsetId()
+void Models_Patch::unsetId()
 {
     m_IdIsSet = false;
 }
-std::shared_ptr<Models_Patch> Models_GameSave::getPatch() const
-{
-    return m_Patch;
-}
-
-
-void Models_GameSave::setPatch(const std::shared_ptr<Models_Patch>& value)
-{
-    m_Patch = value;
-    m_PatchIsSet = true;
-}
-
-bool Models_GameSave::patchIsSet() const
-{
-    return m_PatchIsSet;
-}
-
-void Models_GameSave::unsetPatch()
-{
-    m_PatchIsSet = false;
-}
-int32_t Models_GameSave::getPatchId() const
-{
-    return m_PatchId;
-}
-
-void Models_GameSave::setPatchId(int32_t value)
-{
-    m_PatchId = value;
-    m_PatchIdIsSet = true;
-}
-
-bool Models_GameSave::patchIdIsSet() const
-{
-    return m_PatchIdIsSet;
-}
-
-void Models_GameSave::unsetPatchId()
-{
-    m_PatchIdIsSet = false;
-}
-utility::string_t Models_GameSave::getPath() const
+utility::string_t Models_Patch::getPath() const
 {
     return m_Path;
 }
 
 
-void Models_GameSave::setPath(const utility::string_t& value)
+void Models_Patch::setPath(const utility::string_t& value)
 {
     m_Path = value;
     m_PathIsSet = true;
 }
 
-bool Models_GameSave::pathIsSet() const
+bool Models_Patch::pathIsSet() const
 {
     return m_PathIsSet;
 }
 
-void Models_GameSave::unsetPath()
+void Models_Patch::unsetPath()
 {
     m_PathIsSet = false;
 }
-int32_t Models_GameSave::getProfileId() const
+utility::string_t Models_Patch::getTitle() const
 {
-    return m_ProfileId;
+    return m_Title;
 }
 
-void Models_GameSave::setProfileId(int32_t value)
+
+void Models_Patch::setTitle(const utility::string_t& value)
 {
-    m_ProfileId = value;
-    m_ProfileIdIsSet = true;
+    m_Title = value;
+    m_TitleIsSet = true;
 }
 
-bool Models_GameSave::profileIdIsSet() const
+bool Models_Patch::titleIsSet() const
 {
-    return m_ProfileIdIsSet;
+    return m_TitleIsSet;
 }
 
-void Models_GameSave::unsetProfileId()
+void Models_Patch::unsetTitle()
 {
-    m_ProfileIdIsSet = false;
+    m_TitleIsSet = false;
 }
-utility::string_t Models_GameSave::getUpdatedAt() const
+utility::string_t Models_Patch::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
 
-void Models_GameSave::setUpdatedAt(const utility::string_t& value)
+void Models_Patch::setUpdatedAt(const utility::string_t& value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;
 }
 
-bool Models_GameSave::updatedAtIsSet() const
+bool Models_Patch::updatedAtIsSet() const
 {
     return m_UpdatedAtIsSet;
 }
 
-void Models_GameSave::unsetUpdatedAt()
+void Models_Patch::unsetUpdatedAt()
 {
     m_UpdatedAtIsSet = false;
+}
+utility::string_t Models_Patch::getVersion() const
+{
+    return m_Version;
+}
+
+
+void Models_Patch::setVersion(const utility::string_t& value)
+{
+    m_Version = value;
+    m_VersionIsSet = true;
+}
+
+bool Models_Patch::versionIsSet() const
+{
+    return m_VersionIsSet;
+}
+
+void Models_Patch::unsetVersion()
+{
+    m_VersionIsSet = false;
 }
 
 }

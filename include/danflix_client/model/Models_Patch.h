@@ -10,19 +10,18 @@
  */
 
 /*
- * Models_GameSave.h
+ * Models_Patch.h
  *
  * 
  */
 
-#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_Models_GameSave_H_
-#define ORG_OPENAPITOOLS_CLIENT_MODEL_Models_GameSave_H_
+#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_Models_Patch_H_
+#define ORG_OPENAPITOOLS_CLIENT_MODEL_Models_Patch_H_
 
 #include <boost/optional.hpp>
 
 #include "danflix_client/ModelBase.h"
 
-#include "danflix_client/model/Models_Patch.h"
 #include "danflix_client/model/Gorm_DeletedAt.h"
 #include <cpprest/details/basic_types.h>
 
@@ -32,15 +31,14 @@ namespace client {
 namespace model {
 
 class Gorm_DeletedAt;
-class Models_Patch;
 
 
-class  Models_GameSave
+class  Models_Patch
     : public ModelBase
 {
 public:
-    Models_GameSave();
-    virtual ~Models_GameSave();
+    Models_Patch();
+    virtual ~Models_Patch();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -55,7 +53,7 @@ public:
 
 
     /////////////////////////////////////////////
-    /// Models_GameSave members
+    /// Models_Patch members
 
 
     utility::string_t getCreatedAt() const;
@@ -68,11 +66,6 @@ public:
     void unsetDeletedAt();
     void setDeletedAt(const std::shared_ptr<Gorm_DeletedAt>& value);
 
-    utility::string_t getDescription() const;
-    bool descriptionIsSet() const;
-    void unsetDescription();
-    void setDescription(const utility::string_t& value);
-
     int32_t getGameId() const;
     bool gameIdIsSet() const;
     void unsetGameId();
@@ -83,36 +76,34 @@ public:
     void unsetId();
     void setId(int32_t value);
 
-    std::shared_ptr<Models_Patch> getPatch() const;
-    bool patchIsSet() const;
-    void unsetPatch();
-    void setPatch(const std::shared_ptr<Models_Patch>& value);
-
     /// <summary>
-    /// Optional, to track patched versions
-    /// </summary>
-    int32_t getPatchId() const;
-    bool patchIdIsSet() const;
-    void unsetPatchId();
-    void setPatchId(int32_t value);
-
-    /// <summary>
-    /// Filesystem path
+    /// Absolute path to patch file
     /// </summary>
     utility::string_t getPath() const;
     bool pathIsSet() const;
     void unsetPath();
     void setPath(const utility::string_t& value);
 
-    int32_t getProfileId() const;
-    bool profileIdIsSet() const;
-    void unsetProfileId();
-    void setProfileId(int32_t value);
+    /// <summary>
+    /// Derived from filename or metadata
+    /// </summary>
+    utility::string_t getTitle() const;
+    bool titleIsSet() const;
+    void unsetTitle();
+    void setTitle(const utility::string_t& value);
 
     utility::string_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
     void setUpdatedAt(const utility::string_t& value);
+
+    /// <summary>
+    /// Optional version info
+    /// </summary>
+    utility::string_t getVersion() const;
+    bool versionIsSet() const;
+    void unsetVersion();
+    void setVersion(const utility::string_t& value);
 
 
 protected:
@@ -122,29 +113,23 @@ protected:
     std::shared_ptr<Gorm_DeletedAt> m_DeletedAt;
     bool m_DeletedAtIsSet;
 
-    utility::string_t m_Description;
-    bool m_DescriptionIsSet;
-
     int32_t m_GameId;
     bool m_GameIdIsSet;
 
     int32_t m_Id;
     bool m_IdIsSet;
 
-    std::shared_ptr<Models_Patch> m_Patch;
-    bool m_PatchIsSet;
-
-    int32_t m_PatchId;
-    bool m_PatchIdIsSet;
-
     utility::string_t m_Path;
     bool m_PathIsSet;
 
-    int32_t m_ProfileId;
-    bool m_ProfileIdIsSet;
+    utility::string_t m_Title;
+    bool m_TitleIsSet;
 
     utility::string_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
+
+    utility::string_t m_Version;
+    bool m_VersionIsSet;
 
 };
 
@@ -154,4 +139,4 @@ protected:
 }
 }
 
-#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_Models_GameSave_H_ */
+#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_Models_Patch_H_ */
