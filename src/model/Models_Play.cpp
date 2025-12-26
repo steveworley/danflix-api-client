@@ -22,6 +22,8 @@ Models_Play::Models_Play()
 {
     m_ClientIp = utility::conversions::to_string_t("");
     m_ClientIpIsSet = false;
+    m_Duration = 0;
+    m_DurationIsSet = false;
     m_GameIsSet = false;
     m_GameId = 0;
     m_GameIdIsSet = false;
@@ -49,6 +51,11 @@ web::json::value Models_Play::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("clientIp"))] = ModelBase::toJson(m_ClientIp);
+    }
+    if(m_DurationIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("duration"))] = ModelBase::toJson(m_Duration);
     }
     if(m_GameIsSet)
     {
@@ -90,6 +97,17 @@ bool Models_Play::fromJson(const web::json::value& val)
             utility::string_t refVal_setClientIp;
             ok &= ModelBase::fromJson(fieldValue, refVal_setClientIp);
             setClientIp(refVal_setClientIp);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("duration"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("duration")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setDuration;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDuration);
+            setDuration(refVal_setDuration);
             
         }
     }
@@ -162,6 +180,10 @@ void Models_Play::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("clientIp")), m_ClientIp));
     }
+    if(m_DurationIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("duration")), m_Duration));
+    }
     if(m_GameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("game")), m_Game));
@@ -198,6 +220,12 @@ bool Models_Play::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         utility::string_t refVal_setClientIp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("clientIp"))), refVal_setClientIp );
         setClientIp(refVal_setClientIp);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("duration"))))
+    {
+        int32_t refVal_setDuration;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("duration"))), refVal_setDuration );
+        setDuration(refVal_setDuration);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("game"))))
     {
@@ -253,6 +281,26 @@ bool Models_Play::clientIpIsSet() const
 void Models_Play::unsetClientIp()
 {
     m_ClientIpIsSet = false;
+}
+int32_t Models_Play::getDuration() const
+{
+    return m_Duration;
+}
+
+void Models_Play::setDuration(int32_t value)
+{
+    m_Duration = value;
+    m_DurationIsSet = true;
+}
+
+bool Models_Play::durationIsSet() const
+{
+    return m_DurationIsSet;
+}
+
+void Models_Play::unsetDuration()
+{
+    m_DurationIsSet = false;
 }
 std::shared_ptr<Models_Game> Models_Play::getGame() const
 {

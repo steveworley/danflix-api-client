@@ -61,6 +61,14 @@ public:
     void unsetClientIp();
     void setClientIp(const utility::string_t& value);
 
+    /// <summary>
+    /// Seconds
+    /// </summary>
+    int32_t getDuration() const;
+    bool durationIsSet() const;
+    void unsetDuration();
+    void setDuration(int32_t value);
+
     std::shared_ptr<Models_Game> getGame() const;
     bool gameIsSet() const;
     void unsetGame();
@@ -93,6 +101,9 @@ public:
 protected:
     utility::string_t m_ClientIp;
     bool m_ClientIpIsSet;
+
+    int32_t m_Duration;
+    bool m_DurationIsSet;
 
     std::shared_ptr<Models_Game> m_Game;
     bool m_GameIsSet;

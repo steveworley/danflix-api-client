@@ -24,7 +24,6 @@
 
 #include "danflix_client/model/Models_MediaProgress.h"
 #include "danflix_client/model/Routes_ProgressRequest.h"
-#include "danflix_client/model/Routes_SpecificProgressRequest.h"
 #include <map>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -47,58 +46,26 @@ public:
     virtual ~ProgressApi();
 
     /// <summary>
-    /// Get episode progress
+    /// Upsert progress
     /// </summary>
     /// <remarks>
-    /// Get episode progress for a profile
+    /// Create or update progress for any media type
     /// </remarks>
-    /// <param name="id">Episode ID</param>
-    pplx::task<std::shared_ptr<Models_MediaProgress>> episodesIdProgressGet(
-        int32_t id
-    ) const;
-    /// <summary>
-    /// Save episode progress
-    /// </summary>
-    /// <remarks>
-    /// Save episode progress for a profile
-    /// </remarks>
-    /// <param name="id">Episode ID</param>
-    /// <param name="progress">Progress to save</param>
-    pplx::task<std::map<utility::string_t, utility::string_t>> episodesIdProgressPut(
-        int32_t id,
-        std::shared_ptr<Routes_SpecificProgressRequest> progress
-    ) const;
-    /// <summary>
-    /// Get movie progress
-    /// </summary>
-    /// <remarks>
-    /// Get movie progress for a profile
-    /// </remarks>
-    /// <param name="id">Movie ID</param>
-    pplx::task<std::shared_ptr<Models_MediaProgress>> moviesIdProgressGet(
-        int32_t id
-    ) const;
-    /// <summary>
-    /// Save movie progress
-    /// </summary>
-    /// <remarks>
-    /// Save movie progress for a profile
-    /// </remarks>
-    /// <param name="id">Movie ID</param>
-    /// <param name="progress">Progress to save</param>
-    pplx::task<std::map<utility::string_t, utility::string_t>> moviesIdProgressPut(
-        int32_t id,
-        std::shared_ptr<Routes_SpecificProgressRequest> progress
-    ) const;
-    /// <summary>
-    /// Save progress
-    /// </summary>
-    /// <remarks>
-    /// Save progress for a movie or episode
-    /// </remarks>
-    /// <param name="progress">Progress to save</param>
-    pplx::task<void> progressPost(
+    /// <param name="progress">Progress data</param>
+    pplx::task<std::map<utility::string_t, utility::string_t>> progressPut(
         std::shared_ptr<Routes_ProgressRequest> progress
+    ) const;
+    /// <summary>
+    /// Get progress
+    /// </summary>
+    /// <remarks>
+    /// Get progress for a specific media item
+    /// </remarks>
+    /// <param name="type">Media Type (movie, episode, game, tv)</param>
+    /// <param name="id">Media ID</param>
+    pplx::task<std::shared_ptr<Models_MediaProgress>> progressTypeIdGet(
+        utility::string_t type,
+        int32_t id
     ) const;
 
 protected:

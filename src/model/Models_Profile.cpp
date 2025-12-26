@@ -24,6 +24,8 @@ Models_Profile::Models_Profile()
     m_AvatarIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
+    m_CurrentActivity = utility::conversions::to_string_t("");
+    m_CurrentActivityIsSet = false;
     m_DeletedAtIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
@@ -56,6 +58,11 @@ web::json::value Models_Profile::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("createdAt"))] = ModelBase::toJson(m_CreatedAt);
+    }
+    if(m_CurrentActivityIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("currentActivity"))] = ModelBase::toJson(m_CurrentActivity);
     }
     if(m_DeletedAtIsSet)
     {
@@ -108,6 +115,17 @@ bool Models_Profile::fromJson(const web::json::value& val)
             utility::string_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("currentActivity"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("currentActivity")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCurrentActivity;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCurrentActivity);
+            setCurrentActivity(refVal_setCurrentActivity);
             
         }
     }
@@ -184,6 +202,10 @@ void Models_Profile::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("createdAt")), m_CreatedAt));
     }
+    if(m_CurrentActivityIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("currentActivity")), m_CurrentActivity));
+    }
     if(m_DeletedAtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("deletedAt")), m_DeletedAt));
@@ -226,6 +248,12 @@ bool Models_Profile::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         utility::string_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("currentActivity"))))
+    {
+        utility::string_t refVal_setCurrentActivity;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("currentActivity"))), refVal_setCurrentActivity );
+        setCurrentActivity(refVal_setCurrentActivity);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("deletedAt"))))
     {
@@ -302,6 +330,27 @@ bool Models_Profile::createdAtIsSet() const
 void Models_Profile::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
+}
+utility::string_t Models_Profile::getCurrentActivity() const
+{
+    return m_CurrentActivity;
+}
+
+
+void Models_Profile::setCurrentActivity(const utility::string_t& value)
+{
+    m_CurrentActivity = value;
+    m_CurrentActivityIsSet = true;
+}
+
+bool Models_Profile::currentActivityIsSet() const
+{
+    return m_CurrentActivityIsSet;
+}
+
+void Models_Profile::unsetCurrentActivity()
+{
+    m_CurrentActivityIsSet = false;
 }
 std::shared_ptr<Gorm_DeletedAt> Models_Profile::getDeletedAt() const
 {

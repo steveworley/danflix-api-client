@@ -218,6 +218,14 @@ Routes_ProgressRequest::TypeEnum Routes_ProgressRequest::toTypeEnum(const utilit
         return TypeEnum::EPISODE;
     }
     
+    if (value == utility::conversions::to_string_t("game")) {
+        return TypeEnum::GAME;
+    }
+    
+    if (value == utility::conversions::to_string_t("tv")) {
+        return TypeEnum::TV;
+    }
+    
     throw std::invalid_argument("Invalid value for conversion to TypeEnum");
 }
 
@@ -230,6 +238,10 @@ const utility::string_t Routes_ProgressRequest::fromTypeEnum(const TypeEnum valu
         case TypeEnum::MOVIE: return utility::conversions::to_string_t("movie");
         
         case TypeEnum::EPISODE: return utility::conversions::to_string_t("episode");
+        
+        case TypeEnum::GAME: return utility::conversions::to_string_t("game");
+        
+        case TypeEnum::TV: return utility::conversions::to_string_t("tv");
         
     }
 }

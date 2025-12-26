@@ -24,15 +24,15 @@ Models_MediaProgress::Models_MediaProgress()
     m_CreatedAtIsSet = false;
     m_DeletedAtIsSet = false;
     m_EpisodeIsSet = false;
-    m_EpisodeId = 0;
-    m_EpisodeIdIsSet = false;
     m_Finished = false;
     m_FinishedIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
+    m_MediaId = 0;
+    m_MediaIdIsSet = false;
+    m_MediaType = utility::conversions::to_string_t("");
+    m_MediaTypeIsSet = false;
     m_MovieIsSet = false;
-    m_MovieId = 0;
-    m_MovieIdIsSet = false;
     m_ProfileId = 0;
     m_ProfileIdIsSet = false;
     m_Progress = 0;
@@ -70,11 +70,6 @@ web::json::value Models_MediaProgress::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("episode"))] = ModelBase::toJson(m_Episode);
     }
-    if(m_EpisodeIdIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("episodeId"))] = ModelBase::toJson(m_EpisodeId);
-    }
     if(m_FinishedIsSet)
     {
         
@@ -85,15 +80,20 @@ web::json::value Models_MediaProgress::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
     }
+    if(m_MediaIdIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("mediaId"))] = ModelBase::toJson(m_MediaId);
+    }
+    if(m_MediaTypeIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("mediaType"))] = ModelBase::toJson(m_MediaType);
+    }
     if(m_MovieIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("movie"))] = ModelBase::toJson(m_Movie);
-    }
-    if(m_MovieIdIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("movieId"))] = ModelBase::toJson(m_MovieId);
     }
     if(m_ProfileIdIsSet)
     {
@@ -155,17 +155,6 @@ bool Models_MediaProgress::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("episodeId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("episodeId")));
-        if(!fieldValue.is_null())
-        {
-            int32_t refVal_setEpisodeId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setEpisodeId);
-            setEpisodeId(refVal_setEpisodeId);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("finished"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("finished")));
@@ -188,6 +177,28 @@ bool Models_MediaProgress::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("mediaId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("mediaId")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setMediaId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setMediaId);
+            setMediaId(refVal_setMediaId);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("mediaType"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("mediaType")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setMediaType;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setMediaType);
+            setMediaType(refVal_setMediaType);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("movie"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("movie")));
@@ -196,17 +207,6 @@ bool Models_MediaProgress::fromJson(const web::json::value& val)
             std::shared_ptr<Models_Movie> refVal_setMovie;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMovie);
             setMovie(refVal_setMovie);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("movieId"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("movieId")));
-        if(!fieldValue.is_null())
-        {
-            int32_t refVal_setMovieId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setMovieId);
-            setMovieId(refVal_setMovieId);
             
         }
     }
@@ -276,10 +276,6 @@ void Models_MediaProgress::toMultipart(std::shared_ptr<MultipartFormData> multip
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("episode")), m_Episode));
     }
-    if(m_EpisodeIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("episodeId")), m_EpisodeId));
-    }
     if(m_FinishedIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("finished")), m_Finished));
@@ -288,13 +284,17 @@ void Models_MediaProgress::toMultipart(std::shared_ptr<MultipartFormData> multip
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
     }
+    if(m_MediaIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("mediaId")), m_MediaId));
+    }
+    if(m_MediaTypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("mediaType")), m_MediaType));
+    }
     if(m_MovieIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("movie")), m_Movie));
-    }
-    if(m_MovieIdIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("movieId")), m_MovieId));
     }
     if(m_ProfileIdIsSet)
     {
@@ -341,12 +341,6 @@ bool Models_MediaProgress::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("episode"))), refVal_setEpisode );
         setEpisode(refVal_setEpisode);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("episodeId"))))
-    {
-        int32_t refVal_setEpisodeId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("episodeId"))), refVal_setEpisodeId );
-        setEpisodeId(refVal_setEpisodeId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("finished"))))
     {
         bool refVal_setFinished;
@@ -359,17 +353,23 @@ bool Models_MediaProgress::fromMultiPart(std::shared_ptr<MultipartFormData> mult
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("mediaId"))))
+    {
+        int32_t refVal_setMediaId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("mediaId"))), refVal_setMediaId );
+        setMediaId(refVal_setMediaId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("mediaType"))))
+    {
+        utility::string_t refVal_setMediaType;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("mediaType"))), refVal_setMediaType );
+        setMediaType(refVal_setMediaType);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("movie"))))
     {
         std::shared_ptr<Models_Movie> refVal_setMovie;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("movie"))), refVal_setMovie );
         setMovie(refVal_setMovie);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("movieId"))))
-    {
-        int32_t refVal_setMovieId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("movieId"))), refVal_setMovieId );
-        setMovieId(refVal_setMovieId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("profileId"))))
     {
@@ -462,26 +462,6 @@ void Models_MediaProgress::unsetEpisode()
 {
     m_EpisodeIsSet = false;
 }
-int32_t Models_MediaProgress::getEpisodeId() const
-{
-    return m_EpisodeId;
-}
-
-void Models_MediaProgress::setEpisodeId(int32_t value)
-{
-    m_EpisodeId = value;
-    m_EpisodeIdIsSet = true;
-}
-
-bool Models_MediaProgress::episodeIdIsSet() const
-{
-    return m_EpisodeIdIsSet;
-}
-
-void Models_MediaProgress::unsetEpisodeId()
-{
-    m_EpisodeIdIsSet = false;
-}
 bool Models_MediaProgress::isFinished() const
 {
     return m_Finished;
@@ -522,6 +502,47 @@ void Models_MediaProgress::unsetId()
 {
     m_IdIsSet = false;
 }
+int32_t Models_MediaProgress::getMediaId() const
+{
+    return m_MediaId;
+}
+
+void Models_MediaProgress::setMediaId(int32_t value)
+{
+    m_MediaId = value;
+    m_MediaIdIsSet = true;
+}
+
+bool Models_MediaProgress::mediaIdIsSet() const
+{
+    return m_MediaIdIsSet;
+}
+
+void Models_MediaProgress::unsetMediaId()
+{
+    m_MediaIdIsSet = false;
+}
+utility::string_t Models_MediaProgress::getMediaType() const
+{
+    return m_MediaType;
+}
+
+
+void Models_MediaProgress::setMediaType(const utility::string_t& value)
+{
+    m_MediaType = value;
+    m_MediaTypeIsSet = true;
+}
+
+bool Models_MediaProgress::mediaTypeIsSet() const
+{
+    return m_MediaTypeIsSet;
+}
+
+void Models_MediaProgress::unsetMediaType()
+{
+    m_MediaTypeIsSet = false;
+}
 std::shared_ptr<Models_Movie> Models_MediaProgress::getMovie() const
 {
     return m_Movie;
@@ -542,26 +563,6 @@ bool Models_MediaProgress::movieIsSet() const
 void Models_MediaProgress::unsetMovie()
 {
     m_MovieIsSet = false;
-}
-int32_t Models_MediaProgress::getMovieId() const
-{
-    return m_MovieId;
-}
-
-void Models_MediaProgress::setMovieId(int32_t value)
-{
-    m_MovieId = value;
-    m_MovieIdIsSet = true;
-}
-
-bool Models_MediaProgress::movieIdIsSet() const
-{
-    return m_MovieIdIsSet;
-}
-
-void Models_MediaProgress::unsetMovieId()
-{
-    m_MovieIdIsSet = false;
 }
 int32_t Models_MediaProgress::getProfileId() const
 {

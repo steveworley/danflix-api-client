@@ -22,20 +22,13 @@
 
 #include "danflix_client/ModelBase.h"
 
-#include "danflix_client/model/Models_TVShow.h"
 #include <cpprest/details/basic_types.h>
-#include "danflix_client/model/Models_Movie.h"
-#include <vector>
-#include "danflix_client/model/Models_Game.h"
 
 namespace org {
 namespace openapitools {
 namespace client {
 namespace model {
 
-class Models_Game;
-class Models_Movie;
-class Models_TVShow;
 
 
 class  Models_Genre
@@ -61,47 +54,23 @@ public:
     /// Models_Genre members
 
 
-    std::vector<std::shared_ptr<Models_Game>> getGames() const;
-    bool gamesIsSet() const;
-    void unsetGames();
-    void setGames(const std::vector<std::shared_ptr<Models_Game>>& value);
-
     int32_t getId() const;
     bool idIsSet() const;
     void unsetId();
     void setId(int32_t value);
-
-    std::vector<std::shared_ptr<Models_Movie>> getMovies() const;
-    bool moviesIsSet() const;
-    void unsetMovies();
-    void setMovies(const std::vector<std::shared_ptr<Models_Movie>>& value);
 
     utility::string_t getName() const;
     bool nameIsSet() const;
     void unsetName();
     void setName(const utility::string_t& value);
 
-    std::vector<std::shared_ptr<Models_TVShow>> getTvShows() const;
-    bool tvShowsIsSet() const;
-    void unsetTvShows();
-    void setTvShows(const std::vector<std::shared_ptr<Models_TVShow>>& value);
-
 
 protected:
-    std::vector<std::shared_ptr<Models_Game>> m_Games;
-    bool m_GamesIsSet;
-
     int32_t m_Id;
     bool m_IdIsSet;
 
-    std::vector<std::shared_ptr<Models_Movie>> m_Movies;
-    bool m_MoviesIsSet;
-
     utility::string_t m_Name;
     bool m_NameIsSet;
-
-    std::vector<std::shared_ptr<Models_TVShow>> m_TvShows;
-    bool m_TvShowsIsSet;
 
 };
 

@@ -75,11 +75,6 @@ public:
     void unsetEpisode();
     void setEpisode(const std::shared_ptr<Models_Episode>& value);
 
-    int32_t getEpisodeId() const;
-    bool episodeIdIsSet() const;
-    void unsetEpisodeId();
-    void setEpisodeId(int32_t value);
-
     bool isFinished() const;
     bool finishedIsSet() const;
     void unsetFinished();
@@ -90,18 +85,26 @@ public:
     void unsetId();
     void setId(int32_t value);
 
+    int32_t getMediaId() const;
+    bool mediaIdIsSet() const;
+    void unsetMediaId();
+    void setMediaId(int32_t value);
+
+    /// <summary>
+    /// \&quot;movie\&quot;, \&quot;episode\&quot;, \&quot;game\&quot;, \&quot;tv\&quot;
+    /// </summary>
+    utility::string_t getMediaType() const;
+    bool mediaTypeIsSet() const;
+    void unsetMediaType();
+    void setMediaType(const utility::string_t& value);
+
+    /// <summary>
+    /// Associations for Preload (Logic ensures we only preload the correct one)
+    /// </summary>
     std::shared_ptr<Models_Movie> getMovie() const;
     bool movieIsSet() const;
     void unsetMovie();
     void setMovie(const std::shared_ptr<Models_Movie>& value);
-
-    /// <summary>
-    /// ClientIP  string &#x60;gorm:\&quot;index\&quot; json:\&quot;clientIp\&quot;&#x60; // Deprecated
-    /// </summary>
-    int32_t getMovieId() const;
-    bool movieIdIsSet() const;
-    void unsetMovieId();
-    void setMovieId(int32_t value);
 
     int32_t getProfileId() const;
     bool profileIdIsSet() const;
@@ -140,20 +143,20 @@ protected:
     std::shared_ptr<Models_Episode> m_Episode;
     bool m_EpisodeIsSet;
 
-    int32_t m_EpisodeId;
-    bool m_EpisodeIdIsSet;
-
     bool m_Finished;
     bool m_FinishedIsSet;
 
     int32_t m_Id;
     bool m_IdIsSet;
 
+    int32_t m_MediaId;
+    bool m_MediaIdIsSet;
+
+    utility::string_t m_MediaType;
+    bool m_MediaTypeIsSet;
+
     std::shared_ptr<Models_Movie> m_Movie;
     bool m_MovieIsSet;
-
-    int32_t m_MovieId;
-    bool m_MovieIdIsSet;
 
     int32_t m_ProfileId;
     bool m_ProfileIdIsSet;

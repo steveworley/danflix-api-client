@@ -24,11 +24,13 @@ include/danflix_client/api/ProfilesApi.h
 include/danflix_client/api/ProgressApi.h
 include/danflix_client/api/RecentApi.h
 include/danflix_client/api/SearchApi.h
+include/danflix_client/api/StatusApi.h
 include/danflix_client/api/TvApi.h
 include/danflix_client/model/Gorm_DeletedAt.h
 include/danflix_client/model/Models_Actor.h
 include/danflix_client/model/Models_Episode.h
 include/danflix_client/model/Models_Game.h
+include/danflix_client/model/Models_GameSave.h
 include/danflix_client/model/Models_Genre.h
 include/danflix_client/model/Models_Language.h
 include/danflix_client/model/Models_MediaProgress.h
@@ -42,7 +44,6 @@ include/danflix_client/model/Routes_CreateProfileRequest.h
 include/danflix_client/model/Routes_ImportGamesRequest.h
 include/danflix_client/model/Routes_ImportRequest.h
 include/danflix_client/model/Routes_ProgressRequest.h
-include/danflix_client/model/Routes_SpecificProgressRequest.h
 include/danflix_client/model/Routes_TokenRequest.h
 src/AnyType.cpp
 src/ApiClient.cpp
@@ -64,11 +65,13 @@ src/api/ProfilesApi.cpp
 src/api/ProgressApi.cpp
 src/api/RecentApi.cpp
 src/api/SearchApi.cpp
+src/api/StatusApi.cpp
 src/api/TvApi.cpp
 src/model/Gorm_DeletedAt.cpp
 src/model/Models_Actor.cpp
 src/model/Models_Episode.cpp
 src/model/Models_Game.cpp
+src/model/Models_GameSave.cpp
 src/model/Models_Genre.cpp
 src/model/Models_Language.cpp
 src/model/Models_MediaProgress.cpp
@@ -82,5 +85,4 @@ src/model/Routes_CreateProfileRequest.cpp
 src/model/Routes_ImportGamesRequest.cpp
 src/model/Routes_ImportRequest.cpp
 src/model/Routes_ProgressRequest.cpp
-src/model/Routes_SpecificProgressRequest.cpp
 src/model/Routes_TokenRequest.cpp

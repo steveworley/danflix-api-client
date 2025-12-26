@@ -58,6 +58,8 @@ public:
     {
         MOVIE,
         EPISODE,
+        GAME,
+        TV,
     };
 
     TypeEnum toTypeEnum(const utility::string_t& value) const;

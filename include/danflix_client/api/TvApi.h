@@ -173,6 +173,14 @@ public:
     pplx::task<void> tvIdTrailerGet(
         int32_t id
     ) const;
+    /// <summary>
+    /// Get 5 random TV shows
+    /// </summary>
+    /// <remarks>
+    /// Returns 5 random TV shows.
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> tvLuckyGet(
+    ) const;
 
 protected:
     std::shared_ptr<const ApiClient> m_ApiClient;

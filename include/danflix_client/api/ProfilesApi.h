@@ -59,12 +59,42 @@ public:
     pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> homeGet(
     ) const;
     /// <summary>
+    /// Update profile activity
+    /// </summary>
+    /// <remarks>
+    /// usage: Client updates what the user is doing (e.g., \&quot;Watching Matrix\&quot;, \&quot;Playing Mario\&quot;).
+    /// </remarks>
+    /// <param name="activity">Activity object</param>
+    pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> meActivityPost(
+        std::map<utility::string_t, utility::string_t> activity
+    ) const;
+    /// <summary>
+    /// Get completed media
+    /// </summary>
+    /// <remarks>
+    /// Get all completed media for a profile, optionally filtered by type
+    /// </remarks>
+    /// <param name="type">Media type (game, movie, tv) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::vector<std::shared_ptr<Models_MediaProgress>>> meCompletedGet(
+        boost::optional<utility::string_t> type
+    ) const;
+    /// <summary>
     /// Get continue watching
     /// </summary>
     /// <remarks>
     /// Get continue watching from the database
     /// </remarks>
     pplx::task<std::vector<std::shared_ptr<Models_MediaProgress>>> meContinueGet(
+    ) const;
+    /// <summary>
+    /// Get continue watching by type
+    /// </summary>
+    /// <remarks>
+    /// Get continue watching items filtered by type (movie, tv, game)
+    /// </remarks>
+    /// <param name="type">Media Type (movie, tv, game)</param>
+    pplx::task<std::vector<std::shared_ptr<Models_MediaProgress>>> meContinueTypeGet(
+        utility::string_t type
     ) const;
     /// <summary>
     /// Get recently played games

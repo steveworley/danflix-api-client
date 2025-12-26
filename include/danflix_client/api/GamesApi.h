@@ -25,6 +25,7 @@
 #include "danflix_client/AnyType.h"
 #include "danflix_client/HttpContent.h"
 #include "danflix_client/model/Models_Game.h"
+#include "danflix_client/model/Models_GameSave.h"
 #include <map>
 #include <vector>
 #include <cpprest/details/basic_types.h>
@@ -126,6 +127,58 @@ public:
     pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> gamesIdPlayPost(
         utility::string_t id,
         boost::optional<utility::string_t> authorization
+    ) const;
+    /// <summary>
+    /// List saves for a game
+    /// </summary>
+    /// <remarks>
+    /// List all save files for a game, optionally filtered by profile via token
+    /// </remarks>
+    /// <param name="id">Game ID</param>
+    /// <param name="authorization">Bearer token (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::vector<std::shared_ptr<Models_GameSave>>> gamesIdSavesGet(
+        utility::string_t id,
+        boost::optional<utility::string_t> authorization
+    ) const;
+    /// <summary>
+    /// Upload a save file
+    /// </summary>
+    /// <remarks>
+    /// Upload a save file for a game
+    /// </remarks>
+    /// <param name="id">Game ID</param>
+    /// <param name="file">Save file</param>
+    /// <param name="patchId">Patch ID associated with save (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="description">Description (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Models_GameSave>> gamesIdSavesPost(
+        utility::string_t id,
+        std::shared_ptr<HttpContent> file,
+        boost::optional<utility::string_t> patchId,
+        boost::optional<utility::string_t> description
+    ) const;
+    /// <summary>
+    /// Delete a save file
+    /// </summary>
+    /// <remarks>
+    /// Delete a specific save file
+    /// </remarks>
+    /// <param name="id">Game ID</param>
+    /// <param name="saveId">Save ID</param>
+    pplx::task<std::map<utility::string_t, utility::string_t>> gamesIdSavesSaveIdDelete(
+        utility::string_t id,
+        utility::string_t saveId
+    ) const;
+    /// <summary>
+    /// Download a save file
+    /// </summary>
+    /// <remarks>
+    /// Download a specific save file
+    /// </remarks>
+    /// <param name="id">Game ID</param>
+    /// <param name="saveId">Save ID</param>
+    pplx::task<std::shared_ptr<HttpContent>> gamesIdSavesSaveIdGet(
+        utility::string_t id,
+        utility::string_t saveId
     ) const;
     /// <summary>
     /// Get a game thumbnail by ID

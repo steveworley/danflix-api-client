@@ -115,6 +115,14 @@ public:
     pplx::task<std::shared_ptr<HttpContent>> moviesIdTrailerGet(
         utility::string_t id
     ) const;
+    /// <summary>
+    /// Get 5 random movies
+    /// </summary>
+    /// <remarks>
+    /// Returns 5 random movies.
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Models_Movie>>> moviesLuckyGet(
+    ) const;
 
 protected:
     std::shared_ptr<const ApiClient> m_ApiClient;
