@@ -14,6 +14,7 @@ include/danflix_client/ModelBase.h
 include/danflix_client/MultipartFormData.h
 include/danflix_client/Object.h
 include/danflix_client/api/AdminApi.h
+include/danflix_client/api/CollectionsApi.h
 include/danflix_client/api/GamesApi.h
 include/danflix_client/api/HealthApi.h
 include/danflix_client/api/ImportApi.h
@@ -24,11 +25,13 @@ include/danflix_client/api/PlaysApi.h
 include/danflix_client/api/ProfilesApi.h
 include/danflix_client/api/ProgressApi.h
 include/danflix_client/api/RecentApi.h
+include/danflix_client/api/RecommendApi.h
 include/danflix_client/api/SearchApi.h
 include/danflix_client/api/StatusApi.h
 include/danflix_client/api/TvApi.h
 include/danflix_client/model/Gorm_DeletedAt.h
 include/danflix_client/model/Models_Actor.h
+include/danflix_client/model/Models_Collection.h
 include/danflix_client/model/Models_Episode.h
 include/danflix_client/model/Models_Game.h
 include/danflix_client/model/Models_GameSave.h
@@ -57,6 +60,7 @@ src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
 src/api/AdminApi.cpp
+src/api/CollectionsApi.cpp
 src/api/GamesApi.cpp
 src/api/HealthApi.cpp
 src/api/ImportApi.cpp
@@ -67,11 +71,13 @@ src/api/PlaysApi.cpp
 src/api/ProfilesApi.cpp
 src/api/ProgressApi.cpp
 src/api/RecentApi.cpp
+src/api/RecommendApi.cpp
 src/api/SearchApi.cpp
 src/api/StatusApi.cpp
 src/api/TvApi.cpp
 src/model/Gorm_DeletedAt.cpp
 src/model/Models_Actor.cpp
+src/model/Models_Collection.cpp
 src/model/Models_Episode.cpp
 src/model/Models_Game.cpp
 src/model/Models_GameSave.cpp

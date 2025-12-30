@@ -51,14 +51,6 @@ public:
     virtual ~ProfilesApi();
 
     /// <summary>
-    /// Get home dashboard
-    /// </summary>
-    /// <remarks>
-    /// Get recent movies, shows, and continue watching
-    /// </remarks>
-    pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> homeGet(
-    ) const;
-    /// <summary>
     /// Update profile activity
     /// </summary>
     /// <remarks>
@@ -119,6 +111,14 @@ public:
     /// Get profile history from the database
     /// </remarks>
     pplx::task<std::vector<std::shared_ptr<Models_MediaProgress>>> meHistoryGet(
+    ) const;
+    /// <summary>
+    /// Get home dashboard
+    /// </summary>
+    /// <remarks>
+    /// Get recent movies, shows, and continue watching
+    /// </remarks>
+    pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> meHomeGet(
     ) const;
     /// <summary>
     /// Delete a profile
