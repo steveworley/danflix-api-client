@@ -216,6 +216,24 @@ public:
         utility::string_t saveId
     ) const;
     /// <summary>
+    /// Update a save file
+    /// </summary>
+    /// <remarks>
+    /// Update an existing save file for a game
+    /// </remarks>
+    /// <param name="id">Game ID</param>
+    /// <param name="saveId">Save ID</param>
+    /// <param name="file">New save file (optional) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="patchId">New Patch ID (optional) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="description">New Description (optional) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<Models_GameSave>> gamesIdSavesSaveIdPut(
+        utility::string_t id,
+        utility::string_t saveId,
+        boost::optional<std::shared_ptr<HttpContent>> file,
+        boost::optional<utility::string_t> patchId,
+        boost::optional<utility::string_t> description
+    ) const;
+    /// <summary>
     /// Get a game thumbnail by ID
     /// </summary>
     /// <remarks>
