@@ -51,9 +51,17 @@ public:
     /// <remarks>
     /// Get all movies from the database
     /// </remarks>
-    /// <param name="name">Filter by name (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="genre">Filter by genre (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="studio">Filter by studio (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="director">Filter by director (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="actor">Filter by actor (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="producer">Filter by producer (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Movie>>> moviesGet(
-        boost::optional<utility::string_t> name
+        boost::optional<utility::string_t> genre,
+        boost::optional<utility::string_t> studio,
+        boost::optional<utility::string_t> director,
+        boost::optional<utility::string_t> actor,
+        boost::optional<utility::string_t> producer
     ) const;
     /// <summary>
     /// Get a movie banner

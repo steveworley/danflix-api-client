@@ -122,7 +122,9 @@ public:
     /// <remarks>
     /// Get genres from the database
     /// </remarks>
+    /// <param name="type">Filter genres by type (movies, tv, games) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Genre>>> genresGet(
+        boost::optional<utility::string_t> type
     ) const;
     /// <summary>
     /// Get games by genre

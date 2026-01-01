@@ -914,7 +914,7 @@ pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MetadataApi::directorsIdM
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<Models_Genre>>> MetadataApi::genresGet() const
+pplx::task<std::vector<std::shared_ptr<Models_Genre>>> MetadataApi::genresGet(boost::optional<utility::string_t> type) const
 {
 
 
@@ -955,6 +955,10 @@ pplx::task<std::vector<std::shared_ptr<Models_Genre>>> MetadataApi::genresGet() 
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (type)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("type")] = ApiClient::parameterToString(*type);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;

@@ -35,7 +35,7 @@ MoviesApi::~MoviesApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MoviesApi::moviesGet(boost::optional<utility::string_t> name) const
+pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MoviesApi::moviesGet(boost::optional<utility::string_t> genre, boost::optional<utility::string_t> studio, boost::optional<utility::string_t> director, boost::optional<utility::string_t> actor, boost::optional<utility::string_t> producer) const
 {
 
 
@@ -76,9 +76,25 @@ pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MoviesApi::moviesGet(boos
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (name)
+    if (genre)
     {
-        localVarQueryParams[utility::conversions::to_string_t("name")] = ApiClient::parameterToString(*name);
+        localVarQueryParams[utility::conversions::to_string_t("genre")] = ApiClient::parameterToString(*genre);
+    }
+    if (studio)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("studio")] = ApiClient::parameterToString(*studio);
+    }
+    if (director)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("director")] = ApiClient::parameterToString(*director);
+    }
+    if (actor)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("actor")] = ApiClient::parameterToString(*actor);
+    }
+    if (producer)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("producer")] = ApiClient::parameterToString(*producer);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;

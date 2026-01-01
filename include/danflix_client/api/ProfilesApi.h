@@ -26,7 +26,7 @@
 #include "danflix_client/model/Models_MediaProgress.h"
 #include "danflix_client/model/Models_Play.h"
 #include "danflix_client/model/Models_Profile.h"
-#include "danflix_client/model/Routes_CreateProfileRequest.h"
+#include "danflix_client/model/Routes_ProfileRequest.h"
 #include "danflix_client/model/Routes_TokenRequest.h"
 #include <map>
 #include <vector>
@@ -139,6 +139,18 @@ public:
     pplx::task<std::vector<std::shared_ptr<Models_Profile>>> profilesGet(
     ) const;
     /// <summary>
+    /// Update a profile
+    /// </summary>
+    /// <remarks>
+    /// Update a profile in the database (partial update)
+    /// </remarks>
+    /// <param name="id">Profile ID</param>
+    /// <param name="profile">Profile fields to update</param>
+    pplx::task<std::shared_ptr<Models_Profile>> profilesIdPatch(
+        utility::string_t id,
+        std::shared_ptr<Routes_ProfileRequest> profile
+    ) const;
+    /// <summary>
     /// Create a profile
     /// </summary>
     /// <remarks>
@@ -146,7 +158,7 @@ public:
     /// </remarks>
     /// <param name="profile">Profile to create</param>
     pplx::task<std::shared_ptr<Models_Profile>> profilesPost(
-        std::shared_ptr<Routes_CreateProfileRequest> profile
+        std::shared_ptr<Routes_ProfileRequest> profile
     ) const;
     /// <summary>
     /// Generate a token
