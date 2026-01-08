@@ -21,8 +21,12 @@ namespace model {
 Models_Game::Models_Game()
 {
     m_ActorsIsSet = false;
+    m_Anytime = false;
+    m_AnytimeIsSet = false;
     m_Banner = utility::conversions::to_string_t("");
     m_BannerIsSet = false;
+    m_BaseGameId = 0;
+    m_BaseGameIdIsSet = false;
     m_Certification = utility::conversions::to_string_t("");
     m_CertificationIsSet = false;
     m_CollectionsIsSet = false;
@@ -102,10 +106,20 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("actors"))] = ModelBase::toJson(m_Actors);
     }
+    if(m_AnytimeIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("anytime"))] = ModelBase::toJson(m_Anytime);
+    }
     if(m_BannerIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("banner"))] = ModelBase::toJson(m_Banner);
+    }
+    if(m_BaseGameIdIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("baseGameId"))] = ModelBase::toJson(m_BaseGameId);
     }
     if(m_CertificationIsSet)
     {
@@ -300,6 +314,17 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("anytime"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("anytime")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setAnytime;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAnytime);
+            setAnytime(refVal_setAnytime);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("banner"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("banner")));
@@ -308,6 +333,17 @@ bool Models_Game::fromJson(const web::json::value& val)
             utility::string_t refVal_setBanner;
             ok &= ModelBase::fromJson(fieldValue, refVal_setBanner);
             setBanner(refVal_setBanner);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("baseGameId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("baseGameId")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setBaseGameId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBaseGameId);
+            setBaseGameId(refVal_setBaseGameId);
             
         }
     }
@@ -710,9 +746,17 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("actors")), m_Actors));
     }
+    if(m_AnytimeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("anytime")), m_Anytime));
+    }
     if(m_BannerIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("banner")), m_Banner));
+    }
+    if(m_BaseGameIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("baseGameId")), m_BaseGameId));
     }
     if(m_CertificationIsSet)
     {
@@ -871,11 +915,23 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("actors"))), refVal_setActors );
         setActors(refVal_setActors);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("anytime"))))
+    {
+        bool refVal_setAnytime;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("anytime"))), refVal_setAnytime );
+        setAnytime(refVal_setAnytime);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("banner"))))
     {
         utility::string_t refVal_setBanner;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("banner"))), refVal_setBanner );
         setBanner(refVal_setBanner);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("baseGameId"))))
+    {
+        int32_t refVal_setBaseGameId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("baseGameId"))), refVal_setBaseGameId );
+        setBaseGameId(refVal_setBaseGameId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("certification"))))
     {
@@ -1112,6 +1168,26 @@ void Models_Game::unsetActors()
 {
     m_ActorsIsSet = false;
 }
+bool Models_Game::isAnytime() const
+{
+    return m_Anytime;
+}
+
+void Models_Game::setAnytime(bool value)
+{
+    m_Anytime = value;
+    m_AnytimeIsSet = true;
+}
+
+bool Models_Game::anytimeIsSet() const
+{
+    return m_AnytimeIsSet;
+}
+
+void Models_Game::unsetAnytime()
+{
+    m_AnytimeIsSet = false;
+}
 utility::string_t Models_Game::getBanner() const
 {
     return m_Banner;
@@ -1132,6 +1208,26 @@ bool Models_Game::bannerIsSet() const
 void Models_Game::unsetBanner()
 {
     m_BannerIsSet = false;
+}
+int32_t Models_Game::getBaseGameId() const
+{
+    return m_BaseGameId;
+}
+
+void Models_Game::setBaseGameId(int32_t value)
+{
+    m_BaseGameId = value;
+    m_BaseGameIdIsSet = true;
+}
+
+bool Models_Game::baseGameIdIsSet() const
+{
+    return m_BaseGameIdIsSet;
+}
+
+void Models_Game::unsetBaseGameId()
+{
+    m_BaseGameIdIsSet = false;
 }
 utility::string_t Models_Game::getCertification() const
 {

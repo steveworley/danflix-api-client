@@ -76,10 +76,26 @@ public:
     void unsetActors();
     void setActors(const std::vector<std::shared_ptr<Models_Actor>>& value);
 
+    /// <summary>
+    /// Flag for pick-up-and-play games (arcade, party games, etc.)
+    /// </summary>
+    bool isAnytime() const;
+    bool anytimeIsSet() const;
+    void unsetAnytime();
+    void setAnytime(bool value);
+
     utility::string_t getBanner() const;
     bool bannerIsSet() const;
     void unsetBanner();
     void setBanner(const utility::string_t& value);
+
+    /// <summary>
+    /// Virtual field for pseudo-games (promoted patches)
+    /// </summary>
+    int32_t getBaseGameId() const;
+    bool baseGameIdIsSet() const;
+    void unsetBaseGameId();
+    void setBaseGameId(int32_t value);
 
     utility::string_t getCertification() const;
     bool certificationIsSet() const;
@@ -282,8 +298,14 @@ protected:
     std::vector<std::shared_ptr<Models_Actor>> m_Actors;
     bool m_ActorsIsSet;
 
+    bool m_Anytime;
+    bool m_AnytimeIsSet;
+
     utility::string_t m_Banner;
     bool m_BannerIsSet;
+
+    int32_t m_BaseGameId;
+    bool m_BaseGameIdIsSet;
 
     utility::string_t m_Certification;
     bool m_CertificationIsSet;

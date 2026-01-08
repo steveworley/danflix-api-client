@@ -23,9 +23,12 @@
 #include "danflix_client/ApiClient.h"
 
 #include "danflix_client/AnyType.h"
+#include "danflix_client/model/Models_Game.h"
 #include "danflix_client/model/Models_MediaProgress.h"
+#include "danflix_client/model/Models_Movie.h"
 #include "danflix_client/model/Models_Play.h"
 #include "danflix_client/model/Models_Profile.h"
+#include "danflix_client/model/Models_TVShow.h"
 #include "danflix_client/model/Routes_ProfileRequest.h"
 #include "danflix_client/model/Routes_TokenRequest.h"
 #include <map>
@@ -89,12 +92,28 @@ public:
         utility::string_t type
     ) const;
     /// <summary>
+    /// Get anytime games
+    /// </summary>
+    /// <remarks>
+    /// Get anytime games in random order
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Models_Game>>> meGamesAnytimeGet(
+    ) const;
+    /// <summary>
     /// Get recently played games
     /// </summary>
     /// <remarks>
     /// Get recently played games from the database
     /// </remarks>
     pplx::task<std::vector<std::shared_ptr<Models_Play>>> meGamesRecentGet(
+    ) const;
+    /// <summary>
+    /// Get up next games
+    /// </summary>
+    /// <remarks>
+    /// Get non-anytime games sorted by generation (ASC) and rating (DESC), grouped by collection, excluding in-progress/completed
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Models_Game>>> meGamesUpNextGet(
     ) const;
     /// <summary>
     /// Get current profile
@@ -129,6 +148,30 @@ public:
     /// <param name="id">Profile ID</param>
     pplx::task<std::map<utility::string_t, utility::string_t>> meIdDelete(
         utility::string_t id
+    ) const;
+    /// <summary>
+    /// Get up next movies
+    /// </summary>
+    /// <remarks>
+    /// Get movies sorted by decade (ASC) and rating (DESC), grouped by collection, excluding in-progress/completed
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Models_Movie>>> meMoviesUpNextGet(
+    ) const;
+    /// <summary>
+    /// Get anytime TV shows
+    /// </summary>
+    /// <remarks>
+    /// Get anytime TV shows in random order
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> meTvAnytimeGet(
+    ) const;
+    /// <summary>
+    /// Get up next TV shows
+    /// </summary>
+    /// <remarks>
+    /// Get non-anytime TV shows sorted by decade (ASC) and rating (DESC), excluding in-progress/completed
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> meTvUpNextGet(
     ) const;
     /// <summary>
     /// Get all profiles

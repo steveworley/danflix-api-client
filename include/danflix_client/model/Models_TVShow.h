@@ -73,6 +73,14 @@ public:
     void unsetActors();
     void setActors(const std::vector<std::shared_ptr<Models_Actor>>& value);
 
+    /// <summary>
+    /// Flag for episodic content that can be consumed in any order
+    /// </summary>
+    bool isAnytime() const;
+    bool anytimeIsSet() const;
+    void unsetAnytime();
+    void setAnytime(bool value);
+
     utility::string_t getBanner() const;
     bool bannerIsSet() const;
     void unsetBanner();
@@ -155,6 +163,9 @@ public:
 protected:
     std::vector<std::shared_ptr<Models_Actor>> m_Actors;
     bool m_ActorsIsSet;
+
+    bool m_Anytime;
+    bool m_AnytimeIsSet;
 
     utility::string_t m_Banner;
     bool m_BannerIsSet;

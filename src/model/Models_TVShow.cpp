@@ -21,6 +21,8 @@ namespace model {
 Models_TVShow::Models_TVShow()
 {
     m_ActorsIsSet = false;
+    m_Anytime = false;
+    m_AnytimeIsSet = false;
     m_Banner = utility::conversions::to_string_t("");
     m_BannerIsSet = false;
     m_Certification = utility::conversions::to_string_t("");
@@ -65,6 +67,11 @@ web::json::value Models_TVShow::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("actors"))] = ModelBase::toJson(m_Actors);
+    }
+    if(m_AnytimeIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("anytime"))] = ModelBase::toJson(m_Anytime);
     }
     if(m_BannerIsSet)
     {
@@ -156,6 +163,17 @@ bool Models_TVShow::fromJson(const web::json::value& val)
             std::vector<std::shared_ptr<Models_Actor>> refVal_setActors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setActors);
             setActors(refVal_setActors);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("anytime"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("anytime")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setAnytime;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAnytime);
+            setAnytime(refVal_setAnytime);
             
         }
     }
@@ -338,6 +356,10 @@ void Models_TVShow::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("actors")), m_Actors));
     }
+    if(m_AnytimeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("anytime")), m_Anytime));
+    }
     if(m_BannerIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("banner")), m_Banner));
@@ -414,6 +436,12 @@ bool Models_TVShow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
         std::vector<std::shared_ptr<Models_Actor>> refVal_setActors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("actors"))), refVal_setActors );
         setActors(refVal_setActors);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("anytime"))))
+    {
+        bool refVal_setAnytime;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("anytime"))), refVal_setAnytime );
+        setAnytime(refVal_setAnytime);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("banner"))))
     {
@@ -529,6 +557,26 @@ bool Models_TVShow::actorsIsSet() const
 void Models_TVShow::unsetActors()
 {
     m_ActorsIsSet = false;
+}
+bool Models_TVShow::isAnytime() const
+{
+    return m_Anytime;
+}
+
+void Models_TVShow::setAnytime(bool value)
+{
+    m_Anytime = value;
+    m_AnytimeIsSet = true;
+}
+
+bool Models_TVShow::anytimeIsSet() const
+{
+    return m_AnytimeIsSet;
+}
+
+void Models_TVShow::unsetAnytime()
+{
+    m_AnytimeIsSet = false;
 }
 utility::string_t Models_TVShow::getBanner() const
 {
