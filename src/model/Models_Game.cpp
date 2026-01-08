@@ -20,6 +20,11 @@ namespace model {
 
 Models_Game::Models_Game()
 {
+    m_ActorsIsSet = false;
+    m_Banner = utility::conversions::to_string_t("");
+    m_BannerIsSet = false;
+    m_Certification = utility::conversions::to_string_t("");
+    m_CertificationIsSet = false;
     m_CollectionsIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
@@ -29,29 +34,39 @@ Models_Game::Models_Game()
     m_DeletedAtIsSet = false;
     m_Developer = utility::conversions::to_string_t("");
     m_DeveloperIsSet = false;
-    m_file = utility::conversions::to_string_t("");
-    m_fileIsSet = false;
+    m_DirectorsIsSet = false;
     m_GenresIsSet = false;
     m_HltbId = 0;
     m_HltbIdIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
-    m_Image = utility::conversions::to_string_t("");
-    m_ImageIsSet = false;
     m_Kidgame = false;
     m_KidgameIsSet = false;
-    m_Marquee = utility::conversions::to_string_t("");
-    m_MarqueeIsSet = false;
+    m_LanguagesIsSet = false;
+    m_OriginalTitle = utility::conversions::to_string_t("");
+    m_OriginalTitleIsSet = false;
     m_PatchesIsSet = false;
     m_PlatformsIsSet = false;
     m_Players = 0;
     m_PlayersIsSet = false;
     m_Plot = utility::conversions::to_string_t("");
     m_PlotIsSet = false;
+    m_Poster = utility::conversions::to_string_t("");
+    m_PosterIsSet = false;
+    m_ProducersIsSet = false;
     m_Publisher = utility::conversions::to_string_t("");
     m_PublisherIsSet = false;
     m_Rating = 0.0;
     m_RatingIsSet = false;
+    m_Runtime = 0;
+    m_RuntimeIsSet = false;
+    m_Stream = utility::conversions::to_string_t("");
+    m_StreamIsSet = false;
+    m_StudiosIsSet = false;
+    m_Subtitle = utility::conversions::to_string_t("");
+    m_SubtitleIsSet = false;
+    m_Tagline = utility::conversions::to_string_t("");
+    m_TaglineIsSet = false;
     m_Thumbnail = utility::conversions::to_string_t("");
     m_ThumbnailIsSet = false;
     m_TimeToBeat100 = 0.0;
@@ -62,10 +77,10 @@ Models_Game::Models_Game()
     m_TimeToBeatPlusIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
+    m_Trailer = utility::conversions::to_string_t("");
+    m_TrailerIsSet = false;
     m_UpdatedAt = utility::conversions::to_string_t("");
     m_UpdatedAtIsSet = false;
-    m_Video = utility::conversions::to_string_t("");
-    m_VideoIsSet = false;
     m_Year = 0;
     m_YearIsSet = false;
 }
@@ -82,6 +97,21 @@ void Models_Game::validate()
 web::json::value Models_Game::toJson() const
 {
     web::json::value val = web::json::value::object();
+    if(m_ActorsIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("actors"))] = ModelBase::toJson(m_Actors);
+    }
+    if(m_BannerIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("banner"))] = ModelBase::toJson(m_Banner);
+    }
+    if(m_CertificationIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("certification"))] = ModelBase::toJson(m_Certification);
+    }
     if(m_CollectionsIsSet)
     {
         
@@ -112,10 +142,10 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("developer"))] = ModelBase::toJson(m_Developer);
     }
-    if(m_fileIsSet)
+    if(m_DirectorsIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("file"))] = ModelBase::toJson(m_file);
+        val[utility::conversions::to_string_t(_XPLATSTR("directors"))] = ModelBase::toJson(m_Directors);
     }
     if(m_GenresIsSet)
     {
@@ -132,20 +162,20 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
     }
-    if(m_ImageIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("image"))] = ModelBase::toJson(m_Image);
-    }
     if(m_KidgameIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("kidgame"))] = ModelBase::toJson(m_Kidgame);
     }
-    if(m_MarqueeIsSet)
+    if(m_LanguagesIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("marquee"))] = ModelBase::toJson(m_Marquee);
+        val[utility::conversions::to_string_t(_XPLATSTR("languages"))] = ModelBase::toJson(m_Languages);
+    }
+    if(m_OriginalTitleIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("originalTitle"))] = ModelBase::toJson(m_OriginalTitle);
     }
     if(m_PatchesIsSet)
     {
@@ -167,6 +197,16 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("plot"))] = ModelBase::toJson(m_Plot);
     }
+    if(m_PosterIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("poster"))] = ModelBase::toJson(m_Poster);
+    }
+    if(m_ProducersIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("producers"))] = ModelBase::toJson(m_Producers);
+    }
     if(m_PublisherIsSet)
     {
         
@@ -176,6 +216,31 @@ web::json::value Models_Game::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("rating"))] = ModelBase::toJson(m_Rating);
+    }
+    if(m_RuntimeIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("runtime"))] = ModelBase::toJson(m_Runtime);
+    }
+    if(m_StreamIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("stream"))] = ModelBase::toJson(m_Stream);
+    }
+    if(m_StudiosIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("studios"))] = ModelBase::toJson(m_Studios);
+    }
+    if(m_SubtitleIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("subtitle"))] = ModelBase::toJson(m_Subtitle);
+    }
+    if(m_TaglineIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("tagline"))] = ModelBase::toJson(m_Tagline);
     }
     if(m_ThumbnailIsSet)
     {
@@ -202,15 +267,15 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("title"))] = ModelBase::toJson(m_Title);
     }
+    if(m_TrailerIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("trailer"))] = ModelBase::toJson(m_Trailer);
+    }
     if(m_UpdatedAtIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("updatedAt"))] = ModelBase::toJson(m_UpdatedAt);
-    }
-    if(m_VideoIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("video"))] = ModelBase::toJson(m_Video);
     }
     if(m_YearIsSet)
     {
@@ -224,6 +289,39 @@ web::json::value Models_Game::toJson() const
 bool Models_Game::fromJson(const web::json::value& val)
 {
     bool ok = true;
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("actors"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("actors")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<Models_Actor>> refVal_setActors;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setActors);
+            setActors(refVal_setActors);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("banner"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("banner")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setBanner;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBanner);
+            setBanner(refVal_setBanner);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("certification"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("certification")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCertification;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCertification);
+            setCertification(refVal_setCertification);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("collections"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("collections")));
@@ -290,14 +388,14 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("file"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("directors"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("file")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("directors")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setFile;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFile);
-            setFile(refVal_setFile);
+            std::vector<std::shared_ptr<Models_Actor>> refVal_setDirectors;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDirectors);
+            setDirectors(refVal_setDirectors);
             
         }
     }
@@ -334,17 +432,6 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("image"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("image")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setImage;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setImage);
-            setImage(refVal_setImage);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("kidgame"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("kidgame")));
@@ -356,14 +443,25 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("marquee"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("languages"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("marquee")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("languages")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setMarquee;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setMarquee);
-            setMarquee(refVal_setMarquee);
+            std::vector<std::shared_ptr<Models_Language>> refVal_setLanguages;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setLanguages);
+            setLanguages(refVal_setLanguages);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("originalTitle"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("originalTitle")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setOriginalTitle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setOriginalTitle);
+            setOriginalTitle(refVal_setOriginalTitle);
             
         }
     }
@@ -411,6 +509,28 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("poster"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("poster")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setPoster;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPoster);
+            setPoster(refVal_setPoster);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("producers"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("producers")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<Models_Actor>> refVal_setProducers;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProducers);
+            setProducers(refVal_setProducers);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("publisher"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("publisher")));
@@ -430,6 +550,61 @@ bool Models_Game::fromJson(const web::json::value& val)
             double refVal_setRating;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRating);
             setRating(refVal_setRating);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("runtime"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("runtime")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setRuntime;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRuntime);
+            setRuntime(refVal_setRuntime);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("stream"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stream")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setStream;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStream);
+            setStream(refVal_setStream);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("studios"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("studios")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<Models_Studio>> refVal_setStudios;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStudios);
+            setStudios(refVal_setStudios);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("subtitle"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("subtitle")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSubtitle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSubtitle);
+            setSubtitle(refVal_setSubtitle);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tagline"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tagline")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTagline;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTagline);
+            setTagline(refVal_setTagline);
             
         }
     }
@@ -488,6 +663,17 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("trailer"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("trailer")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setTrailer;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTrailer);
+            setTrailer(refVal_setTrailer);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("updatedAt")));
@@ -496,17 +682,6 @@ bool Models_Game::fromJson(const web::json::value& val)
             utility::string_t refVal_setUpdatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setUpdatedAt);
             setUpdatedAt(refVal_setUpdatedAt);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("video"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("video")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setVideo;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setVideo);
-            setVideo(refVal_setVideo);
             
         }
     }
@@ -530,6 +705,18 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(_XPLATSTR(".")))
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
+    }
+    if(m_ActorsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("actors")), m_Actors));
+    }
+    if(m_BannerIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("banner")), m_Banner));
+    }
+    if(m_CertificationIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("certification")), m_Certification));
     }
     if(m_CollectionsIsSet)
     {
@@ -555,9 +742,9 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("developer")), m_Developer));
     }
-    if(m_fileIsSet)
+    if(m_DirectorsIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("file")), m_file));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("directors")), m_Directors));
     }
     if(m_GenresIsSet)
     {
@@ -571,17 +758,17 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
     }
-    if(m_ImageIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("image")), m_Image));
-    }
     if(m_KidgameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("kidgame")), m_Kidgame));
     }
-    if(m_MarqueeIsSet)
+    if(m_LanguagesIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("marquee")), m_Marquee));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("languages")), m_Languages));
+    }
+    if(m_OriginalTitleIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("originalTitle")), m_OriginalTitle));
     }
     if(m_PatchesIsSet)
     {
@@ -599,6 +786,14 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("plot")), m_Plot));
     }
+    if(m_PosterIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("poster")), m_Poster));
+    }
+    if(m_ProducersIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("producers")), m_Producers));
+    }
     if(m_PublisherIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("publisher")), m_Publisher));
@@ -606,6 +801,26 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     if(m_RatingIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("rating")), m_Rating));
+    }
+    if(m_RuntimeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("runtime")), m_Runtime));
+    }
+    if(m_StreamIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("stream")), m_Stream));
+    }
+    if(m_StudiosIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("studios")), m_Studios));
+    }
+    if(m_SubtitleIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("subtitle")), m_Subtitle));
+    }
+    if(m_TaglineIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tagline")), m_Tagline));
     }
     if(m_ThumbnailIsSet)
     {
@@ -627,13 +842,13 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("title")), m_Title));
     }
+    if(m_TrailerIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("trailer")), m_Trailer));
+    }
     if(m_UpdatedAtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("updatedAt")), m_UpdatedAt));
-    }
-    if(m_VideoIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("video")), m_Video));
     }
     if(m_YearIsSet)
     {
@@ -650,6 +865,24 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("actors"))))
+    {
+        std::vector<std::shared_ptr<Models_Actor>> refVal_setActors;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("actors"))), refVal_setActors );
+        setActors(refVal_setActors);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("banner"))))
+    {
+        utility::string_t refVal_setBanner;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("banner"))), refVal_setBanner );
+        setBanner(refVal_setBanner);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("certification"))))
+    {
+        utility::string_t refVal_setCertification;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("certification"))), refVal_setCertification );
+        setCertification(refVal_setCertification);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("collections"))))
     {
         std::vector<std::shared_ptr<Models_Collection>> refVal_setCollections;
@@ -686,11 +919,11 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("developer"))), refVal_setDeveloper );
         setDeveloper(refVal_setDeveloper);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("file"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("directors"))))
     {
-        utility::string_t refVal_setFile;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("file"))), refVal_setFile );
-        setFile(refVal_setFile);
+        std::vector<std::shared_ptr<Models_Actor>> refVal_setDirectors;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("directors"))), refVal_setDirectors );
+        setDirectors(refVal_setDirectors);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("genres"))))
     {
@@ -710,23 +943,23 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("image"))))
-    {
-        utility::string_t refVal_setImage;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("image"))), refVal_setImage );
-        setImage(refVal_setImage);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("kidgame"))))
     {
         bool refVal_setKidgame;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("kidgame"))), refVal_setKidgame );
         setKidgame(refVal_setKidgame);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("marquee"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("languages"))))
     {
-        utility::string_t refVal_setMarquee;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("marquee"))), refVal_setMarquee );
-        setMarquee(refVal_setMarquee);
+        std::vector<std::shared_ptr<Models_Language>> refVal_setLanguages;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("languages"))), refVal_setLanguages );
+        setLanguages(refVal_setLanguages);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("originalTitle"))))
+    {
+        utility::string_t refVal_setOriginalTitle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("originalTitle"))), refVal_setOriginalTitle );
+        setOriginalTitle(refVal_setOriginalTitle);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("patches"))))
     {
@@ -752,6 +985,18 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("plot"))), refVal_setPlot );
         setPlot(refVal_setPlot);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("poster"))))
+    {
+        utility::string_t refVal_setPoster;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("poster"))), refVal_setPoster );
+        setPoster(refVal_setPoster);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("producers"))))
+    {
+        std::vector<std::shared_ptr<Models_Actor>> refVal_setProducers;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("producers"))), refVal_setProducers );
+        setProducers(refVal_setProducers);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("publisher"))))
     {
         utility::string_t refVal_setPublisher;
@@ -763,6 +1008,36 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         double refVal_setRating;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rating"))), refVal_setRating );
         setRating(refVal_setRating);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("runtime"))))
+    {
+        int32_t refVal_setRuntime;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("runtime"))), refVal_setRuntime );
+        setRuntime(refVal_setRuntime);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stream"))))
+    {
+        utility::string_t refVal_setStream;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stream"))), refVal_setStream );
+        setStream(refVal_setStream);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("studios"))))
+    {
+        std::vector<std::shared_ptr<Models_Studio>> refVal_setStudios;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("studios"))), refVal_setStudios );
+        setStudios(refVal_setStudios);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("subtitle"))))
+    {
+        utility::string_t refVal_setSubtitle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("subtitle"))), refVal_setSubtitle );
+        setSubtitle(refVal_setSubtitle);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tagline"))))
+    {
+        utility::string_t refVal_setTagline;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tagline"))), refVal_setTagline );
+        setTagline(refVal_setTagline);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("thumbnail"))))
     {
@@ -794,17 +1069,17 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("title"))), refVal_setTitle );
         setTitle(refVal_setTitle);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("trailer"))))
+    {
+        utility::string_t refVal_setTrailer;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("trailer"))), refVal_setTrailer );
+        setTrailer(refVal_setTrailer);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
         utility::string_t refVal_setUpdatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))), refVal_setUpdatedAt );
         setUpdatedAt(refVal_setUpdatedAt);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("video"))))
-    {
-        utility::string_t refVal_setVideo;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("video"))), refVal_setVideo );
-        setVideo(refVal_setVideo);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("year"))))
     {
@@ -816,6 +1091,69 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
+std::vector<std::shared_ptr<Models_Actor>> Models_Game::getActors() const
+{
+    return m_Actors;
+}
+
+
+void Models_Game::setActors(const std::vector<std::shared_ptr<Models_Actor>>& value)
+{
+    m_Actors = value;
+    m_ActorsIsSet = true;
+}
+
+bool Models_Game::actorsIsSet() const
+{
+    return m_ActorsIsSet;
+}
+
+void Models_Game::unsetActors()
+{
+    m_ActorsIsSet = false;
+}
+utility::string_t Models_Game::getBanner() const
+{
+    return m_Banner;
+}
+
+
+void Models_Game::setBanner(const utility::string_t& value)
+{
+    m_Banner = value;
+    m_BannerIsSet = true;
+}
+
+bool Models_Game::bannerIsSet() const
+{
+    return m_BannerIsSet;
+}
+
+void Models_Game::unsetBanner()
+{
+    m_BannerIsSet = false;
+}
+utility::string_t Models_Game::getCertification() const
+{
+    return m_Certification;
+}
+
+
+void Models_Game::setCertification(const utility::string_t& value)
+{
+    m_Certification = value;
+    m_CertificationIsSet = true;
+}
+
+bool Models_Game::certificationIsSet() const
+{
+    return m_CertificationIsSet;
+}
+
+void Models_Game::unsetCertification()
+{
+    m_CertificationIsSet = false;
+}
 std::vector<std::shared_ptr<Models_Collection>> Models_Game::getCollections() const
 {
     return m_Collections;
@@ -941,26 +1279,26 @@ void Models_Game::unsetDeveloper()
 {
     m_DeveloperIsSet = false;
 }
-utility::string_t Models_Game::getFile() const
+std::vector<std::shared_ptr<Models_Actor>> Models_Game::getDirectors() const
 {
-    return m_file;
+    return m_Directors;
 }
 
 
-void Models_Game::setFile(const utility::string_t& value)
+void Models_Game::setDirectors(const std::vector<std::shared_ptr<Models_Actor>>& value)
 {
-    m_file = value;
-    m_fileIsSet = true;
+    m_Directors = value;
+    m_DirectorsIsSet = true;
 }
 
-bool Models_Game::fileIsSet() const
+bool Models_Game::directorsIsSet() const
 {
-    return m_fileIsSet;
+    return m_DirectorsIsSet;
 }
 
-void Models_Game::unsetfile()
+void Models_Game::unsetDirectors()
 {
-    m_fileIsSet = false;
+    m_DirectorsIsSet = false;
 }
 std::vector<std::shared_ptr<Models_Genre>> Models_Game::getGenres() const
 {
@@ -1023,27 +1361,6 @@ void Models_Game::unsetId()
 {
     m_IdIsSet = false;
 }
-utility::string_t Models_Game::getImage() const
-{
-    return m_Image;
-}
-
-
-void Models_Game::setImage(const utility::string_t& value)
-{
-    m_Image = value;
-    m_ImageIsSet = true;
-}
-
-bool Models_Game::imageIsSet() const
-{
-    return m_ImageIsSet;
-}
-
-void Models_Game::unsetImage()
-{
-    m_ImageIsSet = false;
-}
 bool Models_Game::isKidgame() const
 {
     return m_Kidgame;
@@ -1064,26 +1381,47 @@ void Models_Game::unsetKidgame()
 {
     m_KidgameIsSet = false;
 }
-utility::string_t Models_Game::getMarquee() const
+std::vector<std::shared_ptr<Models_Language>> Models_Game::getLanguages() const
 {
-    return m_Marquee;
+    return m_Languages;
 }
 
 
-void Models_Game::setMarquee(const utility::string_t& value)
+void Models_Game::setLanguages(const std::vector<std::shared_ptr<Models_Language>>& value)
 {
-    m_Marquee = value;
-    m_MarqueeIsSet = true;
+    m_Languages = value;
+    m_LanguagesIsSet = true;
 }
 
-bool Models_Game::marqueeIsSet() const
+bool Models_Game::languagesIsSet() const
 {
-    return m_MarqueeIsSet;
+    return m_LanguagesIsSet;
 }
 
-void Models_Game::unsetMarquee()
+void Models_Game::unsetLanguages()
 {
-    m_MarqueeIsSet = false;
+    m_LanguagesIsSet = false;
+}
+utility::string_t Models_Game::getOriginalTitle() const
+{
+    return m_OriginalTitle;
+}
+
+
+void Models_Game::setOriginalTitle(const utility::string_t& value)
+{
+    m_OriginalTitle = value;
+    m_OriginalTitleIsSet = true;
+}
+
+bool Models_Game::originalTitleIsSet() const
+{
+    return m_OriginalTitleIsSet;
+}
+
+void Models_Game::unsetOriginalTitle()
+{
+    m_OriginalTitleIsSet = false;
 }
 std::vector<std::shared_ptr<Models_Patch>> Models_Game::getPatches() const
 {
@@ -1168,6 +1506,48 @@ void Models_Game::unsetPlot()
 {
     m_PlotIsSet = false;
 }
+utility::string_t Models_Game::getPoster() const
+{
+    return m_Poster;
+}
+
+
+void Models_Game::setPoster(const utility::string_t& value)
+{
+    m_Poster = value;
+    m_PosterIsSet = true;
+}
+
+bool Models_Game::posterIsSet() const
+{
+    return m_PosterIsSet;
+}
+
+void Models_Game::unsetPoster()
+{
+    m_PosterIsSet = false;
+}
+std::vector<std::shared_ptr<Models_Actor>> Models_Game::getProducers() const
+{
+    return m_Producers;
+}
+
+
+void Models_Game::setProducers(const std::vector<std::shared_ptr<Models_Actor>>& value)
+{
+    m_Producers = value;
+    m_ProducersIsSet = true;
+}
+
+bool Models_Game::producersIsSet() const
+{
+    return m_ProducersIsSet;
+}
+
+void Models_Game::unsetProducers()
+{
+    m_ProducersIsSet = false;
+}
 utility::string_t Models_Game::getPublisher() const
 {
     return m_Publisher;
@@ -1208,6 +1588,110 @@ bool Models_Game::ratingIsSet() const
 void Models_Game::unsetRating()
 {
     m_RatingIsSet = false;
+}
+int32_t Models_Game::getRuntime() const
+{
+    return m_Runtime;
+}
+
+void Models_Game::setRuntime(int32_t value)
+{
+    m_Runtime = value;
+    m_RuntimeIsSet = true;
+}
+
+bool Models_Game::runtimeIsSet() const
+{
+    return m_RuntimeIsSet;
+}
+
+void Models_Game::unsetRuntime()
+{
+    m_RuntimeIsSet = false;
+}
+utility::string_t Models_Game::getStream() const
+{
+    return m_Stream;
+}
+
+
+void Models_Game::setStream(const utility::string_t& value)
+{
+    m_Stream = value;
+    m_StreamIsSet = true;
+}
+
+bool Models_Game::streamIsSet() const
+{
+    return m_StreamIsSet;
+}
+
+void Models_Game::unsetStream()
+{
+    m_StreamIsSet = false;
+}
+std::vector<std::shared_ptr<Models_Studio>> Models_Game::getStudios() const
+{
+    return m_Studios;
+}
+
+
+void Models_Game::setStudios(const std::vector<std::shared_ptr<Models_Studio>>& value)
+{
+    m_Studios = value;
+    m_StudiosIsSet = true;
+}
+
+bool Models_Game::studiosIsSet() const
+{
+    return m_StudiosIsSet;
+}
+
+void Models_Game::unsetStudios()
+{
+    m_StudiosIsSet = false;
+}
+utility::string_t Models_Game::getSubtitle() const
+{
+    return m_Subtitle;
+}
+
+
+void Models_Game::setSubtitle(const utility::string_t& value)
+{
+    m_Subtitle = value;
+    m_SubtitleIsSet = true;
+}
+
+bool Models_Game::subtitleIsSet() const
+{
+    return m_SubtitleIsSet;
+}
+
+void Models_Game::unsetSubtitle()
+{
+    m_SubtitleIsSet = false;
+}
+utility::string_t Models_Game::getTagline() const
+{
+    return m_Tagline;
+}
+
+
+void Models_Game::setTagline(const utility::string_t& value)
+{
+    m_Tagline = value;
+    m_TaglineIsSet = true;
+}
+
+bool Models_Game::taglineIsSet() const
+{
+    return m_TaglineIsSet;
+}
+
+void Models_Game::unsetTagline()
+{
+    m_TaglineIsSet = false;
 }
 utility::string_t Models_Game::getThumbnail() const
 {
@@ -1311,6 +1795,27 @@ void Models_Game::unsetTitle()
 {
     m_TitleIsSet = false;
 }
+utility::string_t Models_Game::getTrailer() const
+{
+    return m_Trailer;
+}
+
+
+void Models_Game::setTrailer(const utility::string_t& value)
+{
+    m_Trailer = value;
+    m_TrailerIsSet = true;
+}
+
+bool Models_Game::trailerIsSet() const
+{
+    return m_TrailerIsSet;
+}
+
+void Models_Game::unsetTrailer()
+{
+    m_TrailerIsSet = false;
+}
 utility::string_t Models_Game::getUpdatedAt() const
 {
     return m_UpdatedAt;
@@ -1331,27 +1836,6 @@ bool Models_Game::updatedAtIsSet() const
 void Models_Game::unsetUpdatedAt()
 {
     m_UpdatedAtIsSet = false;
-}
-utility::string_t Models_Game::getVideo() const
-{
-    return m_Video;
-}
-
-
-void Models_Game::setVideo(const utility::string_t& value)
-{
-    m_Video = value;
-    m_VideoIsSet = true;
-}
-
-bool Models_Game::videoIsSet() const
-{
-    return m_VideoIsSet;
-}
-
-void Models_Game::unsetVideo()
-{
-    m_VideoIsSet = false;
 }
 int32_t Models_Game::getYear() const
 {

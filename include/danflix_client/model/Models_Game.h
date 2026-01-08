@@ -22,10 +22,13 @@
 
 #include "danflix_client/ModelBase.h"
 
+#include "danflix_client/model/Models_Studio.h"
 #include "danflix_client/model/Models_Genre.h"
+#include "danflix_client/model/Models_Language.h"
 #include "danflix_client/model/Models_Patch.h"
 #include "danflix_client/model/Models_Collection.h"
 #include "danflix_client/model/Gorm_DeletedAt.h"
+#include "danflix_client/model/Models_Actor.h"
 #include <cpprest/details/basic_types.h>
 #include "danflix_client/model/Models_Platform.h"
 #include <vector>
@@ -35,11 +38,14 @@ namespace openapitools {
 namespace client {
 namespace model {
 
+class Models_Actor;
 class Models_Collection;
 class Models_Patch;
 class Gorm_DeletedAt;
 class Models_Genre;
+class Models_Language;
 class Models_Platform;
+class Models_Studio;
 
 
 class  Models_Game
@@ -64,6 +70,21 @@ public:
     /////////////////////////////////////////////
     /// Models_Game members
 
+
+    std::vector<std::shared_ptr<Models_Actor>> getActors() const;
+    bool actorsIsSet() const;
+    void unsetActors();
+    void setActors(const std::vector<std::shared_ptr<Models_Actor>>& value);
+
+    utility::string_t getBanner() const;
+    bool bannerIsSet() const;
+    void unsetBanner();
+    void setBanner(const utility::string_t& value);
+
+    utility::string_t getCertification() const;
+    bool certificationIsSet() const;
+    void unsetCertification();
+    void setCertification(const utility::string_t& value);
 
     /// <summary>
     /// Relations (Collections)
@@ -104,13 +125,10 @@ public:
     void unsetDeveloper();
     void setDeveloper(const utility::string_t& value);
 
-    /// <summary>
-    /// Virtual URL fields for API output
-    /// </summary>
-    utility::string_t getFile() const;
-    bool fileIsSet() const;
-    void unsetfile();
-    void setFile(const utility::string_t& value);
+    std::vector<std::shared_ptr<Models_Actor>> getDirectors() const;
+    bool directorsIsSet() const;
+    void unsetDirectors();
+    void setDirectors(const std::vector<std::shared_ptr<Models_Actor>>& value);
 
     /// <summary>
     /// Relations
@@ -133,20 +151,20 @@ public:
     void unsetId();
     void setId(int32_t value);
 
-    utility::string_t getImage() const;
-    bool imageIsSet() const;
-    void unsetImage();
-    void setImage(const utility::string_t& value);
-
     bool isKidgame() const;
     bool kidgameIsSet() const;
     void unsetKidgame();
     void setKidgame(bool value);
 
-    utility::string_t getMarquee() const;
-    bool marqueeIsSet() const;
-    void unsetMarquee();
-    void setMarquee(const utility::string_t& value);
+    std::vector<std::shared_ptr<Models_Language>> getLanguages() const;
+    bool languagesIsSet() const;
+    void unsetLanguages();
+    void setLanguages(const std::vector<std::shared_ptr<Models_Language>>& value);
+
+    utility::string_t getOriginalTitle() const;
+    bool originalTitleIsSet() const;
+    void unsetOriginalTitle();
+    void setOriginalTitle(const utility::string_t& value);
 
     std::vector<std::shared_ptr<Models_Patch>> getPatches() const;
     bool patchesIsSet() const;
@@ -168,6 +186,16 @@ public:
     void unsetPlot();
     void setPlot(const utility::string_t& value);
 
+    utility::string_t getPoster() const;
+    bool posterIsSet() const;
+    void unsetPoster();
+    void setPoster(const utility::string_t& value);
+
+    std::vector<std::shared_ptr<Models_Actor>> getProducers() const;
+    bool producersIsSet() const;
+    void unsetProducers();
+    void setProducers(const std::vector<std::shared_ptr<Models_Actor>>& value);
+
     utility::string_t getPublisher() const;
     bool publisherIsSet() const;
     void unsetPublisher();
@@ -177,6 +205,37 @@ public:
     bool ratingIsSet() const;
     void unsetRating();
     void setRating(double value);
+
+    /// <summary>
+    /// in minutes
+    /// </summary>
+    int32_t getRuntime() const;
+    bool runtimeIsSet() const;
+    void unsetRuntime();
+    void setRuntime(int32_t value);
+
+    /// <summary>
+    /// Virtual URL fields for API output
+    /// </summary>
+    utility::string_t getStream() const;
+    bool streamIsSet() const;
+    void unsetStream();
+    void setStream(const utility::string_t& value);
+
+    std::vector<std::shared_ptr<Models_Studio>> getStudios() const;
+    bool studiosIsSet() const;
+    void unsetStudios();
+    void setStudios(const std::vector<std::shared_ptr<Models_Studio>>& value);
+
+    utility::string_t getSubtitle() const;
+    bool subtitleIsSet() const;
+    void unsetSubtitle();
+    void setSubtitle(const utility::string_t& value);
+
+    utility::string_t getTagline() const;
+    bool taglineIsSet() const;
+    void unsetTagline();
+    void setTagline(const utility::string_t& value);
 
     utility::string_t getThumbnail() const;
     bool thumbnailIsSet() const;
@@ -203,15 +262,15 @@ public:
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
+    utility::string_t getTrailer() const;
+    bool trailerIsSet() const;
+    void unsetTrailer();
+    void setTrailer(const utility::string_t& value);
+
     utility::string_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
     void setUpdatedAt(const utility::string_t& value);
-
-    utility::string_t getVideo() const;
-    bool videoIsSet() const;
-    void unsetVideo();
-    void setVideo(const utility::string_t& value);
 
     int32_t getYear() const;
     bool yearIsSet() const;
@@ -220,6 +279,15 @@ public:
 
 
 protected:
+    std::vector<std::shared_ptr<Models_Actor>> m_Actors;
+    bool m_ActorsIsSet;
+
+    utility::string_t m_Banner;
+    bool m_BannerIsSet;
+
+    utility::string_t m_Certification;
+    bool m_CertificationIsSet;
+
     std::vector<std::shared_ptr<Models_Collection>> m_Collections;
     bool m_CollectionsIsSet;
 
@@ -238,8 +306,8 @@ protected:
     utility::string_t m_Developer;
     bool m_DeveloperIsSet;
 
-    utility::string_t m_file;
-    bool m_fileIsSet;
+    std::vector<std::shared_ptr<Models_Actor>> m_Directors;
+    bool m_DirectorsIsSet;
 
     std::vector<std::shared_ptr<Models_Genre>> m_Genres;
     bool m_GenresIsSet;
@@ -250,14 +318,14 @@ protected:
     int32_t m_Id;
     bool m_IdIsSet;
 
-    utility::string_t m_Image;
-    bool m_ImageIsSet;
-
     bool m_Kidgame;
     bool m_KidgameIsSet;
 
-    utility::string_t m_Marquee;
-    bool m_MarqueeIsSet;
+    std::vector<std::shared_ptr<Models_Language>> m_Languages;
+    bool m_LanguagesIsSet;
+
+    utility::string_t m_OriginalTitle;
+    bool m_OriginalTitleIsSet;
 
     std::vector<std::shared_ptr<Models_Patch>> m_Patches;
     bool m_PatchesIsSet;
@@ -271,11 +339,32 @@ protected:
     utility::string_t m_Plot;
     bool m_PlotIsSet;
 
+    utility::string_t m_Poster;
+    bool m_PosterIsSet;
+
+    std::vector<std::shared_ptr<Models_Actor>> m_Producers;
+    bool m_ProducersIsSet;
+
     utility::string_t m_Publisher;
     bool m_PublisherIsSet;
 
     double m_Rating;
     bool m_RatingIsSet;
+
+    int32_t m_Runtime;
+    bool m_RuntimeIsSet;
+
+    utility::string_t m_Stream;
+    bool m_StreamIsSet;
+
+    std::vector<std::shared_ptr<Models_Studio>> m_Studios;
+    bool m_StudiosIsSet;
+
+    utility::string_t m_Subtitle;
+    bool m_SubtitleIsSet;
+
+    utility::string_t m_Tagline;
+    bool m_TaglineIsSet;
 
     utility::string_t m_Thumbnail;
     bool m_ThumbnailIsSet;
@@ -292,11 +381,11 @@ protected:
     utility::string_t m_Title;
     bool m_TitleIsSet;
 
+    utility::string_t m_Trailer;
+    bool m_TrailerIsSet;
+
     utility::string_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
-
-    utility::string_t m_Video;
-    bool m_VideoIsSet;
 
     int32_t m_Year;
     bool m_YearIsSet;
