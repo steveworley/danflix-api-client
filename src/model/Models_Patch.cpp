@@ -40,6 +40,8 @@ Models_Patch::Models_Patch()
     m_PromotedIsSet = false;
     m_ReleaseDate = utility::conversions::to_string_t("");
     m_ReleaseDateIsSet = false;
+    m_Stream = utility::conversions::to_string_t("");
+    m_StreamIsSet = false;
     m_TgdbId = 0;
     m_TgdbIdIsSet = false;
     m_Title = utility::conversions::to_string_t("");
@@ -116,6 +118,11 @@ web::json::value Models_Patch::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("releaseDate"))] = ModelBase::toJson(m_ReleaseDate);
+    }
+    if(m_StreamIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("stream"))] = ModelBase::toJson(m_Stream);
     }
     if(m_TgdbIdIsSet)
     {
@@ -265,6 +272,17 @@ bool Models_Patch::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("stream"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stream")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setStream;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStream);
+            setStream(refVal_setStream);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tgdbId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tgdbId")));
@@ -363,6 +381,10 @@ void Models_Patch::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("releaseDate")), m_ReleaseDate));
     }
+    if(m_StreamIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("stream")), m_Stream));
+    }
     if(m_TgdbIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tgdbId")), m_TgdbId));
@@ -455,6 +477,12 @@ bool Models_Patch::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         utility::string_t refVal_setReleaseDate;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("releaseDate"))), refVal_setReleaseDate );
         setReleaseDate(refVal_setReleaseDate);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stream"))))
+    {
+        utility::string_t refVal_setStream;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stream"))), refVal_setStream );
+        setStream(refVal_setStream);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tgdbId"))))
     {
@@ -710,6 +738,27 @@ bool Models_Patch::releaseDateIsSet() const
 void Models_Patch::unsetReleaseDate()
 {
     m_ReleaseDateIsSet = false;
+}
+utility::string_t Models_Patch::getStream() const
+{
+    return m_Stream;
+}
+
+
+void Models_Patch::setStream(const utility::string_t& value)
+{
+    m_Stream = value;
+    m_StreamIsSet = true;
+}
+
+bool Models_Patch::streamIsSet() const
+{
+    return m_StreamIsSet;
+}
+
+void Models_Patch::unsetStream()
+{
+    m_StreamIsSet = false;
 }
 int32_t Models_Patch::getTgdbId() const
 {

@@ -132,6 +132,14 @@ public:
     void setReleaseDate(const utility::string_t& value);
 
     /// <summary>
+    /// Virtual URL field
+    /// </summary>
+    utility::string_t getStream() const;
+    bool streamIsSet() const;
+    void unsetStream();
+    void setStream(const utility::string_t& value);
+
+    /// <summary>
     /// From TGDB
     /// </summary>
     int32_t getTgdbId() const;
@@ -194,6 +202,9 @@ protected:
 
     utility::string_t m_ReleaseDate;
     bool m_ReleaseDateIsSet;
+
+    utility::string_t m_Stream;
+    bool m_StreamIsSet;
 
     int32_t m_TgdbId;
     bool m_TgdbIdIsSet;

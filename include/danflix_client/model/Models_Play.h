@@ -22,6 +22,7 @@
 
 #include "danflix_client/ModelBase.h"
 
+#include "danflix_client/model/Models_Patch.h"
 #include <cpprest/details/basic_types.h>
 #include "danflix_client/model/Models_Game.h"
 
@@ -31,6 +32,7 @@ namespace client {
 namespace model {
 
 class Models_Game;
+class Models_Patch;
 
 
 class  Models_Play
@@ -84,6 +86,16 @@ public:
     void unsetId();
     void setId(int32_t value);
 
+    std::shared_ptr<Models_Patch> getPatch() const;
+    bool patchIsSet() const;
+    void unsetPatch();
+    void setPatch(const std::shared_ptr<Models_Patch>& value);
+
+    int32_t getPatchId() const;
+    bool patchIdIsSet() const;
+    void unsetPatchId();
+    void setPatchId(int32_t value);
+
     utility::string_t getPlayedAt() const;
     bool playedAtIsSet() const;
     void unsetPlayedAt();
@@ -113,6 +125,12 @@ protected:
 
     int32_t m_Id;
     bool m_IdIsSet;
+
+    std::shared_ptr<Models_Patch> m_Patch;
+    bool m_PatchIsSet;
+
+    int32_t m_PatchId;
+    bool m_PatchIdIsSet;
 
     utility::string_t m_PlayedAt;
     bool m_PlayedAtIsSet;

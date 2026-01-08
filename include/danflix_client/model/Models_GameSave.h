@@ -73,6 +73,11 @@ public:
     void unsetDescription();
     void setDescription(const utility::string_t& value);
 
+    utility::string_t getFile() const;
+    bool fileIsSet() const;
+    void unsetfile();
+    void setFile(const utility::string_t& value);
+
     int32_t getGameId() const;
     bool gameIdIsSet() const;
     void unsetGameId();
@@ -96,18 +101,18 @@ public:
     void unsetPatchId();
     void setPatchId(int32_t value);
 
-    /// <summary>
-    /// Filesystem path
-    /// </summary>
-    utility::string_t getPath() const;
-    bool pathIsSet() const;
-    void unsetPath();
-    void setPath(const utility::string_t& value);
-
     int32_t getProfileId() const;
     bool profileIdIsSet() const;
     void unsetProfileId();
     void setProfileId(int32_t value);
+
+    /// <summary>
+    /// Virtual URL field
+    /// </summary>
+    utility::string_t getStream() const;
+    bool streamIsSet() const;
+    void unsetStream();
+    void setStream(const utility::string_t& value);
 
     utility::string_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
@@ -125,6 +130,9 @@ protected:
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
 
+    utility::string_t m_file;
+    bool m_fileIsSet;
+
     int32_t m_GameId;
     bool m_GameIdIsSet;
 
@@ -137,11 +145,11 @@ protected:
     int32_t m_PatchId;
     bool m_PatchIdIsSet;
 
-    utility::string_t m_Path;
-    bool m_PathIsSet;
-
     int32_t m_ProfileId;
     bool m_ProfileIdIsSet;
+
+    utility::string_t m_Stream;
+    bool m_StreamIsSet;
 
     utility::string_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;

@@ -25,6 +25,8 @@ Models_GameSave::Models_GameSave()
     m_DeletedAtIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
+    m_file = utility::conversions::to_string_t("");
+    m_fileIsSet = false;
     m_GameId = 0;
     m_GameIdIsSet = false;
     m_Id = 0;
@@ -32,10 +34,10 @@ Models_GameSave::Models_GameSave()
     m_PatchIsSet = false;
     m_PatchId = 0;
     m_PatchIdIsSet = false;
-    m_Path = utility::conversions::to_string_t("");
-    m_PathIsSet = false;
     m_ProfileId = 0;
     m_ProfileIdIsSet = false;
+    m_Stream = utility::conversions::to_string_t("");
+    m_StreamIsSet = false;
     m_UpdatedAt = utility::conversions::to_string_t("");
     m_UpdatedAtIsSet = false;
 }
@@ -67,6 +69,11 @@ web::json::value Models_GameSave::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("description"))] = ModelBase::toJson(m_Description);
     }
+    if(m_fileIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("file"))] = ModelBase::toJson(m_file);
+    }
     if(m_GameIdIsSet)
     {
         
@@ -87,15 +94,15 @@ web::json::value Models_GameSave::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("patchId"))] = ModelBase::toJson(m_PatchId);
     }
-    if(m_PathIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("path"))] = ModelBase::toJson(m_Path);
-    }
     if(m_ProfileIdIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("profileId"))] = ModelBase::toJson(m_ProfileId);
+    }
+    if(m_StreamIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("stream"))] = ModelBase::toJson(m_Stream);
     }
     if(m_UpdatedAtIsSet)
     {
@@ -139,6 +146,17 @@ bool Models_GameSave::fromJson(const web::json::value& val)
             utility::string_t refVal_setDescription;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDescription);
             setDescription(refVal_setDescription);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("file"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("file")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setFile;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFile);
+            setFile(refVal_setFile);
             
         }
     }
@@ -186,17 +204,6 @@ bool Models_GameSave::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("path"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("path")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setPath;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPath);
-            setPath(refVal_setPath);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("profileId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("profileId")));
@@ -205,6 +212,17 @@ bool Models_GameSave::fromJson(const web::json::value& val)
             int32_t refVal_setProfileId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setProfileId);
             setProfileId(refVal_setProfileId);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("stream"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stream")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setStream;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStream);
+            setStream(refVal_setStream);
             
         }
     }
@@ -241,6 +259,10 @@ void Models_GameSave::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("description")), m_Description));
     }
+    if(m_fileIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("file")), m_file));
+    }
     if(m_GameIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("gameId")), m_GameId));
@@ -257,13 +279,13 @@ void Models_GameSave::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("patchId")), m_PatchId));
     }
-    if(m_PathIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("path")), m_Path));
-    }
     if(m_ProfileIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("profileId")), m_ProfileId));
+    }
+    if(m_StreamIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("stream")), m_Stream));
     }
     if(m_UpdatedAtIsSet)
     {
@@ -298,6 +320,12 @@ bool Models_GameSave::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("file"))))
+    {
+        utility::string_t refVal_setFile;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("file"))), refVal_setFile );
+        setFile(refVal_setFile);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("gameId"))))
     {
         int32_t refVal_setGameId;
@@ -322,17 +350,17 @@ bool Models_GameSave::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("patchId"))), refVal_setPatchId );
         setPatchId(refVal_setPatchId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("path"))))
-    {
-        utility::string_t refVal_setPath;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("path"))), refVal_setPath );
-        setPath(refVal_setPath);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("profileId"))))
     {
         int32_t refVal_setProfileId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("profileId"))), refVal_setProfileId );
         setProfileId(refVal_setProfileId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stream"))))
+    {
+        utility::string_t refVal_setStream;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stream"))), refVal_setStream );
+        setStream(refVal_setStream);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("updatedAt"))))
     {
@@ -406,6 +434,27 @@ bool Models_GameSave::descriptionIsSet() const
 void Models_GameSave::unsetDescription()
 {
     m_DescriptionIsSet = false;
+}
+utility::string_t Models_GameSave::getFile() const
+{
+    return m_file;
+}
+
+
+void Models_GameSave::setFile(const utility::string_t& value)
+{
+    m_file = value;
+    m_fileIsSet = true;
+}
+
+bool Models_GameSave::fileIsSet() const
+{
+    return m_fileIsSet;
+}
+
+void Models_GameSave::unsetfile()
+{
+    m_fileIsSet = false;
 }
 int32_t Models_GameSave::getGameId() const
 {
@@ -488,27 +537,6 @@ void Models_GameSave::unsetPatchId()
 {
     m_PatchIdIsSet = false;
 }
-utility::string_t Models_GameSave::getPath() const
-{
-    return m_Path;
-}
-
-
-void Models_GameSave::setPath(const utility::string_t& value)
-{
-    m_Path = value;
-    m_PathIsSet = true;
-}
-
-bool Models_GameSave::pathIsSet() const
-{
-    return m_PathIsSet;
-}
-
-void Models_GameSave::unsetPath()
-{
-    m_PathIsSet = false;
-}
 int32_t Models_GameSave::getProfileId() const
 {
     return m_ProfileId;
@@ -528,6 +556,27 @@ bool Models_GameSave::profileIdIsSet() const
 void Models_GameSave::unsetProfileId()
 {
     m_ProfileIdIsSet = false;
+}
+utility::string_t Models_GameSave::getStream() const
+{
+    return m_Stream;
+}
+
+
+void Models_GameSave::setStream(const utility::string_t& value)
+{
+    m_Stream = value;
+    m_StreamIsSet = true;
+}
+
+bool Models_GameSave::streamIsSet() const
+{
+    return m_StreamIsSet;
+}
+
+void Models_GameSave::unsetStream()
+{
+    m_StreamIsSet = false;
 }
 utility::string_t Models_GameSave::getUpdatedAt() const
 {

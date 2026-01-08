@@ -22,10 +22,9 @@
 
 #include "danflix_client/ModelBase.h"
 
+#include "danflix_client/Object.h"
 #include "danflix_client/model/Gorm_DeletedAt.h"
 #include <cpprest/details/basic_types.h>
-#include "danflix_client/model/Models_Movie.h"
-#include "danflix_client/model/Models_Episode.h"
 
 namespace org {
 namespace openapitools {
@@ -33,8 +32,6 @@ namespace client {
 namespace model {
 
 class Gorm_DeletedAt;
-class Models_Episode;
-class Models_Movie;
 
 
 class  Models_MediaProgress
@@ -70,11 +67,6 @@ public:
     void unsetDeletedAt();
     void setDeletedAt(const std::shared_ptr<Gorm_DeletedAt>& value);
 
-    std::shared_ptr<Models_Episode> getEpisode() const;
-    bool episodeIsSet() const;
-    void unsetEpisode();
-    void setEpisode(const std::shared_ptr<Models_Episode>& value);
-
     bool isFinished() const;
     bool finishedIsSet() const;
     void unsetFinished();
@@ -84,6 +76,14 @@ public:
     bool idIsSet() const;
     void unsetId();
     void setId(int32_t value);
+
+    /// <summary>
+    /// Unified field for clients
+    /// </summary>
+    std::shared_ptr<Object> getMedia() const;
+    bool mediaIsSet() const;
+    void unsetMedia();
+    void setMedia(const std::shared_ptr<Object>& value);
 
     int32_t getMediaId() const;
     bool mediaIdIsSet() const;
@@ -97,14 +97,6 @@ public:
     bool mediaTypeIsSet() const;
     void unsetMediaType();
     void setMediaType(const utility::string_t& value);
-
-    /// <summary>
-    /// Associations for Preload (Logic ensures we only preload the correct one)
-    /// </summary>
-    std::shared_ptr<Models_Movie> getMovie() const;
-    bool movieIsSet() const;
-    void unsetMovie();
-    void setMovie(const std::shared_ptr<Models_Movie>& value);
 
     int32_t getProfileId() const;
     bool profileIdIsSet() const;
@@ -140,23 +132,20 @@ protected:
     std::shared_ptr<Gorm_DeletedAt> m_DeletedAt;
     bool m_DeletedAtIsSet;
 
-    std::shared_ptr<Models_Episode> m_Episode;
-    bool m_EpisodeIsSet;
-
     bool m_Finished;
     bool m_FinishedIsSet;
 
     int32_t m_Id;
     bool m_IdIsSet;
 
+    std::shared_ptr<Object> m_Media;
+    bool m_MediaIsSet;
+
     int32_t m_MediaId;
     bool m_MediaIdIsSet;
 
     utility::string_t m_MediaType;
     bool m_MediaTypeIsSet;
-
-    std::shared_ptr<Models_Movie> m_Movie;
-    bool m_MovieIsSet;
 
     int32_t m_ProfileId;
     bool m_ProfileIdIsSet;

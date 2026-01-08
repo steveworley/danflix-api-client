@@ -72,13 +72,13 @@ public:
         boost::optional<bool> promotedOnly
     ) const;
     /// <summary>
-    /// Download game file
+    /// Get a game banner by ID
     /// </summary>
     /// <remarks>
-    /// Download the ROM or game file
+    /// Get a game banner by ID
     /// </remarks>
     /// <param name="id">Game ID</param>
-    pplx::task<std::shared_ptr<HttpContent>> gamesIdFileGet(
+    pplx::task<std::shared_ptr<HttpContent>> gamesIdBannerGet(
         utility::string_t id
     ) const;
     /// <summary>
@@ -89,26 +89,6 @@ public:
     /// </remarks>
     /// <param name="id">Game ID</param>
     pplx::task<std::shared_ptr<Models_Game>> gamesIdGet(
-        utility::string_t id
-    ) const;
-    /// <summary>
-    /// Get a game image by ID
-    /// </summary>
-    /// <remarks>
-    /// Get a game image by ID
-    /// </remarks>
-    /// <param name="id">Game ID</param>
-    pplx::task<std::shared_ptr<HttpContent>> gamesIdImageGet(
-        utility::string_t id
-    ) const;
-    /// <summary>
-    /// Get a game marquee by ID
-    /// </summary>
-    /// <remarks>
-    /// Get a game marquee by ID
-    /// </remarks>
-    /// <param name="id">Game ID</param>
-    pplx::task<std::shared_ptr<HttpContent>> gamesIdMarqueeGet(
         utility::string_t id
     ) const;
     /// <summary>
@@ -166,6 +146,16 @@ public:
     pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> gamesIdPlayPost(
         utility::string_t id,
         boost::optional<utility::string_t> authorization
+    ) const;
+    /// <summary>
+    /// Get a game poster by ID
+    /// </summary>
+    /// <remarks>
+    /// Get a game poster by ID
+    /// </remarks>
+    /// <param name="id">Game ID</param>
+    pplx::task<std::shared_ptr<HttpContent>> gamesIdPosterGet(
+        utility::string_t id
     ) const;
     /// <summary>
     /// List saves for a game
@@ -238,6 +228,20 @@ public:
         boost::optional<utility::string_t> description
     ) const;
     /// <summary>
+    /// Stream game file
+    /// </summary>
+    /// <remarks>
+    /// Stream the ROM or game file
+    /// </remarks>
+    /// <param name="id">Game ID</param>
+    /// <param name="patchId">Specific Patch ID to apply (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="saveId">Specific Save ID to load (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    pplx::task<std::shared_ptr<HttpContent>> gamesIdStreamGet(
+        utility::string_t id,
+        boost::optional<utility::string_t> patchId,
+        boost::optional<utility::string_t> saveId
+    ) const;
+    /// <summary>
     /// Get a game thumbnail by ID
     /// </summary>
     /// <remarks>
@@ -248,13 +252,13 @@ public:
         utility::string_t id
     ) const;
     /// <summary>
-    /// Get a game video by ID
+    /// Get a game trailer by ID
     /// </summary>
     /// <remarks>
-    /// Stream a game video by ID
+    /// Stream a game trailer by ID
     /// </remarks>
     /// <param name="id">Game ID</param>
-    pplx::task<std::shared_ptr<HttpContent>> gamesIdVideoGet(
+    pplx::task<std::shared_ptr<HttpContent>> gamesIdTrailerGet(
         utility::string_t id
     ) const;
     /// <summary>

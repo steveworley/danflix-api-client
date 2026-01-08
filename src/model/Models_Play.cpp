@@ -29,6 +29,9 @@ Models_Play::Models_Play()
     m_GameIdIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
+    m_PatchIsSet = false;
+    m_PatchId = 0;
+    m_PatchIdIsSet = false;
     m_PlayedAt = utility::conversions::to_string_t("");
     m_PlayedAtIsSet = false;
     m_ProfileId = 0;
@@ -71,6 +74,16 @@ web::json::value Models_Play::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
+    }
+    if(m_PatchIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("patch"))] = ModelBase::toJson(m_Patch);
+    }
+    if(m_PatchIdIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("patchId"))] = ModelBase::toJson(m_PatchId);
     }
     if(m_PlayedAtIsSet)
     {
@@ -144,6 +157,28 @@ bool Models_Play::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("patch"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("patch")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<Models_Patch> refVal_setPatch;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPatch);
+            setPatch(refVal_setPatch);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("patchId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("patchId")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setPatchId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPatchId);
+            setPatchId(refVal_setPatchId);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("playedAt"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("playedAt")));
@@ -196,6 +231,14 @@ void Models_Play::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
     }
+    if(m_PatchIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("patch")), m_Patch));
+    }
+    if(m_PatchIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("patchId")), m_PatchId));
+    }
     if(m_PlayedAtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("playedAt")), m_PlayedAt));
@@ -244,6 +287,18 @@ bool Models_Play::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         int32_t refVal_setId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("patch"))))
+    {
+        std::shared_ptr<Models_Patch> refVal_setPatch;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("patch"))), refVal_setPatch );
+        setPatch(refVal_setPatch);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("patchId"))))
+    {
+        int32_t refVal_setPatchId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("patchId"))), refVal_setPatchId );
+        setPatchId(refVal_setPatchId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("playedAt"))))
     {
@@ -362,6 +417,47 @@ bool Models_Play::idIsSet() const
 void Models_Play::unsetId()
 {
     m_IdIsSet = false;
+}
+std::shared_ptr<Models_Patch> Models_Play::getPatch() const
+{
+    return m_Patch;
+}
+
+
+void Models_Play::setPatch(const std::shared_ptr<Models_Patch>& value)
+{
+    m_Patch = value;
+    m_PatchIsSet = true;
+}
+
+bool Models_Play::patchIsSet() const
+{
+    return m_PatchIsSet;
+}
+
+void Models_Play::unsetPatch()
+{
+    m_PatchIsSet = false;
+}
+int32_t Models_Play::getPatchId() const
+{
+    return m_PatchId;
+}
+
+void Models_Play::setPatchId(int32_t value)
+{
+    m_PatchId = value;
+    m_PatchIdIsSet = true;
+}
+
+bool Models_Play::patchIdIsSet() const
+{
+    return m_PatchIdIsSet;
+}
+
+void Models_Play::unsetPatchId()
+{
+    m_PatchIdIsSet = false;
 }
 utility::string_t Models_Play::getPlayedAt() const
 {
