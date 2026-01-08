@@ -21,6 +21,8 @@ namespace model {
 Models_TVShow::Models_TVShow()
 {
     m_ActorsIsSet = false;
+    m_Banner = utility::conversions::to_string_t("");
+    m_BannerIsSet = false;
     m_Certification = utility::conversions::to_string_t("");
     m_CertificationIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
@@ -63,6 +65,11 @@ web::json::value Models_TVShow::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("actors"))] = ModelBase::toJson(m_Actors);
+    }
+    if(m_BannerIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("banner"))] = ModelBase::toJson(m_Banner);
     }
     if(m_CertificationIsSet)
     {
@@ -149,6 +156,17 @@ bool Models_TVShow::fromJson(const web::json::value& val)
             std::vector<std::shared_ptr<Models_Actor>> refVal_setActors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setActors);
             setActors(refVal_setActors);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("banner"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("banner")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setBanner;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setBanner);
+            setBanner(refVal_setBanner);
             
         }
     }
@@ -320,6 +338,10 @@ void Models_TVShow::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("actors")), m_Actors));
     }
+    if(m_BannerIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("banner")), m_Banner));
+    }
     if(m_CertificationIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("certification")), m_Certification));
@@ -392,6 +414,12 @@ bool Models_TVShow::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
         std::vector<std::shared_ptr<Models_Actor>> refVal_setActors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("actors"))), refVal_setActors );
         setActors(refVal_setActors);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("banner"))))
+    {
+        utility::string_t refVal_setBanner;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("banner"))), refVal_setBanner );
+        setBanner(refVal_setBanner);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("certification"))))
     {
@@ -501,6 +529,27 @@ bool Models_TVShow::actorsIsSet() const
 void Models_TVShow::unsetActors()
 {
     m_ActorsIsSet = false;
+}
+utility::string_t Models_TVShow::getBanner() const
+{
+    return m_Banner;
+}
+
+
+void Models_TVShow::setBanner(const utility::string_t& value)
+{
+    m_Banner = value;
+    m_BannerIsSet = true;
+}
+
+bool Models_TVShow::bannerIsSet() const
+{
+    return m_BannerIsSet;
+}
+
+void Models_TVShow::unsetBanner()
+{
+    m_BannerIsSet = false;
 }
 utility::string_t Models_TVShow::getCertification() const
 {

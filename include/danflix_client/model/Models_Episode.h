@@ -72,9 +72,6 @@ public:
     void unsetActors();
     void setActors(const std::vector<std::shared_ptr<Models_Actor>>& value);
 
-    /// <summary>
-    /// path/url
-    /// </summary>
     utility::string_t getBanner() const;
     bool bannerIsSet() const;
     void unsetBanner();
@@ -106,14 +103,6 @@ public:
     void setEpisode(int32_t value);
 
     /// <summary>
-    /// path to the video file
-    /// </summary>
-    utility::string_t getFilepath() const;
-    bool filepathIsSet() const;
-    void unsetFilepath();
-    void setFilepath(const utility::string_t& value);
-
-    /// <summary>
     /// Relations
     /// </summary>
     std::vector<std::shared_ptr<Models_Genre>> getGenres() const;
@@ -141,9 +130,6 @@ public:
     void unsetPlot();
     void setPlot(const utility::string_t& value);
 
-    /// <summary>
-    /// path/url
-    /// </summary>
     utility::string_t getPoster() const;
     bool posterIsSet() const;
     void unsetPoster();
@@ -172,24 +158,39 @@ public:
     void unsetSeason();
     void setSeason(int32_t value);
 
+    /// <summary>
+    /// Virtual URL fields for API output
+    /// </summary>
+    utility::string_t getStream() const;
+    bool streamIsSet() const;
+    void unsetStream();
+    void setStream(const utility::string_t& value);
+
     std::vector<std::shared_ptr<Models_Studio>> getStudios() const;
     bool studiosIsSet() const;
     void unsetStudios();
     void setStudios(const std::vector<std::shared_ptr<Models_Studio>>& value);
+
+    utility::string_t getSubtitle() const;
+    bool subtitleIsSet() const;
+    void unsetSubtitle();
+    void setSubtitle(const utility::string_t& value);
 
     utility::string_t getTagline() const;
     bool taglineIsSet() const;
     void unsetTagline();
     void setTagline(const utility::string_t& value);
 
+    utility::string_t getThumbnail() const;
+    bool thumbnailIsSet() const;
+    void unsetThumbnail();
+    void setThumbnail(const utility::string_t& value);
+
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
-    /// <summary>
-    /// path/url
-    /// </summary>
     utility::string_t getTrailer() const;
     bool trailerIsSet() const;
     void unsetTrailer();
@@ -238,9 +239,6 @@ protected:
     int32_t m_Episode;
     bool m_EpisodeIsSet;
 
-    utility::string_t m_Filepath;
-    bool m_FilepathIsSet;
-
     std::vector<std::shared_ptr<Models_Genre>> m_Genres;
     bool m_GenresIsSet;
 
@@ -271,11 +269,20 @@ protected:
     int32_t m_Season;
     bool m_SeasonIsSet;
 
+    utility::string_t m_Stream;
+    bool m_StreamIsSet;
+
     std::vector<std::shared_ptr<Models_Studio>> m_Studios;
     bool m_StudiosIsSet;
 
+    utility::string_t m_Subtitle;
+    bool m_SubtitleIsSet;
+
     utility::string_t m_Tagline;
     bool m_TaglineIsSet;
+
+    utility::string_t m_Thumbnail;
+    bool m_ThumbnailIsSet;
 
     utility::string_t m_Title;
     bool m_TitleIsSet;

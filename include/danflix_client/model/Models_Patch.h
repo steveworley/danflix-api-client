@@ -24,6 +24,7 @@
 
 #include "danflix_client/model/Gorm_DeletedAt.h"
 #include <cpprest/details/basic_types.h>
+#include "danflix_client/model/Models_Game.h"
 
 namespace org {
 namespace openapitools {
@@ -31,6 +32,7 @@ namespace client {
 namespace model {
 
 class Gorm_DeletedAt;
+class Models_Game;
 
 
 class  Models_Patch
@@ -66,6 +68,27 @@ public:
     void unsetDeletedAt();
     void setDeletedAt(const std::shared_ptr<Gorm_DeletedAt>& value);
 
+    /// <summary>
+    /// From TGDB
+    /// </summary>
+    utility::string_t getDeveloper() const;
+    bool developerIsSet() const;
+    void unsetDeveloper();
+    void setDeveloper(const utility::string_t& value);
+
+    utility::string_t getFile() const;
+    bool fileIsSet() const;
+    void unsetfile();
+    void setFile(const utility::string_t& value);
+
+    /// <summary>
+    /// Relationships
+    /// </summary>
+    std::shared_ptr<Models_Game> getGame() const;
+    bool gameIsSet() const;
+    void unsetGame();
+    void setGame(const std::shared_ptr<Models_Game>& value);
+
     int32_t getGameId() const;
     bool gameIdIsSet() const;
     void unsetGameId();
@@ -77,12 +100,44 @@ public:
     void setId(int32_t value);
 
     /// <summary>
-    /// Absolute path to patch file
+    /// Quality of Life patch
     /// </summary>
-    utility::string_t getPath() const;
-    bool pathIsSet() const;
-    void unsetPath();
-    void setPath(const utility::string_t& value);
+    bool isIsQoL() const;
+    bool isQoLIsSet() const;
+    void unsetIsQoL();
+    void setIsQoL(bool value);
+
+    /// <summary>
+    /// From TGDB
+    /// </summary>
+    utility::string_t getOverview() const;
+    bool overviewIsSet() const;
+    void unsetOverview();
+    void setOverview(const utility::string_t& value);
+
+    /// <summary>
+    /// Display control flags
+    /// </summary>
+    bool isPromoted() const;
+    bool promotedIsSet() const;
+    void unsetPromoted();
+    void setPromoted(bool value);
+
+    /// <summary>
+    /// From TGDB
+    /// </summary>
+    utility::string_t getReleaseDate() const;
+    bool releaseDateIsSet() const;
+    void unsetReleaseDate();
+    void setReleaseDate(const utility::string_t& value);
+
+    /// <summary>
+    /// From TGDB
+    /// </summary>
+    int32_t getTgdbId() const;
+    bool tgdbIdIsSet() const;
+    void unsetTgdbId();
+    void setTgdbId(int32_t value);
 
     /// <summary>
     /// Derived from filename or metadata
@@ -113,14 +168,35 @@ protected:
     std::shared_ptr<Gorm_DeletedAt> m_DeletedAt;
     bool m_DeletedAtIsSet;
 
+    utility::string_t m_Developer;
+    bool m_DeveloperIsSet;
+
+    utility::string_t m_file;
+    bool m_fileIsSet;
+
+    std::shared_ptr<Models_Game> m_Game;
+    bool m_GameIsSet;
+
     int32_t m_GameId;
     bool m_GameIdIsSet;
 
     int32_t m_Id;
     bool m_IdIsSet;
 
-    utility::string_t m_Path;
-    bool m_PathIsSet;
+    bool m_IsQoL;
+    bool m_IsQoLIsSet;
+
+    utility::string_t m_Overview;
+    bool m_OverviewIsSet;
+
+    bool m_Promoted;
+    bool m_PromotedIsSet;
+
+    utility::string_t m_ReleaseDate;
+    bool m_ReleaseDateIsSet;
+
+    int32_t m_TgdbId;
+    bool m_TgdbIdIsSet;
 
     utility::string_t m_Title;
     bool m_TitleIsSet;

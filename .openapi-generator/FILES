@@ -13,7 +13,6 @@ include/danflix_client/JsonBody.h
 include/danflix_client/ModelBase.h
 include/danflix_client/MultipartFormData.h
 include/danflix_client/Object.h
-include/danflix_client/api/AdminApi.h
 include/danflix_client/api/ClientsApi.h
 include/danflix_client/api/CollectionsApi.h
 include/danflix_client/api/GamesApi.h
@@ -47,6 +46,7 @@ include/danflix_client/model/Models_Play.h
 include/danflix_client/model/Models_Profile.h
 include/danflix_client/model/Models_Studio.h
 include/danflix_client/model/Models_TVShow.h
+include/danflix_client/model/Routes_GenerationInfo.h
 include/danflix_client/model/Routes_ImportGamesRequest.h
 include/danflix_client/model/Routes_ImportRequest.h
 include/danflix_client/model/Routes_ProfileRequest.h
@@ -61,7 +61,6 @@ src/JsonBody.cpp
 src/ModelBase.cpp
 src/MultipartFormData.cpp
 src/Object.cpp
-src/api/AdminApi.cpp
 src/api/ClientsApi.cpp
 src/api/CollectionsApi.cpp
 src/api/GamesApi.cpp
@@ -95,6 +94,7 @@ src/model/Models_Play.cpp
 src/model/Models_Profile.cpp
 src/model/Models_Studio.cpp
 src/model/Models_TVShow.cpp
+src/model/Routes_GenerationInfo.cpp
 src/model/Routes_ImportGamesRequest.cpp
 src/model/Routes_ImportRequest.cpp
 src/model/Routes_ProfileRequest.cpp

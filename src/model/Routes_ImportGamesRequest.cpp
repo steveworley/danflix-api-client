@@ -22,6 +22,8 @@ Routes_ImportGamesRequest::Routes_ImportGamesRequest()
 {
     m_Path = utility::conversions::to_string_t("");
     m_PathIsSet = false;
+    m_Platform = utility::conversions::to_string_t("");
+    m_PlatformIsSet = false;
 }
 
 Routes_ImportGamesRequest::~Routes_ImportGamesRequest()
@@ -41,6 +43,11 @@ web::json::value Routes_ImportGamesRequest::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("path"))] = ModelBase::toJson(m_Path);
     }
+    if(m_PlatformIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("platform"))] = ModelBase::toJson(m_Platform);
+    }
 
     return val;
 }
@@ -59,6 +66,17 @@ bool Routes_ImportGamesRequest::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("platform"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("platform")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setPlatform;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPlatform);
+            setPlatform(refVal_setPlatform);
+            
+        }
+    }
     return ok;
 }
 
@@ -72,6 +90,10 @@ void Routes_ImportGamesRequest::toMultipart(std::shared_ptr<MultipartFormData> m
     if(m_PathIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("path")), m_Path));
+    }
+    if(m_PlatformIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("platform")), m_Platform));
     }
 }
 
@@ -89,6 +111,12 @@ bool Routes_ImportGamesRequest::fromMultiPart(std::shared_ptr<MultipartFormData>
         utility::string_t refVal_setPath;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("path"))), refVal_setPath );
         setPath(refVal_setPath);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("platform"))))
+    {
+        utility::string_t refVal_setPlatform;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("platform"))), refVal_setPlatform );
+        setPlatform(refVal_setPlatform);
     }
     return ok;
 }
@@ -114,6 +142,27 @@ bool Routes_ImportGamesRequest::pathIsSet() const
 void Routes_ImportGamesRequest::unsetPath()
 {
     m_PathIsSet = false;
+}
+utility::string_t Routes_ImportGamesRequest::getPlatform() const
+{
+    return m_Platform;
+}
+
+
+void Routes_ImportGamesRequest::setPlatform(const utility::string_t& value)
+{
+    m_Platform = value;
+    m_PlatformIsSet = true;
+}
+
+bool Routes_ImportGamesRequest::platformIsSet() const
+{
+    return m_PlatformIsSet;
+}
+
+void Routes_ImportGamesRequest::unsetPlatform()
+{
+    m_PlatformIsSet = false;
 }
 
 }

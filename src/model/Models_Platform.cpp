@@ -23,6 +23,8 @@ Models_Platform::Models_Platform()
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
     m_DeletedAtIsSet = false;
+    m_Generation = 0;
+    m_GenerationIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
@@ -52,6 +54,11 @@ web::json::value Models_Platform::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("deletedAt"))] = ModelBase::toJson(m_DeletedAt);
+    }
+    if(m_GenerationIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("generation"))] = ModelBase::toJson(m_Generation);
     }
     if(m_IdIsSet)
     {
@@ -94,6 +101,17 @@ bool Models_Platform::fromJson(const web::json::value& val)
             std::shared_ptr<Gorm_DeletedAt> refVal_setDeletedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeletedAt);
             setDeletedAt(refVal_setDeletedAt);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("generation"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("generation")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setGeneration;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setGeneration);
+            setGeneration(refVal_setGeneration);
             
         }
     }
@@ -148,6 +166,10 @@ void Models_Platform::toMultipart(std::shared_ptr<MultipartFormData> multipart, 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("deletedAt")), m_DeletedAt));
     }
+    if(m_GenerationIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("generation")), m_Generation));
+    }
     if(m_IdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
@@ -182,6 +204,12 @@ bool Models_Platform::fromMultiPart(std::shared_ptr<MultipartFormData> multipart
         std::shared_ptr<Gorm_DeletedAt> refVal_setDeletedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("deletedAt"))), refVal_setDeletedAt );
         setDeletedAt(refVal_setDeletedAt);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("generation"))))
+    {
+        int32_t refVal_setGeneration;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("generation"))), refVal_setGeneration );
+        setGeneration(refVal_setGeneration);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("id"))))
     {
@@ -246,6 +274,26 @@ bool Models_Platform::deletedAtIsSet() const
 void Models_Platform::unsetDeletedAt()
 {
     m_DeletedAtIsSet = false;
+}
+int32_t Models_Platform::getGeneration() const
+{
+    return m_Generation;
+}
+
+void Models_Platform::setGeneration(int32_t value)
+{
+    m_Generation = value;
+    m_GenerationIsSet = true;
+}
+
+bool Models_Platform::generationIsSet() const
+{
+    return m_GenerationIsSet;
+}
+
+void Models_Platform::unsetGeneration()
+{
+    m_GenerationIsSet = false;
 }
 int32_t Models_Platform::getId() const
 {

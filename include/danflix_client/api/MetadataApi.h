@@ -29,6 +29,7 @@
 #include "danflix_client/model/Models_Platform.h"
 #include "danflix_client/model/Models_Studio.h"
 #include "danflix_client/model/Models_TVShow.h"
+#include "danflix_client/model/Routes_GenerationInfo.h"
 #include <vector>
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -115,6 +116,14 @@ public:
     /// <param name="id">Director ID</param>
     pplx::task<std::vector<std::shared_ptr<Models_Movie>>> directorsIdMoviesGet(
         int32_t id
+    ) const;
+    /// <summary>
+    /// Get all console generations
+    /// </summary>
+    /// <remarks>
+    /// Get metadata about console generations for display and filtering
+    /// </remarks>
+    pplx::task<std::vector<std::shared_ptr<Routes_GenerationInfo>>> generationsGet(
     ) const;
     /// <summary>
     /// Get genres

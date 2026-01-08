@@ -31,8 +31,6 @@ Models_Episode::Models_Episode()
     m_DirectorsIsSet = false;
     m_Episode = 0;
     m_EpisodeIsSet = false;
-    m_Filepath = utility::conversions::to_string_t("");
-    m_FilepathIsSet = false;
     m_GenresIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
@@ -50,9 +48,15 @@ Models_Episode::Models_Episode()
     m_RuntimeIsSet = false;
     m_Season = 0;
     m_SeasonIsSet = false;
+    m_Stream = utility::conversions::to_string_t("");
+    m_StreamIsSet = false;
     m_StudiosIsSet = false;
+    m_Subtitle = utility::conversions::to_string_t("");
+    m_SubtitleIsSet = false;
     m_Tagline = utility::conversions::to_string_t("");
     m_TaglineIsSet = false;
+    m_Thumbnail = utility::conversions::to_string_t("");
+    m_ThumbnailIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
     m_Trailer = utility::conversions::to_string_t("");
@@ -113,11 +117,6 @@ web::json::value Models_Episode::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("episode"))] = ModelBase::toJson(m_Episode);
     }
-    if(m_FilepathIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("filepath"))] = ModelBase::toJson(m_Filepath);
-    }
     if(m_GenresIsSet)
     {
         
@@ -168,15 +167,30 @@ web::json::value Models_Episode::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("season"))] = ModelBase::toJson(m_Season);
     }
+    if(m_StreamIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("stream"))] = ModelBase::toJson(m_Stream);
+    }
     if(m_StudiosIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("studios"))] = ModelBase::toJson(m_Studios);
     }
+    if(m_SubtitleIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("subtitle"))] = ModelBase::toJson(m_Subtitle);
+    }
     if(m_TaglineIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("tagline"))] = ModelBase::toJson(m_Tagline);
+    }
+    if(m_ThumbnailIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("thumbnail"))] = ModelBase::toJson(m_Thumbnail);
     }
     if(m_TitleIsSet)
     {
@@ -292,17 +306,6 @@ bool Models_Episode::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("filepath"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("filepath")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setFilepath;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFilepath);
-            setFilepath(refVal_setFilepath);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("genres"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("genres")));
@@ -413,6 +416,17 @@ bool Models_Episode::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("stream"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stream")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setStream;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStream);
+            setStream(refVal_setStream);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("studios"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("studios")));
@@ -424,6 +438,17 @@ bool Models_Episode::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("subtitle"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("subtitle")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSubtitle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSubtitle);
+            setSubtitle(refVal_setSubtitle);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tagline"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tagline")));
@@ -432,6 +457,17 @@ bool Models_Episode::fromJson(const web::json::value& val)
             utility::string_t refVal_setTagline;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTagline);
             setTagline(refVal_setTagline);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("thumbnail"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("thumbnail")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setThumbnail;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setThumbnail);
+            setThumbnail(refVal_setThumbnail);
             
         }
     }
@@ -539,10 +575,6 @@ void Models_Episode::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("episode")), m_Episode));
     }
-    if(m_FilepathIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("filepath")), m_Filepath));
-    }
     if(m_GenresIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("genres")), m_Genres));
@@ -583,13 +615,25 @@ void Models_Episode::toMultipart(std::shared_ptr<MultipartFormData> multipart, c
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("season")), m_Season));
     }
+    if(m_StreamIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("stream")), m_Stream));
+    }
     if(m_StudiosIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("studios")), m_Studios));
     }
+    if(m_SubtitleIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("subtitle")), m_Subtitle));
+    }
     if(m_TaglineIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tagline")), m_Tagline));
+    }
+    if(m_ThumbnailIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("thumbnail")), m_Thumbnail));
     }
     if(m_TitleIsSet)
     {
@@ -668,12 +712,6 @@ bool Models_Episode::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("episode"))), refVal_setEpisode );
         setEpisode(refVal_setEpisode);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("filepath"))))
-    {
-        utility::string_t refVal_setFilepath;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("filepath"))), refVal_setFilepath );
-        setFilepath(refVal_setFilepath);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("genres"))))
     {
         std::vector<std::shared_ptr<Models_Genre>> refVal_setGenres;
@@ -734,17 +772,35 @@ bool Models_Episode::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("season"))), refVal_setSeason );
         setSeason(refVal_setSeason);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stream"))))
+    {
+        utility::string_t refVal_setStream;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stream"))), refVal_setStream );
+        setStream(refVal_setStream);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("studios"))))
     {
         std::vector<std::shared_ptr<Models_Studio>> refVal_setStudios;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("studios"))), refVal_setStudios );
         setStudios(refVal_setStudios);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("subtitle"))))
+    {
+        utility::string_t refVal_setSubtitle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("subtitle"))), refVal_setSubtitle );
+        setSubtitle(refVal_setSubtitle);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tagline"))))
     {
         utility::string_t refVal_setTagline;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tagline"))), refVal_setTagline );
         setTagline(refVal_setTagline);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("thumbnail"))))
+    {
+        utility::string_t refVal_setThumbnail;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("thumbnail"))), refVal_setThumbnail );
+        setThumbnail(refVal_setThumbnail);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("title"))))
     {
@@ -931,27 +987,6 @@ bool Models_Episode::episodeIsSet() const
 void Models_Episode::unsetEpisode()
 {
     m_EpisodeIsSet = false;
-}
-utility::string_t Models_Episode::getFilepath() const
-{
-    return m_Filepath;
-}
-
-
-void Models_Episode::setFilepath(const utility::string_t& value)
-{
-    m_Filepath = value;
-    m_FilepathIsSet = true;
-}
-
-bool Models_Episode::filepathIsSet() const
-{
-    return m_FilepathIsSet;
-}
-
-void Models_Episode::unsetFilepath()
-{
-    m_FilepathIsSet = false;
 }
 std::vector<std::shared_ptr<Models_Genre>> Models_Episode::getGenres() const
 {
@@ -1159,6 +1194,27 @@ void Models_Episode::unsetSeason()
 {
     m_SeasonIsSet = false;
 }
+utility::string_t Models_Episode::getStream() const
+{
+    return m_Stream;
+}
+
+
+void Models_Episode::setStream(const utility::string_t& value)
+{
+    m_Stream = value;
+    m_StreamIsSet = true;
+}
+
+bool Models_Episode::streamIsSet() const
+{
+    return m_StreamIsSet;
+}
+
+void Models_Episode::unsetStream()
+{
+    m_StreamIsSet = false;
+}
 std::vector<std::shared_ptr<Models_Studio>> Models_Episode::getStudios() const
 {
     return m_Studios;
@@ -1180,6 +1236,27 @@ void Models_Episode::unsetStudios()
 {
     m_StudiosIsSet = false;
 }
+utility::string_t Models_Episode::getSubtitle() const
+{
+    return m_Subtitle;
+}
+
+
+void Models_Episode::setSubtitle(const utility::string_t& value)
+{
+    m_Subtitle = value;
+    m_SubtitleIsSet = true;
+}
+
+bool Models_Episode::subtitleIsSet() const
+{
+    return m_SubtitleIsSet;
+}
+
+void Models_Episode::unsetSubtitle()
+{
+    m_SubtitleIsSet = false;
+}
 utility::string_t Models_Episode::getTagline() const
 {
     return m_Tagline;
@@ -1200,6 +1277,27 @@ bool Models_Episode::taglineIsSet() const
 void Models_Episode::unsetTagline()
 {
     m_TaglineIsSet = false;
+}
+utility::string_t Models_Episode::getThumbnail() const
+{
+    return m_Thumbnail;
+}
+
+
+void Models_Episode::setThumbnail(const utility::string_t& value)
+{
+    m_Thumbnail = value;
+    m_ThumbnailIsSet = true;
+}
+
+bool Models_Episode::thumbnailIsSet() const
+{
+    return m_ThumbnailIsSet;
+}
+
+void Models_Episode::unsetThumbnail()
+{
+    m_ThumbnailIsSet = false;
 }
 utility::string_t Models_Episode::getTitle() const
 {

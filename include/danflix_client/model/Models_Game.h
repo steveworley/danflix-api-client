@@ -24,6 +24,7 @@
 
 #include "danflix_client/model/Models_Genre.h"
 #include "danflix_client/model/Models_Patch.h"
+#include "danflix_client/model/Models_Collection.h"
 #include "danflix_client/model/Gorm_DeletedAt.h"
 #include <cpprest/details/basic_types.h>
 #include "danflix_client/model/Models_Platform.h"
@@ -34,9 +35,10 @@ namespace openapitools {
 namespace client {
 namespace model {
 
+class Models_Collection;
+class Models_Patch;
 class Gorm_DeletedAt;
 class Models_Genre;
-class Models_Patch;
 class Models_Platform;
 
 
@@ -63,10 +65,34 @@ public:
     /// Models_Game members
 
 
+    /// <summary>
+    /// Relations (Collections)
+    /// </summary>
+    std::vector<std::shared_ptr<Models_Collection>> getCollections() const;
+    bool collectionsIsSet() const;
+    void unsetCollections();
+    void setCollections(const std::vector<std::shared_ptr<Models_Collection>>& value);
+
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
     void setCreatedAt(const utility::string_t& value);
+
+    /// <summary>
+    /// Not a foreign key, manually loaded
+    /// </summary>
+    std::shared_ptr<Models_Patch> getDefaultPatch() const;
+    bool defaultPatchIsSet() const;
+    void unsetDefaultPatch();
+    void setDefaultPatch(const std::shared_ptr<Models_Patch>& value);
+
+    /// <summary>
+    /// Reference to default patch
+    /// </summary>
+    int32_t getDefaultPatchId() const;
+    bool defaultPatchIdIsSet() const;
+    void unsetDefaultPatchId();
+    void setDefaultPatchId(int32_t value);
 
     std::shared_ptr<Gorm_DeletedAt> getDeletedAt() const;
     bool deletedAtIsSet() const;
@@ -77,6 +103,14 @@ public:
     bool developerIsSet() const;
     void unsetDeveloper();
     void setDeveloper(const utility::string_t& value);
+
+    /// <summary>
+    /// Virtual URL fields for API output
+    /// </summary>
+    utility::string_t getFile() const;
+    bool fileIsSet() const;
+    void unsetfile();
+    void setFile(const utility::string_t& value);
 
     /// <summary>
     /// Relations
@@ -119,11 +153,6 @@ public:
     void unsetPatches();
     void setPatches(const std::vector<std::shared_ptr<Models_Patch>>& value);
 
-    utility::string_t getPath() const;
-    bool pathIsSet() const;
-    void unsetPath();
-    void setPath(const utility::string_t& value);
-
     std::vector<std::shared_ptr<Models_Platform>> getPlatforms() const;
     bool platformsIsSet() const;
     void unsetPlatforms();
@@ -148,11 +177,6 @@ public:
     bool ratingIsSet() const;
     void unsetRating();
     void setRating(double value);
-
-    utility::string_t getTexture() const;
-    bool textureIsSet() const;
-    void unsetTexture();
-    void setTexture(const utility::string_t& value);
 
     utility::string_t getThumbnail() const;
     bool thumbnailIsSet() const;
@@ -196,14 +220,26 @@ public:
 
 
 protected:
+    std::vector<std::shared_ptr<Models_Collection>> m_Collections;
+    bool m_CollectionsIsSet;
+
     utility::string_t m_CreatedAt;
     bool m_CreatedAtIsSet;
+
+    std::shared_ptr<Models_Patch> m_DefaultPatch;
+    bool m_DefaultPatchIsSet;
+
+    int32_t m_DefaultPatchId;
+    bool m_DefaultPatchIdIsSet;
 
     std::shared_ptr<Gorm_DeletedAt> m_DeletedAt;
     bool m_DeletedAtIsSet;
 
     utility::string_t m_Developer;
     bool m_DeveloperIsSet;
+
+    utility::string_t m_file;
+    bool m_fileIsSet;
 
     std::vector<std::shared_ptr<Models_Genre>> m_Genres;
     bool m_GenresIsSet;
@@ -226,9 +262,6 @@ protected:
     std::vector<std::shared_ptr<Models_Patch>> m_Patches;
     bool m_PatchesIsSet;
 
-    utility::string_t m_Path;
-    bool m_PathIsSet;
-
     std::vector<std::shared_ptr<Models_Platform>> m_Platforms;
     bool m_PlatformsIsSet;
 
@@ -243,9 +276,6 @@ protected:
 
     double m_Rating;
     bool m_RatingIsSet;
-
-    utility::string_t m_Texture;
-    bool m_TextureIsSet;
 
     utility::string_t m_Thumbnail;
     bool m_ThumbnailIsSet;

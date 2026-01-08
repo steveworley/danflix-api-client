@@ -23,12 +23,25 @@ Models_Patch::Models_Patch()
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
     m_DeletedAtIsSet = false;
+    m_Developer = utility::conversions::to_string_t("");
+    m_DeveloperIsSet = false;
+    m_file = utility::conversions::to_string_t("");
+    m_fileIsSet = false;
+    m_GameIsSet = false;
     m_GameId = 0;
     m_GameIdIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
-    m_Path = utility::conversions::to_string_t("");
-    m_PathIsSet = false;
+    m_IsQoL = false;
+    m_IsQoLIsSet = false;
+    m_Overview = utility::conversions::to_string_t("");
+    m_OverviewIsSet = false;
+    m_Promoted = false;
+    m_PromotedIsSet = false;
+    m_ReleaseDate = utility::conversions::to_string_t("");
+    m_ReleaseDateIsSet = false;
+    m_TgdbId = 0;
+    m_TgdbIdIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
     m_UpdatedAt = utility::conversions::to_string_t("");
@@ -59,6 +72,21 @@ web::json::value Models_Patch::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("deletedAt"))] = ModelBase::toJson(m_DeletedAt);
     }
+    if(m_DeveloperIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("developer"))] = ModelBase::toJson(m_Developer);
+    }
+    if(m_fileIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("file"))] = ModelBase::toJson(m_file);
+    }
+    if(m_GameIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("game"))] = ModelBase::toJson(m_Game);
+    }
     if(m_GameIdIsSet)
     {
         
@@ -69,10 +97,30 @@ web::json::value Models_Patch::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
     }
-    if(m_PathIsSet)
+    if(m_IsQoLIsSet)
     {
         
-        val[utility::conversions::to_string_t(_XPLATSTR("path"))] = ModelBase::toJson(m_Path);
+        val[utility::conversions::to_string_t(_XPLATSTR("isQoL"))] = ModelBase::toJson(m_IsQoL);
+    }
+    if(m_OverviewIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("overview"))] = ModelBase::toJson(m_Overview);
+    }
+    if(m_PromotedIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("promoted"))] = ModelBase::toJson(m_Promoted);
+    }
+    if(m_ReleaseDateIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("releaseDate"))] = ModelBase::toJson(m_ReleaseDate);
+    }
+    if(m_TgdbIdIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("tgdbId"))] = ModelBase::toJson(m_TgdbId);
     }
     if(m_TitleIsSet)
     {
@@ -118,6 +166,39 @@ bool Models_Patch::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("developer"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("developer")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setDeveloper;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDeveloper);
+            setDeveloper(refVal_setDeveloper);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("file"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("file")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setFile;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFile);
+            setFile(refVal_setFile);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("game"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("game")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<Models_Game> refVal_setGame;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setGame);
+            setGame(refVal_setGame);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("gameId"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("gameId")));
@@ -140,14 +221,58 @@ bool Models_Patch::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("path"))))
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("isQoL"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("path")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("isQoL")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setPath;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPath);
-            setPath(refVal_setPath);
+            bool refVal_setIsQoL;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setIsQoL);
+            setIsQoL(refVal_setIsQoL);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("overview"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("overview")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setOverview;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setOverview);
+            setOverview(refVal_setOverview);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("promoted"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("promoted")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setPromoted;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPromoted);
+            setPromoted(refVal_setPromoted);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("releaseDate"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("releaseDate")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setReleaseDate;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setReleaseDate);
+            setReleaseDate(refVal_setReleaseDate);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tgdbId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tgdbId")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setTgdbId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTgdbId);
+            setTgdbId(refVal_setTgdbId);
             
         }
     }
@@ -202,6 +327,18 @@ void Models_Patch::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("deletedAt")), m_DeletedAt));
     }
+    if(m_DeveloperIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("developer")), m_Developer));
+    }
+    if(m_fileIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("file")), m_file));
+    }
+    if(m_GameIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("game")), m_Game));
+    }
     if(m_GameIdIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("gameId")), m_GameId));
@@ -210,9 +347,25 @@ void Models_Patch::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
     }
-    if(m_PathIsSet)
+    if(m_IsQoLIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("path")), m_Path));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("isQoL")), m_IsQoL));
+    }
+    if(m_OverviewIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("overview")), m_Overview));
+    }
+    if(m_PromotedIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("promoted")), m_Promoted));
+    }
+    if(m_ReleaseDateIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("releaseDate")), m_ReleaseDate));
+    }
+    if(m_TgdbIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tgdbId")), m_TgdbId));
     }
     if(m_TitleIsSet)
     {
@@ -249,6 +402,24 @@ bool Models_Patch::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("deletedAt"))), refVal_setDeletedAt );
         setDeletedAt(refVal_setDeletedAt);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("developer"))))
+    {
+        utility::string_t refVal_setDeveloper;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("developer"))), refVal_setDeveloper );
+        setDeveloper(refVal_setDeveloper);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("file"))))
+    {
+        utility::string_t refVal_setFile;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("file"))), refVal_setFile );
+        setFile(refVal_setFile);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("game"))))
+    {
+        std::shared_ptr<Models_Game> refVal_setGame;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("game"))), refVal_setGame );
+        setGame(refVal_setGame);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("gameId"))))
     {
         int32_t refVal_setGameId;
@@ -261,11 +432,35 @@ bool Models_Patch::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("path"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("isQoL"))))
     {
-        utility::string_t refVal_setPath;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("path"))), refVal_setPath );
-        setPath(refVal_setPath);
+        bool refVal_setIsQoL;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("isQoL"))), refVal_setIsQoL );
+        setIsQoL(refVal_setIsQoL);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("overview"))))
+    {
+        utility::string_t refVal_setOverview;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("overview"))), refVal_setOverview );
+        setOverview(refVal_setOverview);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("promoted"))))
+    {
+        bool refVal_setPromoted;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("promoted"))), refVal_setPromoted );
+        setPromoted(refVal_setPromoted);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("releaseDate"))))
+    {
+        utility::string_t refVal_setReleaseDate;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("releaseDate"))), refVal_setReleaseDate );
+        setReleaseDate(refVal_setReleaseDate);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tgdbId"))))
+    {
+        int32_t refVal_setTgdbId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tgdbId"))), refVal_setTgdbId );
+        setTgdbId(refVal_setTgdbId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("title"))))
     {
@@ -331,6 +526,69 @@ void Models_Patch::unsetDeletedAt()
 {
     m_DeletedAtIsSet = false;
 }
+utility::string_t Models_Patch::getDeveloper() const
+{
+    return m_Developer;
+}
+
+
+void Models_Patch::setDeveloper(const utility::string_t& value)
+{
+    m_Developer = value;
+    m_DeveloperIsSet = true;
+}
+
+bool Models_Patch::developerIsSet() const
+{
+    return m_DeveloperIsSet;
+}
+
+void Models_Patch::unsetDeveloper()
+{
+    m_DeveloperIsSet = false;
+}
+utility::string_t Models_Patch::getFile() const
+{
+    return m_file;
+}
+
+
+void Models_Patch::setFile(const utility::string_t& value)
+{
+    m_file = value;
+    m_fileIsSet = true;
+}
+
+bool Models_Patch::fileIsSet() const
+{
+    return m_fileIsSet;
+}
+
+void Models_Patch::unsetfile()
+{
+    m_fileIsSet = false;
+}
+std::shared_ptr<Models_Game> Models_Patch::getGame() const
+{
+    return m_Game;
+}
+
+
+void Models_Patch::setGame(const std::shared_ptr<Models_Game>& value)
+{
+    m_Game = value;
+    m_GameIsSet = true;
+}
+
+bool Models_Patch::gameIsSet() const
+{
+    return m_GameIsSet;
+}
+
+void Models_Patch::unsetGame()
+{
+    m_GameIsSet = false;
+}
 int32_t Models_Patch::getGameId() const
 {
     return m_GameId;
@@ -371,26 +629,107 @@ void Models_Patch::unsetId()
 {
     m_IdIsSet = false;
 }
-utility::string_t Models_Patch::getPath() const
+bool Models_Patch::isIsQoL() const
 {
-    return m_Path;
+    return m_IsQoL;
+}
+
+void Models_Patch::setIsQoL(bool value)
+{
+    m_IsQoL = value;
+    m_IsQoLIsSet = true;
+}
+
+bool Models_Patch::isQoLIsSet() const
+{
+    return m_IsQoLIsSet;
+}
+
+void Models_Patch::unsetIsQoL()
+{
+    m_IsQoLIsSet = false;
+}
+utility::string_t Models_Patch::getOverview() const
+{
+    return m_Overview;
 }
 
 
-void Models_Patch::setPath(const utility::string_t& value)
+void Models_Patch::setOverview(const utility::string_t& value)
 {
-    m_Path = value;
-    m_PathIsSet = true;
+    m_Overview = value;
+    m_OverviewIsSet = true;
 }
 
-bool Models_Patch::pathIsSet() const
+bool Models_Patch::overviewIsSet() const
 {
-    return m_PathIsSet;
+    return m_OverviewIsSet;
 }
 
-void Models_Patch::unsetPath()
+void Models_Patch::unsetOverview()
 {
-    m_PathIsSet = false;
+    m_OverviewIsSet = false;
+}
+bool Models_Patch::isPromoted() const
+{
+    return m_Promoted;
+}
+
+void Models_Patch::setPromoted(bool value)
+{
+    m_Promoted = value;
+    m_PromotedIsSet = true;
+}
+
+bool Models_Patch::promotedIsSet() const
+{
+    return m_PromotedIsSet;
+}
+
+void Models_Patch::unsetPromoted()
+{
+    m_PromotedIsSet = false;
+}
+utility::string_t Models_Patch::getReleaseDate() const
+{
+    return m_ReleaseDate;
+}
+
+
+void Models_Patch::setReleaseDate(const utility::string_t& value)
+{
+    m_ReleaseDate = value;
+    m_ReleaseDateIsSet = true;
+}
+
+bool Models_Patch::releaseDateIsSet() const
+{
+    return m_ReleaseDateIsSet;
+}
+
+void Models_Patch::unsetReleaseDate()
+{
+    m_ReleaseDateIsSet = false;
+}
+int32_t Models_Patch::getTgdbId() const
+{
+    return m_TgdbId;
+}
+
+void Models_Patch::setTgdbId(int32_t value)
+{
+    m_TgdbId = value;
+    m_TgdbIdIsSet = true;
+}
+
+bool Models_Patch::tgdbIdIsSet() const
+{
+    return m_TgdbIdIsSet;
+}
+
+void Models_Patch::unsetTgdbId()
+{
+    m_TgdbIdIsSet = false;
 }
 utility::string_t Models_Patch::getTitle() const
 {

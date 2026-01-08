@@ -52,9 +52,9 @@ public:
     /// <remarks>
     /// Import games from an EmulationStation gamelist.xml file
     /// </remarks>
-    /// <param name="path">Path to gamelist.xml or directory containing it</param>
+    /// <param name="request">Import request</param>
     pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> gamesImportPost(
-        std::shared_ptr<Routes_ImportGamesRequest> path
+        std::shared_ptr<Routes_ImportGamesRequest> request
     ) const;
     /// <summary>
     /// Import movies

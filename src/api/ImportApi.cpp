@@ -35,13 +35,13 @@ ImportApi::~ImportApi()
 {
 }
 
-pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> ImportApi::gamesImportPost(std::shared_ptr<Routes_ImportGamesRequest> path) const
+pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> ImportApi::gamesImportPost(std::shared_ptr<Routes_ImportGamesRequest> request) const
 {
 
-    // verify the required parameter 'path' is set
-    if (path == nullptr)
+    // verify the required parameter 'request' is set
+    if (request == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'path' when calling ImportApi->gamesImportPost"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'request' when calling ImportApi->gamesImportPost"));
     }
 
 
@@ -93,7 +93,7 @@ pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> ImportApi::gam
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(path);
+        localVarJson = ModelBase::toJson(request);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -104,9 +104,9 @@ pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> ImportApi::gam
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(path.get())
+        if(request.get())
         {
-            path->toMultipart(localVarMultipart, utility::conversions::to_string_t("path"));
+            request->toMultipart(localVarMultipart, utility::conversions::to_string_t("request"));
         }
         
 

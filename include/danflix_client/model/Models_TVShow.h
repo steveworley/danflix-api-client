@@ -73,6 +73,11 @@ public:
     void unsetActors();
     void setActors(const std::vector<std::shared_ptr<Models_Actor>>& value);
 
+    utility::string_t getBanner() const;
+    bool bannerIsSet() const;
+    void unsetBanner();
+    void setBanner(const utility::string_t& value);
+
     utility::string_t getCertification() const;
     bool certificationIsSet() const;
     void unsetCertification();
@@ -108,6 +113,9 @@ public:
     void unsetPlot();
     void setPlot(const utility::string_t& value);
 
+    /// <summary>
+    /// Virtual URL fields for API output
+    /// </summary>
     utility::string_t getPoster() const;
     bool posterIsSet() const;
     void unsetPoster();
@@ -147,6 +155,9 @@ public:
 protected:
     std::vector<std::shared_ptr<Models_Actor>> m_Actors;
     bool m_ActorsIsSet;
+
+    utility::string_t m_Banner;
+    bool m_BannerIsSet;
 
     utility::string_t m_Certification;
     bool m_CertificationIsSet;

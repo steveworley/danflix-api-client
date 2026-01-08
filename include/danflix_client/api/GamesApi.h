@@ -60,12 +60,16 @@ public:
     /// <param name="platform">Filter by platform (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="genre">Filter by genre (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="players">Filter by number of players (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="includePromoted">Include promoted patches as pseudo-games (optional, default to false)</param>
+    /// <param name="promotedOnly">Return only promoted patches (optional, default to false)</param>
     pplx::task<std::vector<std::shared_ptr<Models_Game>>> gamesGet(
         boost::optional<utility::string_t> title,
         boost::optional<utility::string_t> decade,
         boost::optional<utility::string_t> platform,
         boost::optional<utility::string_t> genre,
-        boost::optional<utility::string_t> players
+        boost::optional<utility::string_t> players,
+        boost::optional<bool> includePromoted,
+        boost::optional<bool> promotedOnly
     ) const;
     /// <summary>
     /// Download game file
@@ -237,7 +241,7 @@ public:
     /// Get a game thumbnail by ID
     /// </summary>
     /// <remarks>
-    /// Get a game thumbnail by ID
+    /// Get a game thumbnail by ID Get a game thumbnail by ID
     /// </remarks>
     /// <param name="id">Game ID</param>
     pplx::task<std::shared_ptr<HttpContent>> gamesIdThumbnailGet(

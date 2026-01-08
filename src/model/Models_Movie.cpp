@@ -25,12 +25,11 @@ Models_Movie::Models_Movie()
     m_BannerIsSet = false;
     m_Certification = utility::conversions::to_string_t("");
     m_CertificationIsSet = false;
+    m_CollectionsIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
     m_DeletedAtIsSet = false;
     m_DirectorsIsSet = false;
-    m_Filepath = utility::conversions::to_string_t("");
-    m_FilepathIsSet = false;
     m_GenresIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
@@ -48,9 +47,15 @@ Models_Movie::Models_Movie()
     m_RuntimeIsSet = false;
     m_set = utility::conversions::to_string_t("");
     m_setIsSet = false;
+    m_Stream = utility::conversions::to_string_t("");
+    m_StreamIsSet = false;
     m_StudiosIsSet = false;
+    m_Subtitle = utility::conversions::to_string_t("");
+    m_SubtitleIsSet = false;
     m_Tagline = utility::conversions::to_string_t("");
     m_TaglineIsSet = false;
+    m_Thumbnail = utility::conversions::to_string_t("");
+    m_ThumbnailIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
     m_Trailer = utility::conversions::to_string_t("");
@@ -88,6 +93,11 @@ web::json::value Models_Movie::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("certification"))] = ModelBase::toJson(m_Certification);
     }
+    if(m_CollectionsIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("collections"))] = ModelBase::toJson(m_Collections);
+    }
     if(m_CreatedAtIsSet)
     {
         
@@ -102,11 +112,6 @@ web::json::value Models_Movie::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("directors"))] = ModelBase::toJson(m_Directors);
-    }
-    if(m_FilepathIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("filepath"))] = ModelBase::toJson(m_Filepath);
     }
     if(m_GenresIsSet)
     {
@@ -158,15 +163,30 @@ web::json::value Models_Movie::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("set"))] = ModelBase::toJson(m_set);
     }
+    if(m_StreamIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("stream"))] = ModelBase::toJson(m_Stream);
+    }
     if(m_StudiosIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("studios"))] = ModelBase::toJson(m_Studios);
     }
+    if(m_SubtitleIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("subtitle"))] = ModelBase::toJson(m_Subtitle);
+    }
     if(m_TaglineIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("tagline"))] = ModelBase::toJson(m_Tagline);
+    }
+    if(m_ThumbnailIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("thumbnail"))] = ModelBase::toJson(m_Thumbnail);
     }
     if(m_TitleIsSet)
     {
@@ -228,6 +248,17 @@ bool Models_Movie::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("collections"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("collections")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<Models_Collection>> refVal_setCollections;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCollections);
+            setCollections(refVal_setCollections);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
@@ -258,17 +289,6 @@ bool Models_Movie::fromJson(const web::json::value& val)
             std::vector<std::shared_ptr<Models_Actor>> refVal_setDirectors;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDirectors);
             setDirectors(refVal_setDirectors);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("filepath"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("filepath")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setFilepath;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setFilepath);
-            setFilepath(refVal_setFilepath);
             
         }
     }
@@ -382,6 +402,17 @@ bool Models_Movie::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("stream"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("stream")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setStream;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setStream);
+            setStream(refVal_setStream);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("studios"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("studios")));
@@ -393,6 +424,17 @@ bool Models_Movie::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("subtitle"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("subtitle")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setSubtitle;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSubtitle);
+            setSubtitle(refVal_setSubtitle);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("tagline"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("tagline")));
@@ -401,6 +443,17 @@ bool Models_Movie::fromJson(const web::json::value& val)
             utility::string_t refVal_setTagline;
             ok &= ModelBase::fromJson(fieldValue, refVal_setTagline);
             setTagline(refVal_setTagline);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("thumbnail"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("thumbnail")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setThumbnail;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setThumbnail);
+            setThumbnail(refVal_setThumbnail);
             
         }
     }
@@ -470,6 +523,10 @@ void Models_Movie::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("certification")), m_Certification));
     }
+    if(m_CollectionsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("collections")), m_Collections));
+    }
     if(m_CreatedAtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("createdAt")), m_CreatedAt));
@@ -481,10 +538,6 @@ void Models_Movie::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     if(m_DirectorsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("directors")), m_Directors));
-    }
-    if(m_FilepathIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("filepath")), m_Filepath));
     }
     if(m_GenresIsSet)
     {
@@ -526,13 +579,25 @@ void Models_Movie::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("set")), m_set));
     }
+    if(m_StreamIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("stream")), m_Stream));
+    }
     if(m_StudiosIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("studios")), m_Studios));
     }
+    if(m_SubtitleIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("subtitle")), m_Subtitle));
+    }
     if(m_TaglineIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("tagline")), m_Tagline));
+    }
+    if(m_ThumbnailIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("thumbnail")), m_Thumbnail));
     }
     if(m_TitleIsSet)
     {
@@ -579,6 +644,12 @@ bool Models_Movie::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("certification"))), refVal_setCertification );
         setCertification(refVal_setCertification);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("collections"))))
+    {
+        std::vector<std::shared_ptr<Models_Collection>> refVal_setCollections;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("collections"))), refVal_setCollections );
+        setCollections(refVal_setCollections);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
         utility::string_t refVal_setCreatedAt;
@@ -596,12 +667,6 @@ bool Models_Movie::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         std::vector<std::shared_ptr<Models_Actor>> refVal_setDirectors;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("directors"))), refVal_setDirectors );
         setDirectors(refVal_setDirectors);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("filepath"))))
-    {
-        utility::string_t refVal_setFilepath;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("filepath"))), refVal_setFilepath );
-        setFilepath(refVal_setFilepath);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("genres"))))
     {
@@ -663,17 +728,35 @@ bool Models_Movie::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("set"))), refVal_setSet );
         setSet(refVal_setSet);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("stream"))))
+    {
+        utility::string_t refVal_setStream;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("stream"))), refVal_setStream );
+        setStream(refVal_setStream);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("studios"))))
     {
         std::vector<std::shared_ptr<Models_Studio>> refVal_setStudios;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("studios"))), refVal_setStudios );
         setStudios(refVal_setStudios);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("subtitle"))))
+    {
+        utility::string_t refVal_setSubtitle;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("subtitle"))), refVal_setSubtitle );
+        setSubtitle(refVal_setSubtitle);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("tagline"))))
     {
         utility::string_t refVal_setTagline;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("tagline"))), refVal_setTagline );
         setTagline(refVal_setTagline);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("thumbnail"))))
+    {
+        utility::string_t refVal_setThumbnail;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("thumbnail"))), refVal_setThumbnail );
+        setThumbnail(refVal_setThumbnail);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("title"))))
     {
@@ -766,6 +849,27 @@ void Models_Movie::unsetCertification()
 {
     m_CertificationIsSet = false;
 }
+std::vector<std::shared_ptr<Models_Collection>> Models_Movie::getCollections() const
+{
+    return m_Collections;
+}
+
+
+void Models_Movie::setCollections(const std::vector<std::shared_ptr<Models_Collection>>& value)
+{
+    m_Collections = value;
+    m_CollectionsIsSet = true;
+}
+
+bool Models_Movie::collectionsIsSet() const
+{
+    return m_CollectionsIsSet;
+}
+
+void Models_Movie::unsetCollections()
+{
+    m_CollectionsIsSet = false;
+}
 utility::string_t Models_Movie::getCreatedAt() const
 {
     return m_CreatedAt;
@@ -828,27 +932,6 @@ bool Models_Movie::directorsIsSet() const
 void Models_Movie::unsetDirectors()
 {
     m_DirectorsIsSet = false;
-}
-utility::string_t Models_Movie::getFilepath() const
-{
-    return m_Filepath;
-}
-
-
-void Models_Movie::setFilepath(const utility::string_t& value)
-{
-    m_Filepath = value;
-    m_FilepathIsSet = true;
-}
-
-bool Models_Movie::filepathIsSet() const
-{
-    return m_FilepathIsSet;
-}
-
-void Models_Movie::unsetFilepath()
-{
-    m_FilepathIsSet = false;
 }
 std::vector<std::shared_ptr<Models_Genre>> Models_Movie::getGenres() const
 {
@@ -1057,6 +1140,27 @@ void Models_Movie::unsetset()
 {
     m_setIsSet = false;
 }
+utility::string_t Models_Movie::getStream() const
+{
+    return m_Stream;
+}
+
+
+void Models_Movie::setStream(const utility::string_t& value)
+{
+    m_Stream = value;
+    m_StreamIsSet = true;
+}
+
+bool Models_Movie::streamIsSet() const
+{
+    return m_StreamIsSet;
+}
+
+void Models_Movie::unsetStream()
+{
+    m_StreamIsSet = false;
+}
 std::vector<std::shared_ptr<Models_Studio>> Models_Movie::getStudios() const
 {
     return m_Studios;
@@ -1078,6 +1182,27 @@ void Models_Movie::unsetStudios()
 {
     m_StudiosIsSet = false;
 }
+utility::string_t Models_Movie::getSubtitle() const
+{
+    return m_Subtitle;
+}
+
+
+void Models_Movie::setSubtitle(const utility::string_t& value)
+{
+    m_Subtitle = value;
+    m_SubtitleIsSet = true;
+}
+
+bool Models_Movie::subtitleIsSet() const
+{
+    return m_SubtitleIsSet;
+}
+
+void Models_Movie::unsetSubtitle()
+{
+    m_SubtitleIsSet = false;
+}
 utility::string_t Models_Movie::getTagline() const
 {
     return m_Tagline;
@@ -1098,6 +1223,27 @@ bool Models_Movie::taglineIsSet() const
 void Models_Movie::unsetTagline()
 {
     m_TaglineIsSet = false;
+}
+utility::string_t Models_Movie::getThumbnail() const
+{
+    return m_Thumbnail;
+}
+
+
+void Models_Movie::setThumbnail(const utility::string_t& value)
+{
+    m_Thumbnail = value;
+    m_ThumbnailIsSet = true;
+}
+
+bool Models_Movie::thumbnailIsSet() const
+{
+    return m_ThumbnailIsSet;
+}
+
+void Models_Movie::unsetThumbnail()
+{
+    m_ThumbnailIsSet = false;
 }
 utility::string_t Models_Movie::getTitle() const
 {

@@ -35,7 +35,7 @@ GamesApi::~GamesApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::optional<utility::string_t> title, boost::optional<utility::string_t> decade, boost::optional<utility::string_t> platform, boost::optional<utility::string_t> genre, boost::optional<utility::string_t> players) const
+pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::optional<utility::string_t> title, boost::optional<utility::string_t> decade, boost::optional<utility::string_t> platform, boost::optional<utility::string_t> genre, boost::optional<utility::string_t> players, boost::optional<bool> includePromoted, boost::optional<bool> promotedOnly) const
 {
 
 
@@ -95,6 +95,14 @@ pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::
     if (players)
     {
         localVarQueryParams[utility::conversions::to_string_t("players")] = ApiClient::parameterToString(*players);
+    }
+    if (includePromoted)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("includePromoted")] = ApiClient::parameterToString(*includePromoted);
+    }
+    if (promotedOnly)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("promotedOnly")] = ApiClient::parameterToString(*promotedOnly);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;

@@ -10,19 +10,18 @@
  */
 
 /*
- * Models_Platform.h
+ * Routes_GenerationInfo.h
  *
  * 
  */
 
-#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_Models_Platform_H_
-#define ORG_OPENAPITOOLS_CLIENT_MODEL_Models_Platform_H_
+#ifndef ORG_OPENAPITOOLS_CLIENT_MODEL_Routes_GenerationInfo_H_
+#define ORG_OPENAPITOOLS_CLIENT_MODEL_Routes_GenerationInfo_H_
 
 #include <boost/optional.hpp>
 
 #include "danflix_client/ModelBase.h"
 
-#include "danflix_client/model/Gorm_DeletedAt.h"
 #include <cpprest/details/basic_types.h>
 
 namespace org {
@@ -30,15 +29,14 @@ namespace openapitools {
 namespace client {
 namespace model {
 
-class Gorm_DeletedAt;
 
 
-class  Models_Platform
+class  Routes_GenerationInfo
     : public ModelBase
 {
 public:
-    Models_Platform();
-    virtual ~Models_Platform();
+    Routes_GenerationInfo();
+    virtual ~Routes_GenerationInfo();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -53,26 +51,13 @@ public:
 
 
     /////////////////////////////////////////////
-    /// Models_Platform members
+    /// Routes_GenerationInfo members
 
 
-    utility::string_t getCreatedAt() const;
-    bool createdAtIsSet() const;
-    void unsetCreatedAt();
-    void setCreatedAt(const utility::string_t& value);
-
-    std::shared_ptr<Gorm_DeletedAt> getDeletedAt() const;
-    bool deletedAtIsSet() const;
-    void unsetDeletedAt();
-    void setDeletedAt(const std::shared_ptr<Gorm_DeletedAt>& value);
-
-    /// <summary>
-    /// 1-5, 0 for unknown
-    /// </summary>
-    int32_t getGeneration() const;
-    bool generationIsSet() const;
-    void unsetGeneration();
-    void setGeneration(int32_t value);
+    utility::string_t getEraName() const;
+    bool eraNameIsSet() const;
+    void unsetEraName();
+    void setEraName(const utility::string_t& value);
 
     int32_t getId() const;
     bool idIsSet() const;
@@ -84,21 +69,15 @@ public:
     void unsetName();
     void setName(const utility::string_t& value);
 
-    utility::string_t getUpdatedAt() const;
-    bool updatedAtIsSet() const;
-    void unsetUpdatedAt();
-    void setUpdatedAt(const utility::string_t& value);
+    utility::string_t getYears() const;
+    bool yearsIsSet() const;
+    void unsetYears();
+    void setYears(const utility::string_t& value);
 
 
 protected:
-    utility::string_t m_CreatedAt;
-    bool m_CreatedAtIsSet;
-
-    std::shared_ptr<Gorm_DeletedAt> m_DeletedAt;
-    bool m_DeletedAtIsSet;
-
-    int32_t m_Generation;
-    bool m_GenerationIsSet;
+    utility::string_t m_EraName;
+    bool m_EraNameIsSet;
 
     int32_t m_Id;
     bool m_IdIsSet;
@@ -106,8 +85,8 @@ protected:
     utility::string_t m_Name;
     bool m_NameIsSet;
 
-    utility::string_t m_UpdatedAt;
-    bool m_UpdatedAtIsSet;
+    utility::string_t m_Years;
+    bool m_YearsIsSet;
 
 };
 
@@ -117,4 +96,4 @@ protected:
 }
 }
 
-#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_Models_Platform_H_ */
+#endif /* ORG_OPENAPITOOLS_CLIENT_MODEL_Routes_GenerationInfo_H_ */

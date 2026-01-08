@@ -25,6 +25,7 @@
 #include "danflix_client/model/Models_Studio.h"
 #include "danflix_client/model/Models_Genre.h"
 #include "danflix_client/model/Models_Language.h"
+#include "danflix_client/model/Models_Collection.h"
 #include "danflix_client/model/Gorm_DeletedAt.h"
 #include "danflix_client/model/Models_Actor.h"
 #include <cpprest/details/basic_types.h>
@@ -36,6 +37,7 @@ namespace client {
 namespace model {
 
 class Models_Actor;
+class Models_Collection;
 class Gorm_DeletedAt;
 class Models_Genre;
 class Models_Language;
@@ -70,9 +72,6 @@ public:
     void unsetActors();
     void setActors(const std::vector<std::shared_ptr<Models_Actor>>& value);
 
-    /// <summary>
-    /// path/url
-    /// </summary>
     utility::string_t getBanner() const;
     bool bannerIsSet() const;
     void unsetBanner();
@@ -82,6 +81,11 @@ public:
     bool certificationIsSet() const;
     void unsetCertification();
     void setCertification(const utility::string_t& value);
+
+    std::vector<std::shared_ptr<Models_Collection>> getCollections() const;
+    bool collectionsIsSet() const;
+    void unsetCollections();
+    void setCollections(const std::vector<std::shared_ptr<Models_Collection>>& value);
 
     utility::string_t getCreatedAt() const;
     bool createdAtIsSet() const;
@@ -97,14 +101,6 @@ public:
     bool directorsIsSet() const;
     void unsetDirectors();
     void setDirectors(const std::vector<std::shared_ptr<Models_Actor>>& value);
-
-    /// <summary>
-    /// path to the video file
-    /// </summary>
-    utility::string_t getFilepath() const;
-    bool filepathIsSet() const;
-    void unsetFilepath();
-    void setFilepath(const utility::string_t& value);
 
     /// <summary>
     /// Relations
@@ -134,9 +130,6 @@ public:
     void unsetPlot();
     void setPlot(const utility::string_t& value);
 
-    /// <summary>
-    /// path/url
-    /// </summary>
     utility::string_t getPoster() const;
     bool posterIsSet() const;
     void unsetPoster();
@@ -168,24 +161,39 @@ public:
     void unsetset();
     void setSet(const utility::string_t& value);
 
+    /// <summary>
+    /// Virtual URL fields for API output
+    /// </summary>
+    utility::string_t getStream() const;
+    bool streamIsSet() const;
+    void unsetStream();
+    void setStream(const utility::string_t& value);
+
     std::vector<std::shared_ptr<Models_Studio>> getStudios() const;
     bool studiosIsSet() const;
     void unsetStudios();
     void setStudios(const std::vector<std::shared_ptr<Models_Studio>>& value);
+
+    utility::string_t getSubtitle() const;
+    bool subtitleIsSet() const;
+    void unsetSubtitle();
+    void setSubtitle(const utility::string_t& value);
 
     utility::string_t getTagline() const;
     bool taglineIsSet() const;
     void unsetTagline();
     void setTagline(const utility::string_t& value);
 
+    utility::string_t getThumbnail() const;
+    bool thumbnailIsSet() const;
+    void unsetThumbnail();
+    void setThumbnail(const utility::string_t& value);
+
     utility::string_t getTitle() const;
     bool titleIsSet() const;
     void unsetTitle();
     void setTitle(const utility::string_t& value);
 
-    /// <summary>
-    /// path/url
-    /// </summary>
     utility::string_t getTrailer() const;
     bool trailerIsSet() const;
     void unsetTrailer();
@@ -212,6 +220,9 @@ protected:
     utility::string_t m_Certification;
     bool m_CertificationIsSet;
 
+    std::vector<std::shared_ptr<Models_Collection>> m_Collections;
+    bool m_CollectionsIsSet;
+
     utility::string_t m_CreatedAt;
     bool m_CreatedAtIsSet;
 
@@ -220,9 +231,6 @@ protected:
 
     std::vector<std::shared_ptr<Models_Actor>> m_Directors;
     bool m_DirectorsIsSet;
-
-    utility::string_t m_Filepath;
-    bool m_FilepathIsSet;
 
     std::vector<std::shared_ptr<Models_Genre>> m_Genres;
     bool m_GenresIsSet;
@@ -254,11 +262,20 @@ protected:
     utility::string_t m_set;
     bool m_setIsSet;
 
+    utility::string_t m_Stream;
+    bool m_StreamIsSet;
+
     std::vector<std::shared_ptr<Models_Studio>> m_Studios;
     bool m_StudiosIsSet;
 
+    utility::string_t m_Subtitle;
+    bool m_SubtitleIsSet;
+
     utility::string_t m_Tagline;
     bool m_TaglineIsSet;
+
+    utility::string_t m_Thumbnail;
+    bool m_ThumbnailIsSet;
 
     utility::string_t m_Title;
     bool m_TitleIsSet;

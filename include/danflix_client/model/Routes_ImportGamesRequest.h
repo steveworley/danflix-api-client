@@ -59,10 +59,18 @@ public:
     void unsetPath();
     void setPath(const utility::string_t& value);
 
+    utility::string_t getPlatform() const;
+    bool platformIsSet() const;
+    void unsetPlatform();
+    void setPlatform(const utility::string_t& value);
+
 
 protected:
     utility::string_t m_Path;
     bool m_PathIsSet;
+
+    utility::string_t m_Platform;
+    bool m_PlatformIsSet;
 
 };
 

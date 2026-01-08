@@ -20,11 +20,17 @@ namespace model {
 
 Models_Game::Models_Game()
 {
+    m_CollectionsIsSet = false;
     m_CreatedAt = utility::conversions::to_string_t("");
     m_CreatedAtIsSet = false;
+    m_DefaultPatchIsSet = false;
+    m_DefaultPatchId = 0;
+    m_DefaultPatchIdIsSet = false;
     m_DeletedAtIsSet = false;
     m_Developer = utility::conversions::to_string_t("");
     m_DeveloperIsSet = false;
+    m_file = utility::conversions::to_string_t("");
+    m_fileIsSet = false;
     m_GenresIsSet = false;
     m_HltbId = 0;
     m_HltbIdIsSet = false;
@@ -37,8 +43,6 @@ Models_Game::Models_Game()
     m_Marquee = utility::conversions::to_string_t("");
     m_MarqueeIsSet = false;
     m_PatchesIsSet = false;
-    m_Path = utility::conversions::to_string_t("");
-    m_PathIsSet = false;
     m_PlatformsIsSet = false;
     m_Players = 0;
     m_PlayersIsSet = false;
@@ -48,8 +52,6 @@ Models_Game::Models_Game()
     m_PublisherIsSet = false;
     m_Rating = 0.0;
     m_RatingIsSet = false;
-    m_Texture = utility::conversions::to_string_t("");
-    m_TextureIsSet = false;
     m_Thumbnail = utility::conversions::to_string_t("");
     m_ThumbnailIsSet = false;
     m_TimeToBeat100 = 0.0;
@@ -80,10 +82,25 @@ void Models_Game::validate()
 web::json::value Models_Game::toJson() const
 {
     web::json::value val = web::json::value::object();
+    if(m_CollectionsIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("collections"))] = ModelBase::toJson(m_Collections);
+    }
     if(m_CreatedAtIsSet)
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("createdAt"))] = ModelBase::toJson(m_CreatedAt);
+    }
+    if(m_DefaultPatchIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("defaultPatch"))] = ModelBase::toJson(m_DefaultPatch);
+    }
+    if(m_DefaultPatchIdIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("defaultPatchId"))] = ModelBase::toJson(m_DefaultPatchId);
     }
     if(m_DeletedAtIsSet)
     {
@@ -94,6 +111,11 @@ web::json::value Models_Game::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("developer"))] = ModelBase::toJson(m_Developer);
+    }
+    if(m_fileIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("file"))] = ModelBase::toJson(m_file);
     }
     if(m_GenresIsSet)
     {
@@ -130,11 +152,6 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("patches"))] = ModelBase::toJson(m_Patches);
     }
-    if(m_PathIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("path"))] = ModelBase::toJson(m_Path);
-    }
     if(m_PlatformsIsSet)
     {
         
@@ -159,11 +176,6 @@ web::json::value Models_Game::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("rating"))] = ModelBase::toJson(m_Rating);
-    }
-    if(m_TextureIsSet)
-    {
-        
-        val[utility::conversions::to_string_t(_XPLATSTR("texture"))] = ModelBase::toJson(m_Texture);
     }
     if(m_ThumbnailIsSet)
     {
@@ -212,6 +224,17 @@ web::json::value Models_Game::toJson() const
 bool Models_Game::fromJson(const web::json::value& val)
 {
     bool ok = true;
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("collections"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("collections")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<std::shared_ptr<Models_Collection>> refVal_setCollections;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCollections);
+            setCollections(refVal_setCollections);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("createdAt")));
@@ -220,6 +243,28 @@ bool Models_Game::fromJson(const web::json::value& val)
             utility::string_t refVal_setCreatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedAt);
             setCreatedAt(refVal_setCreatedAt);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("defaultPatch"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("defaultPatch")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<Models_Patch> refVal_setDefaultPatch;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDefaultPatch);
+            setDefaultPatch(refVal_setDefaultPatch);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("defaultPatchId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("defaultPatchId")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setDefaultPatchId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDefaultPatchId);
+            setDefaultPatchId(refVal_setDefaultPatchId);
             
         }
     }
@@ -242,6 +287,17 @@ bool Models_Game::fromJson(const web::json::value& val)
             utility::string_t refVal_setDeveloper;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeveloper);
             setDeveloper(refVal_setDeveloper);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("file"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("file")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setFile;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setFile);
+            setFile(refVal_setFile);
             
         }
     }
@@ -322,17 +378,6 @@ bool Models_Game::fromJson(const web::json::value& val)
             
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("path"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("path")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setPath;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setPath);
-            setPath(refVal_setPath);
-            
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("platforms"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("platforms")));
@@ -385,17 +430,6 @@ bool Models_Game::fromJson(const web::json::value& val)
             double refVal_setRating;
             ok &= ModelBase::fromJson(fieldValue, refVal_setRating);
             setRating(refVal_setRating);
-            
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("texture"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("texture")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setTexture;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setTexture);
-            setTexture(refVal_setTexture);
             
         }
     }
@@ -497,9 +531,21 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
+    if(m_CollectionsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("collections")), m_Collections));
+    }
     if(m_CreatedAtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("createdAt")), m_CreatedAt));
+    }
+    if(m_DefaultPatchIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("defaultPatch")), m_DefaultPatch));
+    }
+    if(m_DefaultPatchIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("defaultPatchId")), m_DefaultPatchId));
     }
     if(m_DeletedAtIsSet)
     {
@@ -508,6 +554,10 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     if(m_DeveloperIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("developer")), m_Developer));
+    }
+    if(m_fileIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("file")), m_file));
     }
     if(m_GenresIsSet)
     {
@@ -537,10 +587,6 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("patches")), m_Patches));
     }
-    if(m_PathIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("path")), m_Path));
-    }
     if(m_PlatformsIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("platforms")), m_Platforms));
@@ -560,10 +606,6 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     if(m_RatingIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("rating")), m_Rating));
-    }
-    if(m_TextureIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("texture")), m_Texture));
     }
     if(m_ThumbnailIsSet)
     {
@@ -608,11 +650,29 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         namePrefix += utility::conversions::to_string_t(_XPLATSTR("."));
     }
 
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("collections"))))
+    {
+        std::vector<std::shared_ptr<Models_Collection>> refVal_setCollections;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("collections"))), refVal_setCollections );
+        setCollections(refVal_setCollections);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))))
     {
         utility::string_t refVal_setCreatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("createdAt"))), refVal_setCreatedAt );
         setCreatedAt(refVal_setCreatedAt);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("defaultPatch"))))
+    {
+        std::shared_ptr<Models_Patch> refVal_setDefaultPatch;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("defaultPatch"))), refVal_setDefaultPatch );
+        setDefaultPatch(refVal_setDefaultPatch);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("defaultPatchId"))))
+    {
+        int32_t refVal_setDefaultPatchId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("defaultPatchId"))), refVal_setDefaultPatchId );
+        setDefaultPatchId(refVal_setDefaultPatchId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("deletedAt"))))
     {
@@ -625,6 +685,12 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         utility::string_t refVal_setDeveloper;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("developer"))), refVal_setDeveloper );
         setDeveloper(refVal_setDeveloper);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("file"))))
+    {
+        utility::string_t refVal_setFile;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("file"))), refVal_setFile );
+        setFile(refVal_setFile);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("genres"))))
     {
@@ -668,12 +734,6 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("patches"))), refVal_setPatches );
         setPatches(refVal_setPatches);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("path"))))
-    {
-        utility::string_t refVal_setPath;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("path"))), refVal_setPath );
-        setPath(refVal_setPath);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("platforms"))))
     {
         std::vector<std::shared_ptr<Models_Platform>> refVal_setPlatforms;
@@ -703,12 +763,6 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         double refVal_setRating;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("rating"))), refVal_setRating );
         setRating(refVal_setRating);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("texture"))))
-    {
-        utility::string_t refVal_setTexture;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("texture"))), refVal_setTexture );
-        setTexture(refVal_setTexture);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("thumbnail"))))
     {
@@ -762,6 +816,27 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 }
 
 
+std::vector<std::shared_ptr<Models_Collection>> Models_Game::getCollections() const
+{
+    return m_Collections;
+}
+
+
+void Models_Game::setCollections(const std::vector<std::shared_ptr<Models_Collection>>& value)
+{
+    m_Collections = value;
+    m_CollectionsIsSet = true;
+}
+
+bool Models_Game::collectionsIsSet() const
+{
+    return m_CollectionsIsSet;
+}
+
+void Models_Game::unsetCollections()
+{
+    m_CollectionsIsSet = false;
+}
 utility::string_t Models_Game::getCreatedAt() const
 {
     return m_CreatedAt;
@@ -782,6 +857,47 @@ bool Models_Game::createdAtIsSet() const
 void Models_Game::unsetCreatedAt()
 {
     m_CreatedAtIsSet = false;
+}
+std::shared_ptr<Models_Patch> Models_Game::getDefaultPatch() const
+{
+    return m_DefaultPatch;
+}
+
+
+void Models_Game::setDefaultPatch(const std::shared_ptr<Models_Patch>& value)
+{
+    m_DefaultPatch = value;
+    m_DefaultPatchIsSet = true;
+}
+
+bool Models_Game::defaultPatchIsSet() const
+{
+    return m_DefaultPatchIsSet;
+}
+
+void Models_Game::unsetDefaultPatch()
+{
+    m_DefaultPatchIsSet = false;
+}
+int32_t Models_Game::getDefaultPatchId() const
+{
+    return m_DefaultPatchId;
+}
+
+void Models_Game::setDefaultPatchId(int32_t value)
+{
+    m_DefaultPatchId = value;
+    m_DefaultPatchIdIsSet = true;
+}
+
+bool Models_Game::defaultPatchIdIsSet() const
+{
+    return m_DefaultPatchIdIsSet;
+}
+
+void Models_Game::unsetDefaultPatchId()
+{
+    m_DefaultPatchIdIsSet = false;
 }
 std::shared_ptr<Gorm_DeletedAt> Models_Game::getDeletedAt() const
 {
@@ -824,6 +940,27 @@ bool Models_Game::developerIsSet() const
 void Models_Game::unsetDeveloper()
 {
     m_DeveloperIsSet = false;
+}
+utility::string_t Models_Game::getFile() const
+{
+    return m_file;
+}
+
+
+void Models_Game::setFile(const utility::string_t& value)
+{
+    m_file = value;
+    m_fileIsSet = true;
+}
+
+bool Models_Game::fileIsSet() const
+{
+    return m_fileIsSet;
+}
+
+void Models_Game::unsetfile()
+{
+    m_fileIsSet = false;
 }
 std::vector<std::shared_ptr<Models_Genre>> Models_Game::getGenres() const
 {
@@ -969,27 +1106,6 @@ void Models_Game::unsetPatches()
 {
     m_PatchesIsSet = false;
 }
-utility::string_t Models_Game::getPath() const
-{
-    return m_Path;
-}
-
-
-void Models_Game::setPath(const utility::string_t& value)
-{
-    m_Path = value;
-    m_PathIsSet = true;
-}
-
-bool Models_Game::pathIsSet() const
-{
-    return m_PathIsSet;
-}
-
-void Models_Game::unsetPath()
-{
-    m_PathIsSet = false;
-}
 std::vector<std::shared_ptr<Models_Platform>> Models_Game::getPlatforms() const
 {
     return m_Platforms;
@@ -1092,27 +1208,6 @@ bool Models_Game::ratingIsSet() const
 void Models_Game::unsetRating()
 {
     m_RatingIsSet = false;
-}
-utility::string_t Models_Game::getTexture() const
-{
-    return m_Texture;
-}
-
-
-void Models_Game::setTexture(const utility::string_t& value)
-{
-    m_Texture = value;
-    m_TextureIsSet = true;
-}
-
-bool Models_Game::textureIsSet() const
-{
-    return m_TextureIsSet;
-}
-
-void Models_Game::unsetTexture()
-{
-    m_TextureIsSet = false;
 }
 utility::string_t Models_Game::getThumbnail() const
 {
