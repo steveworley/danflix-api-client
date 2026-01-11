@@ -33,6 +33,8 @@ Models_Movie::Models_Movie()
     m_GenresIsSet = false;
     m_Id = 0;
     m_IdIsSet = false;
+    m_ImdbId = utility::conversions::to_string_t("");
+    m_ImdbIdIsSet = false;
     m_LanguagesIsSet = false;
     m_OriginalTitle = utility::conversions::to_string_t("");
     m_OriginalTitleIsSet = false;
@@ -122,6 +124,11 @@ web::json::value Models_Movie::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("id"))] = ModelBase::toJson(m_Id);
+    }
+    if(m_ImdbIdIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("imdbId"))] = ModelBase::toJson(m_ImdbId);
     }
     if(m_LanguagesIsSet)
     {
@@ -311,6 +318,17 @@ bool Models_Movie::fromJson(const web::json::value& val)
             int32_t refVal_setId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setId);
             setId(refVal_setId);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("imdbId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("imdbId")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setImdbId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setImdbId);
+            setImdbId(refVal_setImdbId);
             
         }
     }
@@ -547,6 +565,10 @@ void Models_Movie::toMultipart(std::shared_ptr<MultipartFormData> multipart, con
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("id")), m_Id));
     }
+    if(m_ImdbIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("imdbId")), m_ImdbId));
+    }
     if(m_LanguagesIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("languages")), m_Languages));
@@ -679,6 +701,12 @@ bool Models_Movie::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         int32_t refVal_setId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("id"))), refVal_setId );
         setId(refVal_setId);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("imdbId"))))
+    {
+        utility::string_t refVal_setImdbId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("imdbId"))), refVal_setImdbId );
+        setImdbId(refVal_setImdbId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("languages"))))
     {
@@ -973,6 +1001,27 @@ bool Models_Movie::idIsSet() const
 void Models_Movie::unsetId()
 {
     m_IdIsSet = false;
+}
+utility::string_t Models_Movie::getImdbId() const
+{
+    return m_ImdbId;
+}
+
+
+void Models_Movie::setImdbId(const utility::string_t& value)
+{
+    m_ImdbId = value;
+    m_ImdbIdIsSet = true;
+}
+
+bool Models_Movie::imdbIdIsSet() const
+{
+    return m_ImdbIdIsSet;
+}
+
+void Models_Movie::unsetImdbId()
+{
+    m_ImdbIdIsSet = false;
 }
 std::vector<std::shared_ptr<Models_Language>> Models_Movie::getLanguages() const
 {

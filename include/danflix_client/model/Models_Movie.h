@@ -115,6 +115,14 @@ public:
     void unsetId();
     void setId(int32_t value);
 
+    /// <summary>
+    /// IMDB identifier for matching
+    /// </summary>
+    utility::string_t getImdbId() const;
+    bool imdbIdIsSet() const;
+    void unsetImdbId();
+    void setImdbId(const utility::string_t& value);
+
     std::vector<std::shared_ptr<Models_Language>> getLanguages() const;
     bool languagesIsSet() const;
     void unsetLanguages();
@@ -237,6 +245,9 @@ protected:
 
     int32_t m_Id;
     bool m_IdIsSet;
+
+    utility::string_t m_ImdbId;
+    bool m_ImdbIdIsSet;
 
     std::vector<std::shared_ptr<Models_Language>> m_Languages;
     bool m_LanguagesIsSet;

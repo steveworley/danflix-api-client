@@ -22,6 +22,7 @@
 
 #include "danflix_client/ApiClient.h"
 
+#include "danflix_client/AnyType.h"
 #include "danflix_client/model/Models_Client.h"
 #include "danflix_client/model/Models_Command.h"
 #include <map>
@@ -74,6 +75,16 @@ public:
     /// </remarks>
     /// <param name="id">Client ID</param>
     pplx::task<utility::string_t> clientsIdEventsGet(
+        utility::string_t id
+    ) const;
+    /// <summary>
+    /// Get client status
+    /// </summary>
+    /// <remarks>
+    /// Get the current pause state and connection status of a client
+    /// </remarks>
+    /// <param name="id">Client ID</param>
+    pplx::task<std::map<utility::string_t, std::shared_ptr<AnyType>>> clientsIdStatusGet(
         utility::string_t id
     ) const;
     /// <summary>

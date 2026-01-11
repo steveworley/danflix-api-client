@@ -67,6 +67,14 @@ public:
     void unsetIp();
     void setIp(const utility::string_t& value);
 
+    /// <summary>
+    /// Track pause state
+    /// </summary>
+    bool isIsPaused() const;
+    bool isPausedIsSet() const;
+    void unsetIsPaused();
+    void setIsPaused(bool value);
+
     utility::string_t getLastSeen() const;
     bool lastSeenIsSet() const;
     void unsetLastSeen();
@@ -94,6 +102,9 @@ protected:
 
     utility::string_t m_Ip;
     bool m_IpIsSet;
+
+    bool m_IsPaused;
+    bool m_IsPausedIsSet;
 
     utility::string_t m_LastSeen;
     bool m_LastSeenIsSet;

@@ -24,6 +24,8 @@ Models_Client::Models_Client()
     m_IdIsSet = false;
     m_Ip = utility::conversions::to_string_t("");
     m_IpIsSet = false;
+    m_IsPaused = false;
+    m_IsPausedIsSet = false;
     m_LastSeen = utility::conversions::to_string_t("");
     m_LastSeenIsSet = false;
     m_Name = utility::conversions::to_string_t("");
@@ -55,6 +57,11 @@ web::json::value Models_Client::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("ip"))] = ModelBase::toJson(m_Ip);
+    }
+    if(m_IsPausedIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("isPaused"))] = ModelBase::toJson(m_IsPaused);
     }
     if(m_LastSeenIsSet)
     {
@@ -102,6 +109,17 @@ bool Models_Client::fromJson(const web::json::value& val)
             utility::string_t refVal_setIp;
             ok &= ModelBase::fromJson(fieldValue, refVal_setIp);
             setIp(refVal_setIp);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("isPaused"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("isPaused")));
+        if(!fieldValue.is_null())
+        {
+            bool refVal_setIsPaused;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setIsPaused);
+            setIsPaused(refVal_setIsPaused);
             
         }
     }
@@ -167,6 +185,10 @@ void Models_Client::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("ip")), m_Ip));
     }
+    if(m_IsPausedIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("isPaused")), m_IsPaused));
+    }
     if(m_LastSeenIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("lastSeen")), m_LastSeen));
@@ -205,6 +227,12 @@ bool Models_Client::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
         utility::string_t refVal_setIp;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("ip"))), refVal_setIp );
         setIp(refVal_setIp);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("isPaused"))))
+    {
+        bool refVal_setIsPaused;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("isPaused"))), refVal_setIsPaused );
+        setIsPaused(refVal_setIsPaused);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("lastSeen"))))
     {
@@ -275,6 +303,26 @@ bool Models_Client::ipIsSet() const
 void Models_Client::unsetIp()
 {
     m_IpIsSet = false;
+}
+bool Models_Client::isIsPaused() const
+{
+    return m_IsPaused;
+}
+
+void Models_Client::setIsPaused(bool value)
+{
+    m_IsPaused = value;
+    m_IsPausedIsSet = true;
+}
+
+bool Models_Client::isPausedIsSet() const
+{
+    return m_IsPausedIsSet;
+}
+
+void Models_Client::unsetIsPaused()
+{
+    m_IsPausedIsSet = false;
 }
 utility::string_t Models_Client::getLastSeen() const
 {

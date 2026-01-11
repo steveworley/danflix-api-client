@@ -22,13 +22,10 @@
 
 #include "danflix_client/ModelBase.h"
 
-#include "danflix_client/model/Models_Studio.h"
 #include "danflix_client/model/Models_Genre.h"
-#include "danflix_client/model/Models_Language.h"
 #include "danflix_client/model/Models_Patch.h"
 #include "danflix_client/model/Models_Collection.h"
 #include "danflix_client/model/Gorm_DeletedAt.h"
-#include "danflix_client/model/Models_Actor.h"
 #include <cpprest/details/basic_types.h>
 #include "danflix_client/model/Models_Platform.h"
 #include <vector>
@@ -38,14 +35,11 @@ namespace openapitools {
 namespace client {
 namespace model {
 
-class Models_Actor;
 class Models_Collection;
 class Models_Patch;
 class Gorm_DeletedAt;
 class Models_Genre;
-class Models_Language;
 class Models_Platform;
-class Models_Studio;
 
 
 class  Models_Game
@@ -70,11 +64,6 @@ public:
     /////////////////////////////////////////////
     /// Models_Game members
 
-
-    std::vector<std::shared_ptr<Models_Actor>> getActors() const;
-    bool actorsIsSet() const;
-    void unsetActors();
-    void setActors(const std::vector<std::shared_ptr<Models_Actor>>& value);
 
     /// <summary>
     /// Flag for pick-up-and-play games (arcade, party games, etc.)
@@ -141,11 +130,6 @@ public:
     void unsetDeveloper();
     void setDeveloper(const utility::string_t& value);
 
-    std::vector<std::shared_ptr<Models_Actor>> getDirectors() const;
-    bool directorsIsSet() const;
-    void unsetDirectors();
-    void setDirectors(const std::vector<std::shared_ptr<Models_Actor>>& value);
-
     /// <summary>
     /// Relations
     /// </summary>
@@ -171,11 +155,6 @@ public:
     bool kidgameIsSet() const;
     void unsetKidgame();
     void setKidgame(bool value);
-
-    std::vector<std::shared_ptr<Models_Language>> getLanguages() const;
-    bool languagesIsSet() const;
-    void unsetLanguages();
-    void setLanguages(const std::vector<std::shared_ptr<Models_Language>>& value);
 
     utility::string_t getOriginalTitle() const;
     bool originalTitleIsSet() const;
@@ -207,11 +186,6 @@ public:
     void unsetPoster();
     void setPoster(const utility::string_t& value);
 
-    std::vector<std::shared_ptr<Models_Actor>> getProducers() const;
-    bool producersIsSet() const;
-    void unsetProducers();
-    void setProducers(const std::vector<std::shared_ptr<Models_Actor>>& value);
-
     utility::string_t getPublisher() const;
     bool publisherIsSet() const;
     void unsetPublisher();
@@ -237,11 +211,6 @@ public:
     bool streamIsSet() const;
     void unsetStream();
     void setStream(const utility::string_t& value);
-
-    std::vector<std::shared_ptr<Models_Studio>> getStudios() const;
-    bool studiosIsSet() const;
-    void unsetStudios();
-    void setStudios(const std::vector<std::shared_ptr<Models_Studio>>& value);
 
     utility::string_t getSubtitle() const;
     bool subtitleIsSet() const;
@@ -295,9 +264,6 @@ public:
 
 
 protected:
-    std::vector<std::shared_ptr<Models_Actor>> m_Actors;
-    bool m_ActorsIsSet;
-
     bool m_Anytime;
     bool m_AnytimeIsSet;
 
@@ -328,9 +294,6 @@ protected:
     utility::string_t m_Developer;
     bool m_DeveloperIsSet;
 
-    std::vector<std::shared_ptr<Models_Actor>> m_Directors;
-    bool m_DirectorsIsSet;
-
     std::vector<std::shared_ptr<Models_Genre>> m_Genres;
     bool m_GenresIsSet;
 
@@ -342,9 +305,6 @@ protected:
 
     bool m_Kidgame;
     bool m_KidgameIsSet;
-
-    std::vector<std::shared_ptr<Models_Language>> m_Languages;
-    bool m_LanguagesIsSet;
 
     utility::string_t m_OriginalTitle;
     bool m_OriginalTitleIsSet;
@@ -364,9 +324,6 @@ protected:
     utility::string_t m_Poster;
     bool m_PosterIsSet;
 
-    std::vector<std::shared_ptr<Models_Actor>> m_Producers;
-    bool m_ProducersIsSet;
-
     utility::string_t m_Publisher;
     bool m_PublisherIsSet;
 
@@ -378,9 +335,6 @@ protected:
 
     utility::string_t m_Stream;
     bool m_StreamIsSet;
-
-    std::vector<std::shared_ptr<Models_Studio>> m_Studios;
-    bool m_StudiosIsSet;
 
     utility::string_t m_Subtitle;
     bool m_SubtitleIsSet;
