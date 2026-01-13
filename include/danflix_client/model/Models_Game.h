@@ -22,6 +22,7 @@
 
 #include "danflix_client/ModelBase.h"
 
+#include "danflix_client/model/Models_Studio.h"
 #include "danflix_client/model/Models_Genre.h"
 #include "danflix_client/model/Models_Patch.h"
 #include "danflix_client/model/Models_Collection.h"
@@ -38,6 +39,7 @@ namespace model {
 class Models_Collection;
 class Models_Patch;
 class Gorm_DeletedAt;
+class Models_Studio;
 class Models_Genre;
 class Models_Platform;
 
@@ -125,10 +127,18 @@ public:
     void unsetDeletedAt();
     void setDeletedAt(const std::shared_ptr<Gorm_DeletedAt>& value);
 
-    utility::string_t getDeveloper() const;
+    std::shared_ptr<Models_Studio> getDeveloper() const;
     bool developerIsSet() const;
     void unsetDeveloper();
-    void setDeveloper(const utility::string_t& value);
+    void setDeveloper(const std::shared_ptr<Models_Studio>& value);
+
+    /// <summary>
+    /// Developer/Publisher as Studio references
+    /// </summary>
+    int32_t getDeveloperId() const;
+    bool developerIdIsSet() const;
+    void unsetDeveloperId();
+    void setDeveloperId(int32_t value);
 
     /// <summary>
     /// Relations
@@ -186,10 +196,15 @@ public:
     void unsetPoster();
     void setPoster(const utility::string_t& value);
 
-    utility::string_t getPublisher() const;
+    std::shared_ptr<Models_Studio> getPublisher() const;
     bool publisherIsSet() const;
     void unsetPublisher();
-    void setPublisher(const utility::string_t& value);
+    void setPublisher(const std::shared_ptr<Models_Studio>& value);
+
+    int32_t getPublisherId() const;
+    bool publisherIdIsSet() const;
+    void unsetPublisherId();
+    void setPublisherId(int32_t value);
 
     double getRating() const;
     bool ratingIsSet() const;
@@ -291,8 +306,11 @@ protected:
     std::shared_ptr<Gorm_DeletedAt> m_DeletedAt;
     bool m_DeletedAtIsSet;
 
-    utility::string_t m_Developer;
+    std::shared_ptr<Models_Studio> m_Developer;
     bool m_DeveloperIsSet;
+
+    int32_t m_DeveloperId;
+    bool m_DeveloperIdIsSet;
 
     std::vector<std::shared_ptr<Models_Genre>> m_Genres;
     bool m_GenresIsSet;
@@ -324,8 +342,11 @@ protected:
     utility::string_t m_Poster;
     bool m_PosterIsSet;
 
-    utility::string_t m_Publisher;
+    std::shared_ptr<Models_Studio> m_Publisher;
     bool m_PublisherIsSet;
+
+    int32_t m_PublisherId;
+    bool m_PublisherIdIsSet;
 
     double m_Rating;
     bool m_RatingIsSet;

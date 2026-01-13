@@ -35,8 +35,9 @@ Models_Game::Models_Game()
     m_DefaultPatchId = 0;
     m_DefaultPatchIdIsSet = false;
     m_DeletedAtIsSet = false;
-    m_Developer = utility::conversions::to_string_t("");
     m_DeveloperIsSet = false;
+    m_DeveloperId = 0;
+    m_DeveloperIdIsSet = false;
     m_GenresIsSet = false;
     m_HltbId = 0;
     m_HltbIdIsSet = false;
@@ -54,8 +55,9 @@ Models_Game::Models_Game()
     m_PlotIsSet = false;
     m_Poster = utility::conversions::to_string_t("");
     m_PosterIsSet = false;
-    m_Publisher = utility::conversions::to_string_t("");
     m_PublisherIsSet = false;
+    m_PublisherId = 0;
+    m_PublisherIdIsSet = false;
     m_Rating = 0.0;
     m_RatingIsSet = false;
     m_Runtime = 0;
@@ -146,6 +148,11 @@ web::json::value Models_Game::toJson() const
         
         val[utility::conversions::to_string_t(_XPLATSTR("developer"))] = ModelBase::toJson(m_Developer);
     }
+    if(m_DeveloperIdIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("developerId"))] = ModelBase::toJson(m_DeveloperId);
+    }
     if(m_GenresIsSet)
     {
         
@@ -200,6 +207,11 @@ web::json::value Models_Game::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("publisher"))] = ModelBase::toJson(m_Publisher);
+    }
+    if(m_PublisherIdIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("publisherId"))] = ModelBase::toJson(m_PublisherId);
     }
     if(m_RatingIsSet)
     {
@@ -377,9 +389,20 @@ bool Models_Game::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("developer")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setDeveloper;
+            std::shared_ptr<Models_Studio> refVal_setDeveloper;
             ok &= ModelBase::fromJson(fieldValue, refVal_setDeveloper);
             setDeveloper(refVal_setDeveloper);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("developerId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("developerId")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setDeveloperId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDeveloperId);
+            setDeveloperId(refVal_setDeveloperId);
             
         }
     }
@@ -498,9 +521,20 @@ bool Models_Game::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("publisher")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setPublisher;
+            std::shared_ptr<Models_Studio> refVal_setPublisher;
             ok &= ModelBase::fromJson(fieldValue, refVal_setPublisher);
             setPublisher(refVal_setPublisher);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("publisherId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("publisherId")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setPublisherId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setPublisherId);
+            setPublisherId(refVal_setPublisherId);
             
         }
     }
@@ -697,6 +731,10 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("developer")), m_Developer));
     }
+    if(m_DeveloperIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("developerId")), m_DeveloperId));
+    }
     if(m_GenresIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("genres")), m_Genres));
@@ -740,6 +778,10 @@ void Models_Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     if(m_PublisherIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("publisher")), m_Publisher));
+    }
+    if(m_PublisherIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("publisherId")), m_PublisherId));
     }
     if(m_RatingIsSet)
     {
@@ -860,9 +902,15 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("developer"))))
     {
-        utility::string_t refVal_setDeveloper;
+        std::shared_ptr<Models_Studio> refVal_setDeveloper;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("developer"))), refVal_setDeveloper );
         setDeveloper(refVal_setDeveloper);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("developerId"))))
+    {
+        int32_t refVal_setDeveloperId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("developerId"))), refVal_setDeveloperId );
+        setDeveloperId(refVal_setDeveloperId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("genres"))))
     {
@@ -926,9 +974,15 @@ bool Models_Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("publisher"))))
     {
-        utility::string_t refVal_setPublisher;
+        std::shared_ptr<Models_Studio> refVal_setPublisher;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("publisher"))), refVal_setPublisher );
         setPublisher(refVal_setPublisher);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("publisherId"))))
+    {
+        int32_t refVal_setPublisherId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("publisherId"))), refVal_setPublisherId );
+        setPublisherId(refVal_setPublisherId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("rating"))))
     {
@@ -1198,13 +1252,13 @@ void Models_Game::unsetDeletedAt()
 {
     m_DeletedAtIsSet = false;
 }
-utility::string_t Models_Game::getDeveloper() const
+std::shared_ptr<Models_Studio> Models_Game::getDeveloper() const
 {
     return m_Developer;
 }
 
 
-void Models_Game::setDeveloper(const utility::string_t& value)
+void Models_Game::setDeveloper(const std::shared_ptr<Models_Studio>& value)
 {
     m_Developer = value;
     m_DeveloperIsSet = true;
@@ -1218,6 +1272,26 @@ bool Models_Game::developerIsSet() const
 void Models_Game::unsetDeveloper()
 {
     m_DeveloperIsSet = false;
+}
+int32_t Models_Game::getDeveloperId() const
+{
+    return m_DeveloperId;
+}
+
+void Models_Game::setDeveloperId(int32_t value)
+{
+    m_DeveloperId = value;
+    m_DeveloperIdIsSet = true;
+}
+
+bool Models_Game::developerIdIsSet() const
+{
+    return m_DeveloperIdIsSet;
+}
+
+void Models_Game::unsetDeveloperId()
+{
+    m_DeveloperIdIsSet = false;
 }
 std::vector<std::shared_ptr<Models_Genre>> Models_Game::getGenres() const
 {
@@ -1425,13 +1499,13 @@ void Models_Game::unsetPoster()
 {
     m_PosterIsSet = false;
 }
-utility::string_t Models_Game::getPublisher() const
+std::shared_ptr<Models_Studio> Models_Game::getPublisher() const
 {
     return m_Publisher;
 }
 
 
-void Models_Game::setPublisher(const utility::string_t& value)
+void Models_Game::setPublisher(const std::shared_ptr<Models_Studio>& value)
 {
     m_Publisher = value;
     m_PublisherIsSet = true;
@@ -1445,6 +1519,26 @@ bool Models_Game::publisherIsSet() const
 void Models_Game::unsetPublisher()
 {
     m_PublisherIsSet = false;
+}
+int32_t Models_Game::getPublisherId() const
+{
+    return m_PublisherId;
+}
+
+void Models_Game::setPublisherId(int32_t value)
+{
+    m_PublisherId = value;
+    m_PublisherIdIsSet = true;
+}
+
+bool Models_Game::publisherIdIsSet() const
+{
+    return m_PublisherIdIsSet;
+}
+
+void Models_Game::unsetPublisherId()
+{
+    m_PublisherIdIsSet = false;
 }
 double Models_Game::getRating() const
 {

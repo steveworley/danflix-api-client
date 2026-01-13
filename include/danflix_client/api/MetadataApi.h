@@ -57,7 +57,9 @@ public:
     /// <remarks>
     /// Get actors from the database
     /// </remarks>
+    /// <param name="type">Filter actors by type (movies, tv) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Actor>>> actorsGet(
+        boost::optional<utility::string_t> type
     ) const;
     /// <summary>
     /// Get actor
@@ -95,7 +97,9 @@ public:
     /// <remarks>
     /// Get directors from the database
     /// </remarks>
+    /// <param name="type">Filter directors by type (movies, tv) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Actor>>> directorsGet(
+        boost::optional<utility::string_t> type
     ) const;
     /// <summary>
     /// Get director
@@ -115,6 +119,16 @@ public:
     /// </remarks>
     /// <param name="id">Director ID</param>
     pplx::task<std::vector<std::shared_ptr<Models_Movie>>> directorsIdMoviesGet(
+        int32_t id
+    ) const;
+    /// <summary>
+    /// Get TV shows by director
+    /// </summary>
+    /// <remarks>
+    /// Get TV shows where director appears in episode credits
+    /// </remarks>
+    /// <param name="id">Director ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> directorsIdTvGet(
         int32_t id
     ) const;
     /// <summary>
@@ -209,7 +223,9 @@ public:
     /// <remarks>
     /// Get producers from the database
     /// </remarks>
+    /// <param name="type">Filter producers by type (movies, tv) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Actor>>> producersGet(
+        boost::optional<utility::string_t> type
     ) const;
     /// <summary>
     /// Get producer
@@ -232,12 +248,34 @@ public:
         int32_t id
     ) const;
     /// <summary>
+    /// Get TV shows by producer
+    /// </summary>
+    /// <remarks>
+    /// Get TV shows where producer appears in episode credits
+    /// </remarks>
+    /// <param name="id">Producer ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> producersIdTvGet(
+        int32_t id
+    ) const;
+    /// <summary>
     /// Get studios
     /// </summary>
     /// <remarks>
     /// Get studios from the database
     /// </remarks>
+    /// <param name="type">Filter studios by type (movies, tv, games) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Studio>>> studiosGet(
+        boost::optional<utility::string_t> type
+    ) const;
+    /// <summary>
+    /// Get games by studio
+    /// </summary>
+    /// <remarks>
+    /// Get games by studio from the database (developer/publisher)
+    /// </remarks>
+    /// <param name="id">Studio ID</param>
+    pplx::task<std::vector<std::shared_ptr<Models_Game>>> studiosIdGamesGet(
+        int32_t id
     ) const;
     /// <summary>
     /// Get studio details
