@@ -1809,7 +1809,7 @@ pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> MetadataApi::genresIdTvG
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<Models_Platform>>> MetadataApi::platformsGet() const
+pplx::task<std::vector<std::shared_ptr<Models_Platform>>> MetadataApi::platformsGet(boost::optional<utility::string_t> type) const
 {
 
 
@@ -1850,6 +1850,10 @@ pplx::task<std::vector<std::shared_ptr<Models_Platform>>> MetadataApi::platforms
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (type)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("type")] = ApiClient::parameterToString(*type);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;

@@ -56,12 +56,14 @@ public:
     /// <param name="director">Filter by director (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="actor">Filter by actor (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="producer">Filter by producer (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="decade">Filter by decade (e.g., 1990 for 1990s) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Movie>>> moviesGet(
         boost::optional<utility::string_t> genre,
         boost::optional<utility::string_t> studio,
         boost::optional<utility::string_t> director,
         boost::optional<utility::string_t> actor,
-        boost::optional<utility::string_t> producer
+        boost::optional<utility::string_t> producer,
+        boost::optional<utility::string_t> decade
     ) const;
     /// <summary>
     /// Get a movie banner

@@ -35,7 +35,7 @@ GamesApi::~GamesApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::optional<utility::string_t> title, boost::optional<utility::string_t> decade, boost::optional<utility::string_t> platform, boost::optional<utility::string_t> genre, boost::optional<utility::string_t> players, boost::optional<bool> includePromoted, boost::optional<bool> promotedOnly) const
+pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::optional<utility::string_t> title, boost::optional<utility::string_t> decade, boost::optional<utility::string_t> platform, boost::optional<utility::string_t> genre, boost::optional<utility::string_t> studio, boost::optional<utility::string_t> players, boost::optional<bool> includePromoted, boost::optional<bool> promotedOnly) const
 {
 
 
@@ -91,6 +91,10 @@ pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::
     if (genre)
     {
         localVarQueryParams[utility::conversions::to_string_t("genre")] = ApiClient::parameterToString(*genre);
+    }
+    if (studio)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("studio")] = ApiClient::parameterToString(*studio);
     }
     if (players)
     {

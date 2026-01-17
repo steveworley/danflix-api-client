@@ -35,7 +35,7 @@ MoviesApi::~MoviesApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MoviesApi::moviesGet(boost::optional<utility::string_t> genre, boost::optional<utility::string_t> studio, boost::optional<utility::string_t> director, boost::optional<utility::string_t> actor, boost::optional<utility::string_t> producer) const
+pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MoviesApi::moviesGet(boost::optional<utility::string_t> genre, boost::optional<utility::string_t> studio, boost::optional<utility::string_t> director, boost::optional<utility::string_t> actor, boost::optional<utility::string_t> producer, boost::optional<utility::string_t> decade) const
 {
 
 
@@ -95,6 +95,10 @@ pplx::task<std::vector<std::shared_ptr<Models_Movie>>> MoviesApi::moviesGet(boos
     if (producer)
     {
         localVarQueryParams[utility::conversions::to_string_t("producer")] = ApiClient::parameterToString(*producer);
+    }
+    if (decade)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("decade")] = ApiClient::parameterToString(*decade);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;

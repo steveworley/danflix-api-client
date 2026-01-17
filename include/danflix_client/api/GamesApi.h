@@ -59,6 +59,7 @@ public:
     /// <param name="decade">Filter by decade (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="platform">Filter by platform (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="genre">Filter by genre (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="studio">Filter by studio (developer or publisher) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="players">Filter by number of players (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="includePromoted">Include promoted patches as pseudo-games (optional, default to false)</param>
     /// <param name="promotedOnly">Return only promoted patches (optional, default to false)</param>
@@ -67,6 +68,7 @@ public:
         boost::optional<utility::string_t> decade,
         boost::optional<utility::string_t> platform,
         boost::optional<utility::string_t> genre,
+        boost::optional<utility::string_t> studio,
         boost::optional<utility::string_t> players,
         boost::optional<bool> includePromoted,
         boost::optional<bool> promotedOnly

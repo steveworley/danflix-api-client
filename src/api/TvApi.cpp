@@ -35,7 +35,7 @@ TvApi::~TvApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> TvApi::tvGet() const
+pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> TvApi::tvGet(boost::optional<utility::string_t> genre, boost::optional<utility::string_t> studio, boost::optional<utility::string_t> actor, boost::optional<utility::string_t> decade) const
 {
 
 
@@ -76,6 +76,22 @@ pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> TvApi::tvGet() const
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
+    if (genre)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("genre")] = ApiClient::parameterToString(*genre);
+    }
+    if (studio)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("studio")] = ApiClient::parameterToString(*studio);
+    }
+    if (actor)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("actor")] = ApiClient::parameterToString(*actor);
+    }
+    if (decade)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("decade")] = ApiClient::parameterToString(*decade);
+    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;

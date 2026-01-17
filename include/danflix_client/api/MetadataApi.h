@@ -195,7 +195,9 @@ public:
     /// <remarks>
     /// Get all platforms from the database
     /// </remarks>
+    /// <param name="type">Filter platforms by type (games) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Platform>>> platformsGet(
+        boost::optional<utility::string_t> type
     ) const;
     /// <summary>
     /// Get games by platform

@@ -53,7 +53,15 @@ public:
     /// <remarks>
     /// Get TV shows from the database
     /// </remarks>
+    /// <param name="genre">Filter by genre (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="studio">Filter by studio (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="actor">Filter by actor (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="decade">Filter by decade (e.g., 1990 for 1990s) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> tvGet(
+        boost::optional<utility::string_t> genre,
+        boost::optional<utility::string_t> studio,
+        boost::optional<utility::string_t> actor,
+        boost::optional<utility::string_t> decade
     ) const;
     /// <summary>
     /// Get TV show banner
