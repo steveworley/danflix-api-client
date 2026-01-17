@@ -30,6 +30,9 @@ Models_Client::Models_Client()
     m_LastSeenIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
+    m_ProfileIsSet = false;
+    m_ProfileId = 0;
+    m_ProfileIdIsSet = false;
     m_RegisteredAt = utility::conversions::to_string_t("");
     m_RegisteredAtIsSet = false;
     m_UserAgent = utility::conversions::to_string_t("");
@@ -72,6 +75,16 @@ web::json::value Models_Client::toJson() const
     {
         
         val[utility::conversions::to_string_t(_XPLATSTR("name"))] = ModelBase::toJson(m_Name);
+    }
+    if(m_ProfileIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("profile"))] = ModelBase::toJson(m_Profile);
+    }
+    if(m_ProfileIdIsSet)
+    {
+        
+        val[utility::conversions::to_string_t(_XPLATSTR("profileId"))] = ModelBase::toJson(m_ProfileId);
     }
     if(m_RegisteredAtIsSet)
     {
@@ -145,6 +158,28 @@ bool Models_Client::fromJson(const web::json::value& val)
             
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("profile"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("profile")));
+        if(!fieldValue.is_null())
+        {
+            std::shared_ptr<Models_Profile> refVal_setProfile;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProfile);
+            setProfile(refVal_setProfile);
+            
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("profileId"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("profileId")));
+        if(!fieldValue.is_null())
+        {
+            int32_t refVal_setProfileId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setProfileId);
+            setProfileId(refVal_setProfileId);
+            
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(_XPLATSTR("registeredAt"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(_XPLATSTR("registeredAt")));
@@ -197,6 +232,14 @@ void Models_Client::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("name")), m_Name));
     }
+    if(m_ProfileIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("profile")), m_Profile));
+    }
+    if(m_ProfileIdIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("profileId")), m_ProfileId));
+    }
     if(m_RegisteredAtIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(_XPLATSTR("registeredAt")), m_RegisteredAt));
@@ -245,6 +288,18 @@ bool Models_Client::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
         utility::string_t refVal_setName;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("name"))), refVal_setName );
         setName(refVal_setName);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("profile"))))
+    {
+        std::shared_ptr<Models_Profile> refVal_setProfile;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("profile"))), refVal_setProfile );
+        setProfile(refVal_setProfile);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("profileId"))))
+    {
+        int32_t refVal_setProfileId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(_XPLATSTR("profileId"))), refVal_setProfileId );
+        setProfileId(refVal_setProfileId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(_XPLATSTR("registeredAt"))))
     {
@@ -365,6 +420,47 @@ bool Models_Client::nameIsSet() const
 void Models_Client::unsetName()
 {
     m_NameIsSet = false;
+}
+std::shared_ptr<Models_Profile> Models_Client::getProfile() const
+{
+    return m_Profile;
+}
+
+
+void Models_Client::setProfile(const std::shared_ptr<Models_Profile>& value)
+{
+    m_Profile = value;
+    m_ProfileIsSet = true;
+}
+
+bool Models_Client::profileIsSet() const
+{
+    return m_ProfileIsSet;
+}
+
+void Models_Client::unsetProfile()
+{
+    m_ProfileIsSet = false;
+}
+int32_t Models_Client::getProfileId() const
+{
+    return m_ProfileId;
+}
+
+void Models_Client::setProfileId(int32_t value)
+{
+    m_ProfileId = value;
+    m_ProfileIdIsSet = true;
+}
+
+bool Models_Client::profileIdIsSet() const
+{
+    return m_ProfileIdIsSet;
+}
+
+void Models_Client::unsetProfileId()
+{
+    m_ProfileIdIsSet = false;
 }
 utility::string_t Models_Client::getRegisteredAt() const
 {

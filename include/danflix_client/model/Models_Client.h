@@ -22,6 +22,7 @@
 
 #include "danflix_client/ModelBase.h"
 
+#include "danflix_client/model/Models_Profile.h"
 #include <cpprest/details/basic_types.h>
 
 namespace org {
@@ -29,6 +30,7 @@ namespace openapitools {
 namespace client {
 namespace model {
 
+class Models_Profile;
 
 
 class  Models_Client
@@ -85,6 +87,16 @@ public:
     void unsetName();
     void setName(const utility::string_t& value);
 
+    std::shared_ptr<Models_Profile> getProfile() const;
+    bool profileIsSet() const;
+    void unsetProfile();
+    void setProfile(const std::shared_ptr<Models_Profile>& value);
+
+    int32_t getProfileId() const;
+    bool profileIdIsSet() const;
+    void unsetProfileId();
+    void setProfileId(int32_t value);
+
     utility::string_t getRegisteredAt() const;
     bool registeredAtIsSet() const;
     void unsetRegisteredAt();
@@ -111,6 +123,12 @@ protected:
 
     utility::string_t m_Name;
     bool m_NameIsSet;
+
+    std::shared_ptr<Models_Profile> m_Profile;
+    bool m_ProfileIsSet;
+
+    int32_t m_ProfileId;
+    bool m_ProfileIdIsSet;
 
     utility::string_t m_RegisteredAt;
     bool m_RegisteredAtIsSet;
