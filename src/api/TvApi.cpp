@@ -35,7 +35,7 @@ TvApi::~TvApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> TvApi::tvGet(boost::optional<utility::string_t> genre, boost::optional<utility::string_t> studio, boost::optional<utility::string_t> actor, boost::optional<utility::string_t> decade) const
+pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> TvApi::tvGet(boost::optional<utility::string_t> genre, boost::optional<utility::string_t> studio, boost::optional<utility::string_t> actor, boost::optional<utility::string_t> decade, boost::optional<utility::string_t> includes, boost::optional<utility::string_t> page, boost::optional<utility::string_t> perPage, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order) const
 {
 
 
@@ -91,6 +91,26 @@ pplx::task<std::vector<std::shared_ptr<Models_TVShow>>> TvApi::tvGet(boost::opti
     if (decade)
     {
         localVarQueryParams[utility::conversions::to_string_t("decade")] = ApiClient::parameterToString(*decade);
+    }
+    if (includes)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("includes")] = ApiClient::parameterToString(*includes);
+    }
+    if (page)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("page")] = ApiClient::parameterToString(*page);
+    }
+    if (perPage)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("per_page")] = ApiClient::parameterToString(*perPage);
+    }
+    if (sort)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("sort")] = ApiClient::parameterToString(*sort);
+    }
+    if (order)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("order")] = ApiClient::parameterToString(*order);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;

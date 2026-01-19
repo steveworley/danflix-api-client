@@ -162,7 +162,7 @@ public:
     void setRuntime(int32_t value);
 
     /// <summary>
-    /// Collection?
+    /// Deprecated: Use Collections instead
     /// </summary>
     utility::string_t getSet() const;
     bool setIsSet() const;

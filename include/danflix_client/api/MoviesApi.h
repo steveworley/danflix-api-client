@@ -57,13 +57,23 @@ public:
     /// <param name="actor">Filter by actor (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="producer">Filter by producer (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="decade">Filter by decade (e.g., 1990 for 1990s) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="includes">Comma separated list of relations to include (genres, studios, directors, actors, producers, languages, collections) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="page">Page number (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="perPage">Items per page (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="sort">Sort field (title, year, rating, runtime) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="order">Sort order (asc, desc) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Movie>>> moviesGet(
         boost::optional<utility::string_t> genre,
         boost::optional<utility::string_t> studio,
         boost::optional<utility::string_t> director,
         boost::optional<utility::string_t> actor,
         boost::optional<utility::string_t> producer,
-        boost::optional<utility::string_t> decade
+        boost::optional<utility::string_t> decade,
+        boost::optional<utility::string_t> includes,
+        boost::optional<utility::string_t> page,
+        boost::optional<utility::string_t> perPage,
+        boost::optional<utility::string_t> sort,
+        boost::optional<utility::string_t> order
     ) const;
     /// <summary>
     /// Get a movie banner

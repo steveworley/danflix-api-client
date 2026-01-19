@@ -35,7 +35,7 @@ GamesApi::~GamesApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::optional<utility::string_t> title, boost::optional<utility::string_t> decade, boost::optional<utility::string_t> platform, boost::optional<utility::string_t> genre, boost::optional<utility::string_t> studio, boost::optional<utility::string_t> players, boost::optional<bool> includePromoted, boost::optional<bool> promotedOnly) const
+pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::optional<utility::string_t> title, boost::optional<utility::string_t> decade, boost::optional<utility::string_t> platform, boost::optional<utility::string_t> genre, boost::optional<utility::string_t> studio, boost::optional<utility::string_t> players, boost::optional<bool> includePromoted, boost::optional<bool> promotedOnly, boost::optional<utility::string_t> includes, boost::optional<utility::string_t> page, boost::optional<utility::string_t> perPage, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order) const
 {
 
 
@@ -107,6 +107,26 @@ pplx::task<std::vector<std::shared_ptr<Models_Game>>> GamesApi::gamesGet(boost::
     if (promotedOnly)
     {
         localVarQueryParams[utility::conversions::to_string_t("promotedOnly")] = ApiClient::parameterToString(*promotedOnly);
+    }
+    if (includes)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("includes")] = ApiClient::parameterToString(*includes);
+    }
+    if (page)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("page")] = ApiClient::parameterToString(*page);
+    }
+    if (perPage)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("per_page")] = ApiClient::parameterToString(*perPage);
+    }
+    if (sort)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("sort")] = ApiClient::parameterToString(*sort);
+    }
+    if (order)
+    {
+        localVarQueryParams[utility::conversions::to_string_t("order")] = ApiClient::parameterToString(*order);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;

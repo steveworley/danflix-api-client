@@ -63,6 +63,11 @@ public:
     /// <param name="players">Filter by number of players (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="includePromoted">Include promoted patches as pseudo-games (optional, default to false)</param>
     /// <param name="promotedOnly">Return only promoted patches (optional, default to false)</param>
+    /// <param name="includes">Comma separated list of relations to include (genres, platforms, patches, collections, developer, publisher) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="page">Page number (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="perPage">Items per page (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="sort">Sort field (title, year, rating, players, min_generation) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="order">Sort order (asc, desc) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     pplx::task<std::vector<std::shared_ptr<Models_Game>>> gamesGet(
         boost::optional<utility::string_t> title,
         boost::optional<utility::string_t> decade,
@@ -71,7 +76,12 @@ public:
         boost::optional<utility::string_t> studio,
         boost::optional<utility::string_t> players,
         boost::optional<bool> includePromoted,
-        boost::optional<bool> promotedOnly
+        boost::optional<bool> promotedOnly,
+        boost::optional<utility::string_t> includes,
+        boost::optional<utility::string_t> page,
+        boost::optional<utility::string_t> perPage,
+        boost::optional<utility::string_t> sort,
+        boost::optional<utility::string_t> order
     ) const;
     /// <summary>
     /// Get a game banner by ID

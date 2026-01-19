@@ -158,6 +158,16 @@ public:
     pplx::task<std::vector<std::shared_ptr<Models_Movie>>> meMoviesUpNextGet(
     ) const;
     /// <summary>
+    /// Update current profile
+    /// </summary>
+    /// <remarks>
+    /// Update the authenticated user&#39;s profile fields (name, avatar, theme).
+    /// </remarks>
+    /// <param name="profile">Profile fields to update</param>
+    pplx::task<std::shared_ptr<Models_Profile>> mePatch(
+        std::shared_ptr<Routes_ProfileRequest> profile
+    ) const;
+    /// <summary>
     /// Get anytime TV shows
     /// </summary>
     /// <remarks>
